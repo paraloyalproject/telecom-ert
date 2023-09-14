@@ -54,9 +54,13 @@
         }
 
         /* Add background color to the entire page */
+        /* Set the background image */
         body {
-            background-color: #008B8B; /* Set the background color to teal */
-            color: white; /* Set text color to white for better readability on a dark background */
+            background-image: url('/image1.jpg'); /* Replace with your image file path or URL */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: white;
         }
 
         /* Adjust padding for the content */
@@ -133,7 +137,7 @@
                             <button type="submit" class="btn btn-primary btn-lg">Submit</button>
                         </div>
                     </form>
-                    <a href="/get-broadband" class="btn btn-secondary">Back to Home</a>
+                    <a href="/get-broadband" class="btn btn-secondary" style="color:white;">Back to Home</a>
                 </div>
             </div>
         </div>

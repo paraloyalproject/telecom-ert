@@ -28,8 +28,12 @@
 
         /* Add background color to the full page */
         body {
-            background-color: #008B8B; /* Background color set to #008B8B */
+            background-image: url('/image1.jpg'); /* Add your background image URL here */
+        background-size: cover;
         color: white;
+        background-repeat: no-repeat;
+        padding-top: 100px; /* Add padding to push content below the navigation bar */
+
         padding-top: 10px; /* Add padding to push content below the navigation bar */
             display: flex;
             flex-direction: column;
@@ -43,7 +47,7 @@
         }
      /* Decrease the size of form controls */
         .form-control {
-            max-width: 600px; /* Adjust the width to make the input boxes smaller */
+            width: 60%; /* Adjust the width to make the input boxes smaller */
             padding: 6px 12px; /* Adjust padding for the input boxes */
             font-size: 14px; /* Adjust font size for the input boxes */
         }

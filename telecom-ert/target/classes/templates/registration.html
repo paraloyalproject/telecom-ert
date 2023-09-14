@@ -11,12 +11,14 @@
  
 
 <style>
-    body {
-        background-color: #008B8B;
-        color: white;
-
-
-    }
+    /* Set the background image */
+        body {
+            background-image: url('/image1.jpg'); /* Replace with your image file path or URL */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: white;
+        }
 
  
 
@@ -29,7 +31,7 @@
 
     .navbar-inverse .navbar-brand {
         color: #000000; /* White color for the brand text */
-        font-size: 24px; /* Adjust font size */
+        font-size: 40px; /* Adjust font size */
         font-weight: bold; /* Make the text bold */
     }
 
@@ -86,8 +88,8 @@
                         class="icon-bar"></span> <span class="icon-bar"></span> <span
                         class="icon-bar"></span>
 </button>
-<a class="navbar-brand" href="#" th:href="@{/}">Registration and
-                    Login Module</a>
+<a class="navbar-brand" href="#" th:href="@{/}">Home
+                    </a>
 </div>
 </div>
 </nav>
@@ -150,7 +152,7 @@
 
                     <div class="form-group">
 <button type="submit" class="btn btn-success">Register</button>
-<span>Already registered? <a href="/" th:href="@{/login}">Login
+<span>Already registered? <a href="/" th:href="@{/login}" style="color:white;">Login
                                 here</a></span>
 </div>
 </form>

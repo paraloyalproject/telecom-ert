@@ -31,7 +31,7 @@
 
 <!-- Thymeleaf expression to display logout button for authenticated users -->
 <ul class="nav navbar-nav navbar-right" th:if="${#request.isUserInRole('USER')}">
-<li><a href="/logout">Logout</a></li>
+<li><a href="/logout" style="color:black;">Logout</a></li>
 </ul>
 </div>
 </div>
@@ -178,8 +178,14 @@
  
 
         .bd{
-            background-color: #008B8B;
-	    color:white;
+            /* Set the background image */
+        
+            background-image: url('/image1.jpg'); /* Replace with your image file path or URL */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: white;
+        
         }
 </style>
 </body>
