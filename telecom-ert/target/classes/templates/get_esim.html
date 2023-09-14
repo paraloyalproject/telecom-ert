@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+    <!-- Add your meta tags and title here -->
+ <meta charset="UTF-8">
     <title>Telecom App</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     
@@ -27,7 +28,8 @@
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <!-- Add navigation bar if needed -->
+ <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -50,24 +52,39 @@
                 </ul>
             </div>
         </div>
-    </nav>
+ </nav>
 
     <div class="container">
-        <h1 class="welcome-heading">Welcome to Ert-Application</h1>
-        <!-- Thymeleaf expression to display welcome message after login -->
-        <div class="welcome-message" th:if="${#request.isUserInRole('USER')}">
-            <p>Welcome, <span th:text="${#authentication.principal.username}">User</span>!</p>
-        </div>
-        <div class="button-container">
-            <a href="/get-broadband" class="btn btn-primary">Get New Broadband Connection</a>
-        </div>
-        <div class="button-container">
-            <a href="/get-esim" class="btn btn-primary">Get New E-SIM</a>
-        </div>
-        <div class="button-container">
-            <a href="/recharge-payment" class="btn btn-success">Recharge</a>
-        </div>
+        <h1 class="welcome-heading">Get New E-SIM</h1>
+        <form action="/submit-esim" method="post">
+            <!-- Name -->
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+
+            <!-- Existing Phone Number -->
+            <div class="form-group">
+                <label for="phone">Existing Phone Number</label>
+                <input type="text" class="form-control" id="phone" name="phone" required>
+            </div>
+
+            <!-- Aadhar Card or PAN Card -->
+            <div class="form-group">
+                <label for="card">Aadhar Card or PAN Card</label>
+                <input type="text" class="form-control" id="card" name="card" required>
+            </div>
+
+            <!-- Email Address -->
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <a href="/get-broadband" class="btn btn-secondary">Back to Home</a>
     </div>
-    <!-- Bootstrap and other scripts can be included here -->
 </body>
 </html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Recharge</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <!-- Navbar code... -->
+    </nav>
+
+    <div class="container">
+        <h1>Recharge</h1>
+        <form action="/submit-recharge" method="post">
+            <!-- Select Recharge Type (Default: Mobile) -->
+            <div class="form-group">
+                <label>Select Recharge Type</label>
+                <select class="form-control" id="recharge-type" name="recharge-type">
+                    <option value="mobile" selected>Mobile</option>
+                    <option value="broadband">Broadband Connection</option>
+                </select>
+            </div>
+
+            <!-- Mobile Recharge Section (Default: Displayed) -->
+            <div class="form-group" id="mobile-section">
+                <label for="recharge-mobile">Mobile Number for Recharge</label>
+                <input type="text" class="form-control" id="recharge-mobile" name="recharge-mobile" required>
+
+                <label>Select a Package for Mobile Recharge</label>
+                <select class="form-control" id="recharge-mobile-package" name="recharge-mobile-package" required>
+                    <option value="mobile-package1">Mobile Package 1</option>
+                    <option value="mobile-package2">Mobile Package 2</option>
+                    <!-- Add more mobile package options as needed -->
+                </select>
+            </div>
+
+            <!-- Broadband Recharge Section (Hidden by Default) -->
+            <div class="form-group" id="broadband-section" style="display: none;">
+                <label for="recharge-broadband">Broadband Connection Number for Recharge</label>
+                <input type="text" class="form-control" id="recharge-broadband" name="recharge-broadband">
+
+                <label>Select a Package for Broadband Recharge</label>
+                <select class="form-control" id="recharge-broadband-package" name="recharge-broadband-package">
+                    <option value="broadband-package1">Broadband Package 1</option>
+                    <option value="broadband-package2">Broadband Package 2</option>
+                    <!-- Add more broadband package options as needed -->
+                </select>
+            </div>
+
+            <!-- Payment Method Section -->
+            <div class="form-group">
+                <label>Select a Payment Method for Recharge</label>
+                <div class="radio">
+                    <label><input type="radio" name="payment-method" value="credit-card">Credit Card</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="payment-method" value="debit-card">Debit Card</label>
+                </div>
+            </div>
+
+            <!-- Credit Card Details Section (Hidden by Default) -->
+            <div id="credit-card-details" style="display: none;">
+                <h3>Credit Card Details</h3>
+                <div class="form-group">
+                    <label for="credit-card-number">Credit Card Number</label>
+                    <input type="text" class="form-control" id="credit-card-number" name="credit-card-number" required>
+                </div>
+                <div class="form-group">
+                    <label for="credit-card-expire">Expiration Date</label>
+                    <input type="text" class="form-control" id="credit-card-expire" name="credit-card-expire" placeholder="MM/YY" required>
+                </div>
+                <div class="form-group">
+                    <label for="credit-card-cvv">CVV</label>
+                    <input type="text" class="form-control" id="credit-card-cvv" name="credit-card-cvv" required>
+                </div>
+            </div>
+
+            <!-- Debit Card Details Section (Hidden by Default) -->
+            <div id="debit-card-details" style="display: none;">
+                <h3>Debit Card Details</h3>
+                <div class="form-group">
+                    <label for="debit-card-number">Debit Card Number</label>
+                    <input type="text" class="form-control" id="debit-card-number" name="debit-card-number" required>
+                </div>
+                <div class="form-group">
+                    <label for="debit-card-expire">Expiration Date</label>
+                    <input type="text" class="form-control" id="debit-card-expire" name="debit-card-expire" placeholder="MM/YY" required>
+                </div>
+                <div class="form-group">
+                    <label for="debit-card-cvv">CVV</label>
+                    <input type="text" class="form-control" id="debit-card-cvv" name="debit-card-cvv" required>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary">Recharge</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap and other scripts can be included here -->
+    
+    <script>
+        document.getElementById("recharge-type").addEventListener("change", function() {
+            var selectedValue = this.value;
+            if (selectedValue === "mobile") {
+                document.getElementById("mobile-section").style.display = "block";
+                document.getElementById("broadband-section").style.display = "none";
+            } else if (selectedValue === "broadband") {
+                document.getElementById("mobile-section").style.display = "none";
+                document.getElementById("broadband-section").style.display = "block";
+            }
+        });
+
+        document.querySelectorAll('input[name="payment-method"]').forEach(function(radio) {
+            radio.addEventListener("change", function() {
+                var selectedValue = this.value;
+                if (selectedValue === "credit-card") {
+                    document.getElementById("credit-card-details").style.display = "block";
+                    document.getElementById("debit-card-details").style.display = "none";
+                } else if (selectedValue === "debit-card") {
+                    document.getElementById("credit-card-details").style.display = "none";
+                    document.getElementById("debit-card-details").style.display = "block";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
