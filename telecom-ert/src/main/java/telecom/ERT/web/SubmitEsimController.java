@@ -7,16 +7,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import telecom.ERT.model.EsimConnection;
-
 import telecom.ERT.service.EsimConnectionService;
+import telecom.ERT.exception.ResourceNotFoundException;
 
 @Controller
 @RequestMapping("/submit-esim")
 public class SubmitEsimController {
 
- 
     private EsimConnectionService esimConnectionService;
 
     @Autowired
@@ -32,8 +30,12 @@ public class SubmitEsimController {
 
     @PostMapping
     public String submitEsimForm(@ModelAttribute EsimConnection esimConnection) {
-        esimConnectionService.saveEsimConnection(esimConnection);
-        return "redirect:/"; 
+        try {
+            esimConnectionService.saveEsimConnection(esimConnection);
+            return "redirect:/";
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            throw new ResourceNotFoundException("Error while saving ESIM connection: " + ex.getMessage());
+        }
     }
 }
-

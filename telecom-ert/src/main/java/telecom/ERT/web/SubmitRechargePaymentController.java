@@ -8,36 +8,34 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import telecom.ERT.model.RechargePayment;
-import telecom.ERT.repository.BroadbandConnectionRepository;
 import telecom.ERT.service.RechargePaymentService;
-import telecom.ERT.model.BroadbandConnection;
-
+import telecom.ERT.exception.ResourceNotFoundException; // Import the custom exception class
 
 @Controller
 @RequestMapping("/submit-recharge")
-public class submitRechargePaymentController {
-	
-
+public class SubmitRechargePaymentController {
 
     private final RechargePaymentService rechargePaymentService;
 
     @Autowired
-    public submitRechargePaymentController(RechargePaymentService rechargePaymentService) {
+    public SubmitRechargePaymentController(RechargePaymentService rechargePaymentService) {
         this.rechargePaymentService = rechargePaymentService;
     }
 
     @GetMapping
     public String showRechargePaymentForm(Model model) {
         model.addAttribute("rechargePayment", new RechargePayment());
-        return "recharge_payment"; // Return the name of the HTML file for the recharge/payment page
+        return "recharge_payment"; 
     }
 
     @PostMapping
     public String submitRechargePaymentForm(@ModelAttribute RechargePayment rechargePayment) {
-    	
-        
-        rechargePaymentService.save(rechargePayment);
-        return "redirect:/";
+        try {
+            rechargePaymentService.save(rechargePayment);
+            return "redirect:/";
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            throw new ResourceNotFoundException("Error while saving recharge payment: " + ex.getMessage());
+        }
     }
 }
-
