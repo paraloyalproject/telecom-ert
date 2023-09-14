@@ -4,70 +4,94 @@
     <meta charset="UTF-8">
     <title>Telecom App</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    
+
     <!-- Custom CSS for styling -->
     <style>
+        /* Set the background image */
+        body {
+            background-image: url('/image1.jpg'); /* Replace with your image file path or URL */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: white;
+        }
+
         /* Add space between the navbar and content */
         .navbar {
+            background-color: lightblue;
             margin-bottom: 220px;
         }
 
-        /* Center the heading and add space below it */
-        .welcome-heading {
-            text-align: left; /* Align to the left */
-            margin-top: 80px;
-            margin-bottom: 10px; /* Adjust margin-bottom */
+        /* Center the content horizontally and vertically */
+        .center-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Use 100% of the viewport height */
         }
 
         /* Style the welcome message */
-        .welcome-message {
-            text-align: left; /* Align to the left */
-            margin-bottom: 20px; /* Add space below the message */
+        .welcome-message { 
+            margin-left: 30px;
+            font-weight: bold;
+        }
+
+        /* Add space below headings */
+        .h1, .h2, .h3, h1, h2, h3 {
+            margin-top: 65px;
+            margin-bottom: 20px;
+            padding-left: 20px;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        .button-container {
+            padding: 5px;
+            width: max-content;
+            margin-left: 50px;
         }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">Telecom App</a>
-            </div>
-            <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="/login">Sign In</a></li>
-                    <li><a href="/registration">Sign Up</a></li>
-                </ul>
-                
-                <!-- Thymeleaf expression to display logout button for authenticated users -->
-                <ul class="nav navbar-nav navbar-right" th:if="${#request.isUserInRole('USER')}">
-                    <li><a href="/logout">Logout</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
+<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
-        <h1 class="welcome-heading">Welcome to Ert-Application</h1>
-        <!-- Thymeleaf expression to display welcome message after login -->
-        <div class="welcome-message" th:if="${#request.isUserInRole('USER')}">
-            <p>Welcome, <span th:text="${#authentication.principal.username}">User</span>!</p>
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/" style="color: black;">Telecom App</a>
         </div>
-        <div class="button-container">
-            <a href="/get-broadband" class="btn btn-primary">Get New Broadband Connection</a>
-        </div>
-        <div class="button-container">
-            <a href="/get-esim" class="btn btn-primary">Get New E-SIM</a>
-        </div>
-        <div class="button-container">
-            <a href="/recharge-payment" class="btn btn-success">Recharge</a>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/login" style="color: black;">Sign In</a></li>
+                <li><a href="/registration" style="color: black;">Sign Up</a></li>
+            </ul>
+            
+            <!-- Thymeleaf expression to display logout button for authenticated users -->
+            <ul class="nav navbar-nav navbar-right" th:if="${#request.isUserInRole('USER')}">
+                <li><a href="/logout" style="color: black;">Logout</a></li>
+            </ul>
         </div>
     </div>
-    <!-- Bootstrap and other scripts can be included here -->
+</nav>
+<div class="container">
+    <h1 class="welcome-heading">Welcome to Ert-Application</h1>
+    <!-- Thymeleaf expression to display welcome message after login -->
+    <div class="welcome-message" th:if="${#request.isUserInRole('USER')}">
+        <p>Welcome, <span th:text="${#authentication.principal.username}">User</span>!</p>
+    </div>
+    <div class="button-container">
+        <a href="/get-broadband" class="btn btn-primary">Get New Broadband Connection</a>
+    </div>
+    <div class="button-container">
+        <a href="/get-esim" class="btn btn-primary">Get New E-SIM</a>
+    </div>
+    <div class="button-container">
+        <a href="/recharge-payment" class="btn btn-success">Recharge</a>
+    </div>
+</div>
+<!-- Bootstrap and other scripts can be included here -->
 </body>
 </html>

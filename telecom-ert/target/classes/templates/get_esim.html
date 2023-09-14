@@ -2,22 +2,37 @@
 <html>
 <head>
     <!-- Add your meta tags and title here -->
- <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <title>Telecom App</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     
     <!-- Custom CSS for styling -->
     <style>
-        /* Add space between the navbar and content */
+        /* Change the background color of the navbar to light blue */
         .navbar {
-            margin-bottom: 220px;
+            background-color: lightblue;
+            padding: 16px 0; /* Increase the vertical padding */
         }
 
-        /* Center the heading and add space below it */
+        /* Increase the font size and change the color of the navbar brand (Telecom App) */
+        .navbar-brand {
+            font-size: 28px; /* Increase the font size */
+            color: black !important; /* Set the text color to black */
+            padding: 10px 15px; /* Adjust padding for the navbar brand */
+        }
+
+        /* Increase the font size of navigation links (Sign In and Sign Up) */
+        .navbar-nav li a {
+            font-size: 24px; /* Increase the font size */
+            color: black; /* Highlight with black color */
+            padding: 10px 15px; /* Adjust padding for the navigation links */
+        }
+
+        /* Center the heading horizontally and vertically */
         .welcome-heading {
-            text-align: left; /* Align to the left */
-            margin-top: 80px;
-            margin-bottom: 10px; /* Adjust margin-bottom */
+            text-align: center; /* Align text to center horizontally */
+            margin-top: 100px; /* Adjust top margin for vertical centering */
+            margin-bottom: 10px;
         }
 
         /* Style the welcome message */
@@ -25,11 +40,43 @@
             text-align: left; /* Align to the left */
             margin-bottom: 20px; /* Add space below the message */
         }
+
+        /* Reduce the width of empty input boxes */
+        .form-control {
+            font-size: 14px; /* Adjust the font size to make the boxes smaller */
+            padding: 6px 10px; /* Adjust padding for a smaller box */
+            max-width: 800px; /* Set a maximum width for the input boxes */
+        }
+
+        /* Increase the size of label text */
+        label {
+            font-size: 18px; /* You can adjust the font size as needed */
+        }
+
+        /* Add background color to the entire page */
+        /* Set the background image */
+        body {
+            background-image: url('/image1.jpg'); /* Replace with your image file path or URL */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: white;
+        }
+
+        /* Adjust padding for the content */
+        .page-container {
+            padding: 20px; /* Add padding to the container */
+        }
+
+        /* Set the color of the logout text to black */
+        .navbar-nav li a[href="/logout"] {
+            color: black !important;
+        }
     </style>
 </head>
 <body>
     <!-- Add navigation bar if needed -->
- <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -42,8 +89,8 @@
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="/login">Sign In</a></li>
-                    <li><a href="/registration">Sign Up</a></li>
+                    <li><a href="/login" style="color: black;">Sign In</a></li>
+                    <li><a href="/registration" style="color: black;">Sign Up</a></li>
                 </ul>
                 
                 <!-- Thymeleaf expression to display logout button for authenticated users -->
@@ -52,39 +99,48 @@
                 </ul>
             </div>
         </div>
- </nav>
+    </nav>
 
-    <div class="container">
-        <h1 class="welcome-heading">Get New E-SIM</h1>
-        <form action="/submit-esim" method="post">
-            <!-- Name -->
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" name="name" required>
+    <!-- Wrap the content in a div with a background color -->
+    <div class="page-container">
+        <div class="container">
+            <h1 class="welcome-heading">Get New E-SIM</h1>
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-md-offset-3">
+                    <form action="/submit-esim" method="post">
+                        <!-- Name -->
+                        <div class="form-group">
+                            <label for="name" style="font-size: 18px;">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+
+                        <!-- Existing Phone Number -->
+                        <div class="form-group">
+                            <label for="phone" style="font-size: 18px;">Existing Phone Number</label>
+                            <input type="text" class="form-control" id="phone" name="phone" required>
+                        </div>
+
+                        <!-- Aadhar Card or PAN Card -->
+                        <div class="form-group">
+                            <label for="card" style="font-size: 18px;">Aadhar Card or PAN Card</label>
+                            <input type="text" class="form-control" id="card" name="card" required>
+                        </div>
+
+                        <!-- Email Address -->
+                        <div class="form-group">
+                            <label for="email" style="font-size: 18px;">Email Address</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                        </div>
+                    </form>
+                    <a href="/get-broadband" class="btn btn-secondary" style="color:white;">Back to Home</a>
+                </div>
             </div>
-
-            <!-- Existing Phone Number -->
-            <div class="form-group">
-                <label for="phone">Existing Phone Number</label>
-                <input type="text" class="form-control" id="phone" name="phone" required>
-            </div>
-
-            <!-- Aadhar Card or PAN Card -->
-            <div class="form-group">
-                <label for="card">Aadhar Card or PAN Card</label>
-                <input type="text" class="form-control" id="card" name="card" required>
-            </div>
-
-            <!-- Email Address -->
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" class="form-control" id="email" name="email" required>
-            </div>
-
-            <!-- Submit Button -->
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-        <a href="/get-broadband" class="btn btn-secondary">Back to Home</a>
+        </div>
     </div>
 </body>
 </html>
