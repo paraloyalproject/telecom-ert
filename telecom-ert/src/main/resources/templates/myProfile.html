@@ -79,17 +79,19 @@
             <div class="form-group">
                 <label for="name">Name:</label>
                 <!-- Display the user's name from the model -->
-                <input type="text" id="name" th:value="${user.name}" placeholder="Your name">
+                <input type="text" id="name" th:value="${user.firstName}" placeholder="Your name">
+               
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
                 <!-- Display the user's email from the model -->
-                <input type="text" id="email" th:value="${user.email}" placeholder="Your email">
+                 <input type="text" id="email" th:value="${user.email}" placeholder="Your email">
+                
             </div>
             <div class="form-group">
                 <label for="mobile">Mobile Number:</label>
                 <!-- Display the user's phone number from the model -->
-                <input type="text" id="mobile" th:value="${user.phoneNumber}" placeholder="Your mobile number">
+               
             </div>
             <div class="form-group">
                 <label for="pkg">Current Package:</label>

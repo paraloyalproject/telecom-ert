@@ -23,7 +23,7 @@ public class MyprofileController {
 
     @GetMapping
     public String myProfile(Model model, Principal principal) {
-        String userEmail = principal.getName(); // Get the user's email (username)
+        String userEmail = principal.getName(); 
         User user = userService.findByEmail(userEmail);
 
         if (user != null) {
