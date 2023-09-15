@@ -10,6 +10,12 @@ public class RechargePaymentController {
 
     @GetMapping
     public String showRechargePage() {
-        return "recharge"; // Return the name of the HTML file for the recharge/payment page
+        try {
+
+            return "recharge"; 
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return "error"; 
+        }
     }
 }
