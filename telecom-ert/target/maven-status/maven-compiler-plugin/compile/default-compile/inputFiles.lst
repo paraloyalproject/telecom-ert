@@ -19,12 +19,14 @@ D:\T- App\telecom-ert\telecom-ert\src\main\java\telecom\ERT\exception\ResourceNo
 D:\T- App\telecom-ert\telecom-ert\src\main\java\telecom\ERT\service\UserService.java
 D:\T- App\telecom-ert\telecom-ert\src\main\java\telecom\ERT\web\dto\UserRegistrationDto.java
 D:\T- App\telecom-ert\telecom-ert\src\main\java\telecom\ERT\service\BroadbandConnectionService.java
+D:\T- App\telecom-ert\telecom-ert\src\main\java\telecom\ERT\web\MyprofileController.java
 D:\T- App\telecom-ert\telecom-ert\src\main\java\telecom\ERT\repository\BroadbandConnectionRepository.java
 D:\T- App\telecom-ert\telecom-ert\src\main\java\telecom\ERT\model\Role.java
 D:\T- App\telecom-ert\telecom-ert\src\main\java\telecom\ERT\exception\WhitelabelErrorController.java
 D:\T- App\telecom-ert\telecom-ert\src\main\java\telecom\ERT\web\EsimController.java
 D:\T- App\telecom-ert\telecom-ert\src\main\java\telecom\ERT\service\RechargePaymentService.java
 D:\T- App\telecom-ert\telecom-ert\src\main\java\telecom\ERT\Ert.java
+D:\T- App\telecom-ert\telecom-ert\src\main\java\telecom\ERT\web\SettingsController.java
 D:\T- App\telecom-ert\telecom-ert\src\main\java\telecom\ERT\web\UserRegistrationController.java
 D:\T- App\telecom-ert\telecom-ert\src\main\java\telecom\ERT\web\SubmitEsimController.java
 D:\T- App\telecom-ert\telecom-ert\src\main\java\telecom\ERT\model\EsimConnection.java

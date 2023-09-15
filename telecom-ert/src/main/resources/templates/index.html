@@ -67,7 +67,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="/login" style="color: black;">Sign In</a></li>
                 <li><a href="/registration" style="color: black;">Sign Up</a></li>
-                
+                <li><a href="/myprofile" style="color: black;">My Profile</a></li>
             </ul>
             
             <!-- Thymeleaf expression to display logout button for authenticated users -->
@@ -78,7 +78,7 @@
     </div>
 </nav>
 <div class="container">
-    <h1 class="welcome-heading">Welcome to Ert-Application</h1>
+    <h1 class="welcome-heading">Welcome to Ert</h1>
     <!-- Thymeleaf expression to display welcome message after login -->
     <div class="welcome-message" th:if="${#request.isUserInRole('USER')}">
         <p>Welcome, <span th:text="${#authentication.principal.username}">User</span>!</p>
