@@ -1,24 +1,23 @@
 package telecom.ERT.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import telecom.ERT.model.BroadbandConnection;
 import telecom.ERT.repository.BroadbandConnectionRepository;
-
 @Service
-public class BroadbandConnectionServiceImpl implements BroadbandConnectionService {
+public class BroadbandConnectionServiceImpl {
 
-    private final BroadbandConnectionRepository repository;
+
+    private BroadbandConnectionRepository broadbandconnectionRepository;
 
     @Autowired
-    public BroadbandConnectionServiceImpl(BroadbandConnectionRepository repository) {
-        this.repository = repository;
+    public BroadbandConnectionServiceImpl(BroadbandConnectionRepository broadbandconnectionRepository) {
+        this.broadbandconnectionRepository = broadbandconnectionRepository;
     }
 
-    @Transactional
-    public void save(BroadbandConnection broadbandConnection) {
-        repository.save(broadbandConnection);
+    public void saveBroadbandConnection(BroadbandConnection broadbandconnection) {
+    	broadbandconnectionRepository.save(broadbandconnection);
     }
 }

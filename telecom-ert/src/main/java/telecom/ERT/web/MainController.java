@@ -30,4 +30,17 @@ public class MainController {
             return "error";
         }
     }
+
+   
+    @GetMapping("/get_broadband")
+    public String getbroadbandPage() {
+        try {
+            return "get_broadband";
+        } catch (Exception ex) {
+            
+            ex.printStackTrace();
+
+            return "error";
+        }
+    }
 }

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Add your meta tags and title here -->
+    <meta charset="UTF-8">
+    <title>Settings</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Custom CSS for styling -->
+    <style>
+        .navbar {
+            background-color: #53B0B2 !important;
+            padding: 8px 0;
+            margin-bottom: 120px;
+        }
+
+        body {
+            background-image: url('images/side3.jpg'); /* Replace with your image file path or URL */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: black;
+        }
+
+        .h1 {
+            text-align: center; /* Center-align the text */
+            color: black !important;
+        }
+
+        .page-container {
+            padding: 20px; /* Add padding to the container */
+        }
+
+        /* Set the color of the logout text to black */
+        .navbar-nav li a[href="/logout"] {
+            color: black !important;
+        }
+
+        /* Style for the success message */
+        #message {
+            display: none; /* Initially hide the message */
+            text-align: center;
+            font-weight: bold;
+            color: green;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Add navigation bar if needed -->
+    <br /><br /><br /><br /><br />
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/myprofile" style="color: black; font-size: 32px;">Settings</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Wrap the content in a div with a background color -->
+    <div class="page-container">
+        <div class="container">
+            <h1 class="welcome-heading" style="text-align: center;">Settings</h1>
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-md-offset-3">
+                    <form action="/submit-esim" method="post">
+                        <br><br><br><br>
+                        <div class="form-group">
+                            <label for="first-name" class="col-sm-3 control-label">First Name:</label>
+                            <div class="col-sm-9">
+                                <input type="text" id="first-name" placeholder="Enter your first name" class="form-control">
+                                <br />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="col-sm-3 control-label">Email ID:</label>
+                            <div class="col-sm-9">
+                                <input type="text" id="email" placeholder="Enter your email ID" class="form-control">
+                                <br />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="col-sm-3 control-label">Change Password:</label>
+                            <div class="col-sm-9">
+                                <input type="text" id="email" placeholder="Enter your email ID" class="form-control">
+                                <br />
+                                <br /><br>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group text-center">
+
+                            <button id="submit-button" onclick="showMessage()" class="btn btn-primary">Submit</button> <!-- Submit button -->
+                        </div>
+                    </form>
+                    <!-- Success message -->
+                    <p id="message">Details changed successfully.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Bootstrap CSS (as done in the "Prepaid SIM" page) -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <script>
+        function showMessage() {
+            var message = document.getElementById("message");
+            message.style.display = "block";
+        }
+    </script>
+</body>
+</html>

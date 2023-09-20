@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title style="background-color: #53B0B2;">Bank Transaction</title>
+
+    <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+    <style>
+        .navbar {
+            background-color: #53B0B2;
+            padding: 8px 0;
+            margin-bottom: 120px;
+        }
+
+
+        .navbar-brand {
+            background-color: #53B0B2;
+            color: black !important;
+            font-size: 30px;
+            padding: 8px 0;
+            display: block;
+            text-align: center;
+            line-height: 40px;
+        }
+
+        body {
+            background-image: url('images/side3.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-color: white;
+            color: black;
+        }
+
+        .form-label {
+            font-size: 22px;
+            margin-left: -10px;
+            width: 200px; 
+            display: inline-block; 
+        }
+
+        .transaction-text {
+            font-size: 26px;
+            text-align: center; 
+        }
+
+        .transaction-text a {
+            color: black;
+        }
+
+        /* Style for label and input container */
+        .form-group-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        /* Style for input fields */
+        .form-control {
+            flex: 1;
+        }
+
+        /* Style for the submit button */
+        .submit-button {
+            font-size: 18px; /* Adjust the font size as needed */
+            padding: 10px 15px; /* Adjust padding for width and height */
+            width: auto; /* Allow button to adjust its width based on content */
+            margin: 0 auto; /* Center the button horizontally within its container */
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"
+                data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span> <span
+                    class="icon-bar"></span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+            <!-- Add the Thymeleaf expression to link to the home page -->
+            <a class="navbar-brand" href="#" th:href="@{/}">Bank Transaction</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3"><br /><br /><br /><br />
+            <h1 class="transaction-text"> Transaction Details </h1><br />
+            <!-- Add Thymeleaf expression for form action -->
+            <form th:action="@{/transaction}" method="post">
+                <!-- Transaction ID input group -->
+                <div class="form-group-container">
+                    <label for="transaction-id" class="form-label">Transaction ID:</label>
+                    <input type="text" class="form-control" id="transaction-id" name="transaction-id" placeholder=" " autofocus="autofocus"th:value="${user.ransactionid}">
+                </div>
+                <!-- Reference Number input group -->
+                <div class="form-group-container">
+                    <label for="reference-number" class="form-label">Reference Number:</label>
+                    <input type="text" id="reference-number" name="reference-number" class="form-control" placeholder=" "th:value="${user.referencenumber}" />
+                </div>
+                <!-- Mobile Number input group -->
+                <div class="form-group-container">
+                    <label for="mobile-number" class="form-label">Mobile Number:</label>
+                    <input type="text" id="mobile-number" name="mobile-number" class="form-control" placeholder=" " th:value="${user.mobilenumber}"/>
+                </div>
+                <!-- Bank Name input group -->
+                <div class="form-group-container">
+                    <label for="bank-name" class="form-label">Bank Name:</label>
+                    <input type="text" id="bank-name" name="bank-name" class="form-control" placeholder=" " th:value="${user.bankname}"/>
+                </div>
+                <!-- Amount input group -->
+                <div class="form-group-container">
+                    <label for="amount" class="form-label">Amount:</label>
+                    <input type="text" id="amount" name="amount" class="form-control" placeholder=" " / th:value="${user.amount}">
+                </div>
+                <!-- Payment Method input group -->
+                <div class="form-group-container">
+                    <label for="payment-method" class="form-label">Payment Method:</label>
+                    <input type="text" id="payment-method" name="payment-method" class="form-control" placeholder=" " th:value="${user.paymentmethod}"/>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3"><br />
+                            <!-- Add the "submit-button" class to style the submit button -->
+                            <input type="submit" name="transaction-submit" id="transaction-submit" class="form-control btn btn-primary submit-button" value="Submit" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
