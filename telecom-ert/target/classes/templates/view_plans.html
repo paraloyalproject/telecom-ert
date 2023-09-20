@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Add your meta tags, title, and styles here -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Plans</title>
+    <!-- Add your CSS styles if needed -->
+    <style>
+        .plan-box {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px;
+            width: 300px;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .recharge-button {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Recommended Packs</h1>
+    <div th:each="plan : ${plans}" th:if="${plan.planType == 'Recommended'}">
+        <div class="plan-box">
+            <p th:text="${plan.planName}"></p>
+            <!-- Display other plan details here -->
+            <p th:text="'Price: ' + ${plan.price}"></p>
+            <p th:text="'Validity (Days): ' + ${plan.validityDays}"></p>
+            <p th:text="'Data Limit: ' + ${plan.dataLimit}"></p>
+            <p th:text="'Calls Limit: ' + ${plan.callsLimit}"></p>
+            <p th:text="'SMS Limit: ' + ${plan.smsLimit}"></p>
+            <a href="#" class="recharge-button">Recharge</a>
+        </div>
+    </div>
+
+    <h1>Data Packs</h1>
+    <div th:each="plan : ${plans}" th:if="${plan.planType == 'Data Pack'}">
+        <div class="plan-box">
+            <p th:text="${plan.planName}"></p>
+            <!-- Display other plan details here -->
+            <p th:text="'Price: ' + ${plan.price}"></p>
+            <p th:text="'Validity (Days): ' + ${plan.validityDays}"></p>
+            <p th:text="'Data Limit: ' + ${plan.dataLimit}"></p>
+            <p th:text="'Calls Limit: ' + ${plan.callsLimit}"></p>
+            <p th:text="'SMS Limit: ' + ${plan.smsLimit}"></p>
+            <a href="#" class="recharge-button">Recharge</a>
+        </div>
+    </div>
+
+    <!-- Repeat similar sections for Truly Unlimited Packs and Entertainment Packs -->
+    
+</body>
+</html>
