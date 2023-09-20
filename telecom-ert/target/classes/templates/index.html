@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <title>Telecom App</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Add Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <!-- Custom CSS for styling -->
     <style>
@@ -44,10 +48,11 @@
             font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         }
 
+        /* Adjust the button containers */
         .button-container {
-            padding: 5px;
-            width: max-content;
-            margin-left: 50px;
+            padding: 10px;
+            margin: 20px; /* Add margin to separate buttons */
+            display: inline-block; /* Display buttons inline */
         }
     </style>
 </head>
@@ -67,7 +72,13 @@
             <ul class="nav navbar-nav">
                 <li><a href="/login" style="color: black;">Sign In</a></li>
                 <li><a href="/registration" style="color: black;">Sign Up</a></li>
-                <li><a href="/myprofile" style="color: black;">My Profile</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: black;">My Profile <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/myprofile" style="color: black;">Welcome, <span th:text="${#authentication.principal.username}">User</span></a></li>
+                        <li><a href="/settings" style="color: black;">Settings</a></li>
+                    </ul>
+                </li>
             </ul>
             
             <!-- Thymeleaf expression to display logout button for authenticated users -->
@@ -93,8 +104,8 @@
         <a href="/recharge-payment" class="btn btn-success">Recharge</a>
     </div>
     <div class="button-container">
-       <a href="/Balance" class="btn btn-primary">Get check balance</a>
-       </div>
+       <a href="/Balance" class="btn btn-primary">Check Balance</a>
+    </div>
 </div>
 <!-- Bootstrap and other scripts can be included here -->
 </body>
