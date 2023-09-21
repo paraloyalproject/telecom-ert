@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/get-broadband")
 public class BroadbandController {
 
-    @GetMapping
+    
     public String getBroadbandPage() {
         try {
             return "get_broadband";

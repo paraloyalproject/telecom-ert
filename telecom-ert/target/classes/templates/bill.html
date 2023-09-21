@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bill Details</title>
+</head>
+<body>
+
+<h2>Bill Details</h2>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Phone Number</th>
+            <th>Transaction ID</th>
+            <th>payment Type</th>
+            <th>Package Validity</th>
+            <th>Amount Paid</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Loop through the user transactions and display them -->
+        <tr th:each="transaction : ${transactions}">
+            <td th:text="${transaction.username}"></td>
+            <td th:text="${transaction.phoneNumber}"></td>
+            <td th:text="${transaction.transactionId}"></td>
+            <td th:text="${transaction.paymentType}"></td>
+            <td th:text="${transaction.packageValidity}"></td>
+            <td th:text="${transaction.amountPaid}"></td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

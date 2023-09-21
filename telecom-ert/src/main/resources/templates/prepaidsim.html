@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Add your meta tags and title here -->
+    <meta charset="UTF-8">
+    <title>Get New E-SIM</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Custom CSS for styling -->
+    <style>
+        .navbar {
+            background-color: #53B0B2 !important;
+            padding: 8px 0;
+            margin-bottom: 120px;
+        }
+
+        body {
+            background-image: url('images/side3.jpg'); /* Replace with your image file path or URL */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: black;
+        }
+        .h1 {
+            text-align: center; /* Center-align the text */
+            color: black !important;
+        }
+       
+        .page-container {
+            padding: 20px; /* Add padding to the container */
+        }
+
+        /* Set the color of the logout text to black */
+        .navbar-nav li a[href="/logout"] {
+            color: black !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Add navigation bar if needed -->
+    <br /><br /><br /><br /><br />
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/" style="color: black; font-size: 32px;">New Sim</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Wrap the content in a div with a background color -->
+    <div class="page-container">
+        <div class="container">
+            <h1 class="welcome-heading" style="text-align: center;">Get New Prepaid SIM</h1>
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-md-offset-3">
+                    <form action="/submit-esim" method="post">
+                        <!-- Name -->
+                        <div class="form-group">
+                            <label for="name" style="font-size: 18px;">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+
+                        <!-- Existing Phone Number -->
+                        <div class="form-group">
+                            <label for="phone" style="font-size: 18px;">Existing Phone Number</label>
+                            <input type="text" class="form-control" id="phone" name="phone" required>
+                        </div>
+
+                        <!-- Aadhar Card or PAN Card -->
+                        <div class="form-group">
+                            <label for="card" style="font-size: 18px;">Aadhar Card or PAN Card</label>
+                            <input type="text" class="form-control" id="card" name="card" required>
+                        </div>
+
+                        <!-- Email Address -->
+                        <div class="form-group">
+                            <label for="email" style="font-size: 18px;">Email Address</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                        </div>
+                    </form>
+                    <a href="/get-broadband" class="btn btn-secondary" style="color:white;">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Bootstrap CSS and other scripts if needed -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+fyO5z5gz4C5z5F5z5z5z5z5z5z5z5z5z5z5z5z5z5z5z5z5z" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>
