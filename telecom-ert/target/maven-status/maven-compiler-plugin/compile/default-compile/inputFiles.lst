@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\karth\git\telecom-ert\telecom-ert\src\main\java\telecom\ERT\web\UserRegistrationController.java
 C:\Users\karth\git\telecom-ert\telecom-ert\src\main\java\telecom\ERT\model\BroadbandConnection.java
 C:\Users\karth\git\telecom-ert\telecom-ert\src\main\java\telecom\ERT\web\dto\UserRegistrationDto.java
@@ -36,3 +37,48 @@ C:\Users\karth\git\telecom-ert\telecom-ert\src\main\java\telecom\ERT\service\Bro
 C:\Users\karth\git\telecom-ert\telecom-ert\src\main\java\telecom\ERT\web\SubmitBroadbandController.java
 C:\Users\karth\git\telecom-ert\telecom-ert\src\main\java\telecom\ERT\repository\EsimConnectionRepository.java
 C:\Users\karth\git\telecom-ert\telecom-ert\src\main\java\telecom\ERT\service\BroadbandConnectionService.java
+=======
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\web\UserRegistrationController.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\model\MobileBalance.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\service\MobileBalanceService.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\service\UserServiceImpl.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\web\MainController.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\model\User.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\model\BroadbandConnection.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\service\RechargePaymentServiceImpl.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\web\SubmitBroadbandController.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\web\SubmitEsimController.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\model\Role.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\service\UserService.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\repository\PlanRepository.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\exception\GlobalExceptionHandler.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\repository\BroadbandConnectionRepository.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\config\SecurityConfiguration.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\service\RechargePaymentService.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\model\Plan.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\service\PlanService.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\web\dto\UserRegistrationDto.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\web\EsimController.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\Ert.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\exception\FileExceptionHandler.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\exception\WhitelabelErrorController.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\repository\RechargePaymentRepository.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\service\MobileBalanceServiceImpl.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\exception\ResourceNotFoundException.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\exception\GenericExceptionHandler.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\model\EsimConnection.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\web\SettingsController.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\exception\CustomExceptionHandler.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\model\RechargePayment.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\web\MyprofileController.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\web\BroadbandController.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\service\BroadbandConnectionServiceImpl.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\web\MobileBalanceController.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\repository\UserRepository.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\repository\EsimConnectionRepository.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\service\BroadbandConnectionService.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\repository\MobileBalanceRepository.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\web\PlanController.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\web\RechargePaymentController.java
+D:\Airtel Template\telecom-ert\telecom-ert\src\main\java\telecom\ERT\service\EsimConnectionService.java
+>>>>>>> branch 'suhithbadami' of https://github.com/Suhithbadami/telecom-ert.git

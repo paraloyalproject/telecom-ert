@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 telecom\ERT\model\User.class
 telecom\ERT\web\EsimController.class
 telecom\ERT\exception\WhitelabelErrorController.class
@@ -36,3 +37,6 @@ telecom\ERT\config\SecurityConfiguration.class
 telecom\ERT\model\BroadbandConnection.class
 telecom\ERT\repository\RechargeRepository.class
 telecom\ERT\service\RechargePaymentServiceImpl.class
+=======
+PlanController.class
+>>>>>>> branch 'suhithbadami' of https://github.com/Suhithbadami/telecom-ert.git

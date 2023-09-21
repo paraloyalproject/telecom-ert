@@ -2,11 +2,9 @@ package telecom.ERT.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-
-import java.util.UUID;
-
 import javax.persistence.Column;
 import javax.persistence.Table;
+import java.util.UUID;
 
 @Entity
 @Table(name = "bill_payment")
@@ -17,95 +15,91 @@ public class UserTransaction {
     @Column(name = "username")
     private String username;
 
-    @Column(name = "phone_number")
+    @Column(name = "phonenumber")
     private String phoneNumber;
 
     @Column(name = "transaction_id")
     private String transactionId;
 
-    @Column(name = "payment_type")
+    @Column(name = "paymenttype")
     private String paymentType;
 
-    @Column(name = "package_validity")
+    @Column(name = "packagevalidity")
     private String packageValidity;
 
-    @Column(name = "amount_paid")
-    private double amountPaid;
+    @Column(name = "amountpaid")
+    private Double amountPaid;  // Changed to Double wrapper type
 
-   
-	
-	public UserTransaction() {
-		
-	}
+    public UserTransaction() {
+    }
 
-	 public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getUsername() {
-		return username;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
-	public String getTransactionId() {
-		return transactionId;
-	}
+    public String getTransactionId() {
+        return transactionId;
+    }
 
-	public void setTransactionId(String transactionId) {
-		this.transactionId = transactionId;
-	}
+    public void setTransactionId(String transactionId) {
+        this.transactionId = transactionId;
+    }
 
-	public String getPaymentType() {
-		return paymentType;
-	}
+    public String getPaymentType() {
+        return paymentType;
+    }
 
-	public void setPaymentType(String paymentType) {
-		this.paymentType = paymentType;
-	}
+    public void setPaymentType(String paymentType) {
+        this.paymentType = paymentType;
+    }
 
-	public String getPackageValidity() {
-		return packageValidity;
-	}
+    public String getPackageValidity() {
+        return packageValidity;
+    }
 
-	public void setPackageValidity(String packageValidity) {
-		this.packageValidity = packageValidity;
-	}
+    public void setPackageValidity(String packageValidity) {
+        this.packageValidity = packageValidity;
+    }
 
-	public double getAmountPaid() {
-		return amountPaid;
-	}
+    public Double getAmountPaid() {
+        return amountPaid;
+    }
 
-	public void setAmountPaid(double amountPaid) {
-		this.amountPaid = amountPaid;
-	}
+    public void setAmountPaid(Double amountPaid) {
+        this.amountPaid = amountPaid;
+    }
 
-	public UserTransaction(String username, String phoneNumber, String transactionId,
-             String paymentType, String packageValidity, double amountPaid) {
-this.username = username;
-this.phoneNumber = phoneNumber;
-this.transactionId = generateRandomTransactionId();
-this.paymentType = paymentType;
-this.packageValidity = packageValidity;
-this.amountPaid = amountPaid;
-}
+    public UserTransaction(String username, String phoneNumber, String transactionId,
+                           String paymentType, String packageValidity, Double amountPaid) {
+        this.username = username;
+        this.phoneNumber = phoneNumber;
+        this.transactionId = generateRandomTransactionId();
+        this.paymentType = paymentType;
+        this.packageValidity = packageValidity;
+        this.amountPaid = amountPaid;
+    }
 
-	 private String generateRandomTransactionId() {
-	        return UUID.randomUUID().toString();
-	    }
-    
+    private String generateRandomTransactionId() {
+        return UUID.randomUUID().toString();
+    }
 }

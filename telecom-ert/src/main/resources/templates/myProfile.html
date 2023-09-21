@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Add your meta tags, title, and styles here -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&family=Lora&family=Nunito:wght@400;500&family=Open+Sans:wght@500&display=swap');
+
+        /* Apply custom styles to labels and input fields */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: inline-block;
+            width: 150px;
+            font-weight: bold;
+        }
+
+        /* Adjust the width of the input fields */
+        .form-group input[type="text"] {
+            width: 400px;
+        }
+
+        /* Style the navbar with a light blue background */
+        .navbar {
+            background-color: lightblue !important; /* Add !important to ensure the style is applied */
+            padding: 10px 0;
+            margin-bottom: 120px;
+        }
+
+        /* Additional styling for layout and appearance */
+        .container {
+            margin-top: 30px;
+            font-family: 'Kanit', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <!-- Your navbar and container structure remains the same -->
+     <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/" style="color: black; font-size: 32px;">MyProfile</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <!-- Thymeleaf expression to display logout button for authenticated users -->
+                <ul class="nav navbar-nav navbar-right" th:if="${#request.isUserInRole('USER')}">
+                    <li><a href="/logout" style="color: black; font-size: 22px;">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+
+    <div class="container">
+        <h1>My Profile</h1>
+        <!-- Display user information -->
+        <form>
+            <br><br><br><br>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <!-- Empty input box for the name -->
+                <input type="text" id="name" placeholder="Your name">
+            </div>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <!-- Empty input box for the address -->
+                <input type="text" id="address" placeholder="Your address">
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <!-- Empty input box for the phone number -->
+                <input type="text" id="phone" placeholder="Your phone number">
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <!-- Empty input box for the email -->
+                <input type="text" id="email" placeholder="Your email">
+            </div>
+            <div class="form-group">
+                <label for="aadhar">Aadhar Card:</label>
+                <!-- Empty input box for the Aadhar card -->
+                <input type="text" id="aadhar" placeholder="Your Aadhar card">
+            </div>
+            <div class="form-group">
+                <label for="location">Current Location:</label>
+                <!-- Empty input box for the current location -->
+                <input type="text" id="location" placeholder="Your current location">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
