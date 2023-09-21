@@ -32,4 +32,19 @@ public class MyprofileController {
 
         return "myprofile";
     }
+    
+    @GetMapping("/manage_account")
+    public String manageAccount(Model model, Principal principal) {
+        String userEmail = principal.getName();
+        User user = userService.findByEmail(userEmail);
+
+        if (user != null) {
+            model.addAttribute("user", user);
+        }
+
+        return "manage_account"; 
+    }
+    
+    
+    
 }
