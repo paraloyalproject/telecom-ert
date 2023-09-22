@@ -2,12 +2,16 @@ package telecom.ERT.web;
 
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import telecom.ERT.repository.*;
@@ -15,9 +19,20 @@ import telecom.ERT.service.EsimConnectionService;
 import telecom.ERT.model.*;
 import telecom.ERT.web.*;
 import java.util.*;
+import telecom.ERT.exception.*;
 @Controller
 @RequestMapping("/get_esim")
 public class EsimController {
+
+	 @GetMapping("/trigger-exception")
+	    public String triggerCustomException() {
+		 boolean someConditionIsMet = false; 
+	        if (someConditionIsMet) {
+	            throw new MyCustomException("This is a custom exception message.");
+	        }
+	        return "Success";
+	    }
+	
 	@GetMapping
     public String getEsimPage() {
         return "get_esim"; 
@@ -34,10 +49,22 @@ public class EsimController {
     }
 
     @PostMapping("/create")
-    public String createEsim(@ModelAttribute EsimConnection connection) {
-        esimConnectionRepository.save(connection);
-        return "redirect:/get_esim/list";
+    public String createEsim(@ModelAttribute @Valid EsimConnection connection, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            // Validation failed, return to the form with error messages
+            return "create_get_esim";
+        }
+
+        try {
+            esimConnectionRepository.save(connection);
+            return "redirect:/get_esim/list";
+        } catch (DataAccessException ex) {
+            // Handle database-related exceptions
+            ex.printStackTrace();
+            return "error_page"; // Redirect to an error page or show an error message
+        }
     }
+
 
     @GetMapping("/list")
     public String listEsimConnections(Model model) {

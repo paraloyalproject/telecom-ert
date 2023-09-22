@@ -47,14 +47,11 @@ public class UserServiceImpl implements UserService{
     @Override
     public User save(UserRegistrationDto registrationDto) {
         User user = new User(registrationDto.getFirstName(), 
-                registrationDto.getLastName(), registrationDto.getEmail(),
+                registrationDto.getMobileno(), registrationDto.getEmail(),
                 passwordEncoder.encode(registrationDto.getPassword()), Arrays.asList(new Role("ROLE_USER")));
         
         return userRepository.save(user);
     }
-
-
-
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -69,6 +66,15 @@ public class UserServiceImpl implements UserService{
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles){
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
     }
+
+
+
+
+	@Override
+	public User findByEmail(String email) {
+		
+		 return userRepository.findByEmail(email);
+	}
     
 
 }

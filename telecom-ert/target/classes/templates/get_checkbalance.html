@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Telecom App</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+   <style>
+
+        .navbar {
+
+            margin-bottom: 220px;
+
+        }
+
+       .welcome-heading {
+
+            text-align: left;
+
+            margin-top: 80px;
+
+            margin-bottom: 10px;
+
+        }
+        
+       .welcome-message {
+
+            text-align: left;
+
+            margin-bottom: 20px;
+
+        }
+
+       .empty-box {
+
+            display: none;
+
+            margin-top: 20px;
+
+            border: 1px solid #ccc;
+
+            padding: 10px;
+
+            width: 300px;
+
+            height: 200px;
+
+        }
+
+       #phone-number-container {
+
+            display: none;
+
+            margin-top: 20px;
+
+        }
+
+       #phone-number-container button {
+
+            margin-top: 10px;
+
+        }
+
+       #input-form-container {
+
+            display: none;
+
+            width: 250px;
+
+            height: 100px;
+
+        }
+
+       #inputField {
+
+            width: 100%;
+
+            height: 100px;
+
+            padding: 10px;
+
+            font-size: 16px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 4px;
+
+            margin-top: 5px;
+
+            vertical-align: top;
+
+        }
+
+       #inputFormButton {
+
+            margin-top: 10px;
+
+            font-size: 16px;
+
+        }
+
+    </style>
+
+   <script>
+
+function showPhoneNumberInput() {
+
+            var phoneNumberContainer = document.getElementById("phone-number-container");
+
+            var checkBalanceButton = document.getElementById("check-balance-button");
+
+           phoneNumberContainer.style.display = "block";
+
+            checkBalanceButton.style.display = "none";
+
+        }
+
+       function showInputForm() {
+
+            var phoneNumber = document.getElementById("phoneNumber").value;
+
+           if (phoneNumber.length === 10 && /^\d+$/.test(phoneNumber)) {
+
+                var inputFormContainer = document.getElementById("input-form-container");
+
+                inputFormContainer.style.display = "block";
+
+            } else {
+
+                alert("Please enter a valid 10-digit phone number.");
+
+            }
+
+        }
+
+    </script>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+
+        <div class="container">
+
+            <div class="navbar-header">
+
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+
+                    data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+
+                    <span class="sr-only">Toggle navigation</span>
+
+                    <span class="icon-bar"></span>
+
+                    <span class="icon-bar"></span>
+
+                    <span class="icon-bar"></span>
+
+                </button>
+
+                <a class="navbar-brand" href="/">Telecom App</a>
+
+            </div>
+
+            <div id="navbar" class="collapse navbar-collapse">
+
+                <ul class="nav navbar-nav">
+
+                    <li><a href="/login">Sign In</a></li>
+
+                    <li><a href="/registration">Sign Up</a></li>
+
+                </ul>
+                
+               <ul class="nav navbar-nav navbar-right" th:if="${#request.isUserInRole('USER')}">
+
+                    <li><a href="/logout">Logout</a></li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+   <div class="container">
+
+        <h1 class="welcome-heading">Check Balance</h1>
+
+        <!-- Thymeleaf expression to display welcome message after login -->
+
+        <div class="welcome-message" th:if="${#request.isUserInRole('USER')}">
+
+            <p>Welcome, <span th:text="${#authentication.principal.username}">User</span>!</p>
+
+        </div>
+
+        <div class="button-container">
+
+            <a href="#" class="btn btn-primary" onclick="showPhoneNumberInput()" id="check-balance-button">Check
+
+                Balance</a>
+
+        </div>
+
+        <div id="phone-number-container">
+
+            <p>Enter phone number:</p>
+
+            <form>
+
+                <input type="text" name="phoneNumber" id="phoneNumber" placeholder="Phone Number">
+
+                <button type="button" class="btn btn-primary" onclick="showInputForm()">Submit</button>
+
+            </form>
+
+        </div>
+
+        <div id="input-form-container">
+
+            <form>
+
+                <input type="text" class="form-control" id="inputField" name="inputField"
+
+                    placeholder="Recharged Package">
+
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

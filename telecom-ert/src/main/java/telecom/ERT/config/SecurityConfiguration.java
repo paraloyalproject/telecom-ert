@@ -42,11 +42,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
     	http.csrf().disable()
         .authorizeRequests()
-
-        .antMatchers("/", "/registration", "/js/**", "/css/**", "/img/**").permitAll()
+            .antMatchers("/", "/registration", "/js/**", "/css/**", "/img/**").permitAll()
             .antMatchers("/submit-broadband").permitAll()
             .antMatchers("/get-esim").permitAll() 
-            
+            .antMatchers("/get-Balance").permitAll()
             .anyRequest().authenticated()
             .and()
             .formLogin()
