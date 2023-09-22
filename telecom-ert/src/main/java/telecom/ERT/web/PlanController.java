@@ -1,3 +1,4 @@
+
 package telecom.ERT.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,6 @@ public class PlanController {
     public String viewPlans(Model model) {
         List<Plan> plans = planRepository.findAll();
         model.addAttribute("plans", plans);
-        return "view_plans";
+        return "viewplans";
     }
 }

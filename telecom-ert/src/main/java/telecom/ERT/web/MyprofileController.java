@@ -1,7 +1,7 @@
+
 package telecom.ERT.web;
 
 import java.security.Principal;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import telecom.ERT.model.User;
-import telecom.ERT.model.UserTransaction;
-import telecom.ERT.service.BillPaymentService;
 import telecom.ERT.service.UserService;
 
 @Controller
@@ -47,9 +45,5 @@ public class MyprofileController {
 
         return "manage_account"; 
     }
-    
-    
-
-
     
 }

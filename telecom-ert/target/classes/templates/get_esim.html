@@ -60,7 +60,8 @@
             <h1 class="welcome-heading" style="text-align: center;">Get New SIM</h1>
             <div class="row">
                 <div class="col-xs-12 col-md-6 col-md-offset-3">
-                    <form action="/submit-esim" method="post">
+                    
+ <form action="/get_esim/edit/{id}/{simType}/{cardType}" method="post">
                         <!-- Name -->
                         <div class="form-group">
                             <label for="name" style="font-size: 18px;">Name</label>
@@ -79,6 +80,7 @@
                             <input type="email" class="form-control" id="email" name="email" required>
                         </div>
 
+<<<<<<< HEAD
                         <!-- Aadhar Card or PAN Card -->
                         <div class="form-group">
                             <label for="cardType" style="font-size: 18px;">Select Card Type</label>
@@ -109,6 +111,36 @@
                             </select>
                         </div>
 
+=======
+<div class="form-group">
+    <label for="simType" style="font-size: 18px;">Select SIM Type</label>
+    <select class="form-control" id="simType" name="simType" required>
+        <option value="prepaid">Prepaid</option>
+        <option value="postpaid">Postpaid</option>
+    </select>
+</div>
+
+<!-- Card Type -->
+<div class="form-group">
+    <label for="cardType" style="font-size: 18px;">Select Card Type</label>
+    <select class="form-control" id="cardType" name="cardType" required>
+        <option value="aadhar">Aadhar Card</option>
+        <option value="pan">PAN Card</option>
+    </select>
+</div>               <!-- Aadhar Card Number Input (Initially hidden) -->
+                        <div class="form-group" id="aadharInput" style="display: none;">
+                            <label for="aadhar" style="font-size: 18px;">Aadhar Card Number (12 digits)</label>
+                            <input type="text" class="form-control" id="aadhar" name="aadhar">
+                        </div>
+
+                        <!-- PAN Card Number Input (Initially hidden) -->
+                        <div class="form-group" id="panInput" style="display: none;">
+                            <label for="pan" style="font-size: 18px;">PAN Card Number (e.g., ABCDE1234F)</label>
+                            <input type="text" class="form-control" id="pan" name="pan">
+                        </div>
+                        
+                      
+>>>>>>> branch 'Keeravani1' of https://github.com/Suhithbadami/telecom-ert.git
                         <!-- Success message (Initially hidden) -->
                         <div class="alert alert-success" id="successMessage" style="display: none;">
                             <strong>Success!</strong> 
@@ -130,6 +162,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+fyO5z5gz4C5z5F5z5z5z5z5z5z5z5z5z5z5z5z5z5z5z5z5z5z" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
+<<<<<<< HEAD
   <script>
     // JavaScript to show/hide Aadhar or PAN input based on selection
     document.getElementById('cardType').addEventListener('change', function () {
@@ -183,5 +216,85 @@
     });
 </script>
 
+=======
+  <!-- Add your meta tags and title here -->
+<!-- ... (previous code) ... -->
+
+<!-- JavaScript to show/hide Aadhar or PAN input based on selection -->
+<script>
+    document.getElementById('cardType').addEventListener('change', function () {
+        var cardType = this.value;
+        var aadharInput = document.getElementById('aadharInput');
+        var panInput = document.getElementById('panInput');
+
+        if (cardType === 'aadhar') {
+            aadharInput.style.display = 'block';
+            panInput.style.display = 'none';
+        } else if (cardType === 'pan') {
+            aadharInput.style.display = 'none';
+            panInput.style.display = 'block';
+        } else {
+            aadharInput.style.display = 'none';
+            panInput.style.display = 'none';
+        }
+    });
+
+    // JavaScript to display success message after form submission
+    document.getElementById('submitBtn').addEventListener('click', function (event) {
+        var cardType = document.getElementById('cardType').value;
+        var aadharInput = document.getElementById('aadhar').value;
+        var panInput = document.getElementById('pan').value;
+        var simType = document.getElementById('simType').value;
+
+        // You can customize the form submission URL as needed
+        var formAction = `/get_esim/edit/{id}/${simType}/${cardType}`;
+
+        // Create a FormData object to send the form data
+        var formData = new FormData();
+        formData.append('name', document.getElementById('name').value);
+        formData.append('phone', document.getElementById('phone').value);
+        formData.append('email', document.getElementById('email').value);
+        formData.append('simType', simType);
+
+        if (cardType === 'aadhar') {
+            formData.append('aadhar', aadharInput);
+            formData.append('pan', ''); // Set PAN to empty string
+        } else if (cardType === 'pan') {
+            formData.append('pan', panInput);
+            formData.append('aadhar', ''); // Set Aadhar to empty string
+        }
+
+        // Create and configure an XMLHttpRequest for submitting the form data
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', formAction, true);
+
+        // Define a callback function to handle the response
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Success: Handle the success response here
+                var successMessage = document.getElementById('successMessage');
+                var serviceTypeMessage = document.getElementById('serviceTypeMessage');
+
+                if (simType === 'prepaid') {
+                    serviceTypeMessage.innerHTML = 'Prepaid';
+                } else if (simType === 'postpaid') {
+                    serviceTypeMessage.innerHTML = 'Postpaid';
+                }
+
+                successMessage.style.display = 'block';
+            } else {
+                // Error: Handle the error response here
+                alert('An error occurred while submitting the form.');
+            }
+        };
+
+        // Send the FormData object to the server
+        xhr.send(formData);
+
+        // Prevent the default form submission behavior
+        event.preventDefault();
+    });
+</script>
+>>>>>>> branch 'Keeravani1' of https://github.com/Suhithbadami/telecom-ert.git
 </body>
 </html>

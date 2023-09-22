@@ -42,4 +42,5 @@ public class UserRegistrationController {
             throw new ResourceNotFoundException("Error while registering user: " + ex.getMessage());
         }
     }
+    
 }

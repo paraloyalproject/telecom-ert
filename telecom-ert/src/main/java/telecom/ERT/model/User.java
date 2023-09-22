@@ -26,8 +26,8 @@ public class User {
 	@Column(name = "first_name")
 	private String firstName;
 	
-	@Column(name = "last_name")
-	private String lastName;
+	@Column(name = "mobile_no")
+	private String mobileno;
 	
 	private String email;
 	
@@ -50,7 +50,7 @@ public class User {
 	public User(String firstName, String lastName, String email, String password, Collection<Role> roles) {
 		super();
 		this.firstName = firstName;
-		this.lastName = lastName;
+		this.mobileno = mobileno;
 		this.email = email;
 		this.password = password;
 		this.roles = roles;
@@ -67,12 +67,13 @@ public class User {
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+	public String getMobileno() {
+        return mobileno;
+    }
+
+    public void setMobileno(String mobileno) {
+        this.mobileno = mobileno;
+    }
 	public String getEmail() {
 		return email;
 	}

@@ -1,3 +1,4 @@
+
 package telecom.ERT.web;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -9,8 +10,6 @@ public class MobileBalanceController {
     @GetMapping
     public String MobileBalanceService() {
         return "get_checkbalance";
-
-
 
 
    }

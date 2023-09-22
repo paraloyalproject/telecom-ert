@@ -1,6 +1,7 @@
 package telecom.ERT.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +17,7 @@ import telecom.ERT.exception.ResourceNotFoundException;
 public class SubmitEsimController {
 
     private EsimConnectionService esimConnectionService;
-
+    
     @Autowired
     public SubmitEsimController(EsimConnectionService esimConnectionService) {
         this.esimConnectionService = esimConnectionService;
@@ -33,9 +34,15 @@ public class SubmitEsimController {
         try {
             esimConnectionService.saveEsimConnection(esimConnection);
             return "redirect:/";
-        } catch (Exception ex) {
+        } catch (DataAccessException ex) {
+            // Handle database-related exceptions
             ex.printStackTrace();
-            throw new ResourceNotFoundException("Error while saving ESIM connection: " + ex.getMessage());
+            throw new ResourceNotFoundException("Error while saving broadband connection: " + ex.getMessage());
+        } catch (Exception ex) {
+            // Handle other exceptions
+            ex.printStackTrace();
+            throw new ResourceNotFoundException("An error occurred: " + ex.getMessage());
         }
     }
 }
+ 
