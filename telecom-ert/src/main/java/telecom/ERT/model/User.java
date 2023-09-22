@@ -28,7 +28,10 @@ public class User {
 	
 	@Column(name = "mobile_no")
 	private String mobileno;
-	
+	@Column(name = "alternative_mobile")
+	private String alternativemobile;
+	@Column(name = "location")
+	private String location;
 	private String email;
 	
 	private String password;
@@ -47,11 +50,14 @@ public class User {
 		
 	}
 	
-	public User(String firstName, String lastName, String email, String password, Collection<Role> roles) {
+	public User(String firstName, String mobileno, String email,String alternativemobile,String location, String password, Collection<Role> roles) {
 		super();
 		this.firstName = firstName;
 		this.mobileno = mobileno;
 		this.email = email;
+		
+		this.alternativemobile=alternativemobile;
+		this.location=location;
 		this.password = password;
 		this.roles = roles;
 	}
@@ -91,6 +97,22 @@ public class User {
 	}
 	public void setRoles(Collection<Role> roles) {
 		this.roles = roles;
+	}
+
+	public String getAlternativemobile() {
+		return alternativemobile;
+	}
+
+	public void setAlternativemobile(String alternativemobile) {
+		this.alternativemobile = alternativemobile;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 }

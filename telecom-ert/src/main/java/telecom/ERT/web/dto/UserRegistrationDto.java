@@ -1,21 +1,30 @@
 package telecom.ERT.web.dto;
 
+import java.util.Collection;
+
+import telecom.ERT.model.Role;
+
 public class UserRegistrationDto {
 	private String firstName;
 	private String mobileno;
 	private String email;
 	private String password;
+	private String alternativemobile;
+	private String location;
+	
 	
 	public UserRegistrationDto(){
 		
 	}
-	
-	public UserRegistrationDto(String firstName, String mobileno, String email, String password) {
+	public UserRegistrationDto(String firstName, String mobileno, String email, String location ,String alternativemobile,String password) {
 		super();
 		this.firstName = firstName;
 		this.mobileno = mobileno;
 		this.email = email;
 		this.password = password;
+		this.alternativemobile=alternativemobile;
+		this.location=location;
+		
 	}
 	
 	public String getFirstName() {
@@ -42,5 +51,21 @@ public class UserRegistrationDto {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getAlternativemobile() {
+		return alternativemobile;
+	}
+
+	public void setAlternativemobile(String alternativemobile) {
+		this.alternativemobile = alternativemobile;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
 }
