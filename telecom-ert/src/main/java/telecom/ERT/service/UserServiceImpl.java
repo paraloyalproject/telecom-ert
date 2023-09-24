@@ -1,5 +1,6 @@
 package telecom.ERT.service;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -33,7 +34,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public synchronized User save(UserRegistrationDto registrationDto) {
         User user = new User(registrationDto.getFirstName(), registrationDto.getMobileno(), registrationDto.getEmail(),
-                registrationDto.getLocation(), registrationDto.getAlternativemobile(),
+                registrationDto.getAlternativemobile(), registrationDto.getLocation(),
                 passwordEncoder.encode(registrationDto.getPassword()), Arrays.asList(new Role("ROLE_USER")));
 
         return userRepository.save(user);

@@ -66,46 +66,55 @@
 <div class="container">
     <h1>Manage Account</h1>
     <!-- Display user account management options -->
-    <form>
+  
         <br><br><br><br>
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <!-- Display the user's email from the model -->
-            <input type="text" id="email" th:value="${user.email}" placeholder="Your email" readonly>
-            <button type="button" class="change-button" onclick="editField('email')">Change</button>
-        </div>
-        <div class="form-group">
-            <label for="alternativeNumber">Alternative Number:</label>
-            <!-- Input box for adding an alternative number -->
-            <input type="text" id="alternativeNumber" placeholder="Add alternative number">
-            <button type="button" class="change-button" onclick="editField('alternativeNumber')">Change</button>
-        </div>
-        <div class="form-group">
-            <label for="newLocation">New Location:</label>
-            <!-- Input box for changing the location -->
-            <input type="text" id="newLocation" placeholder="Change location">
-            <button type="button" class="change-button" onclick="editField('newLocation')">Change</button>
-        </div>
-    </form>
-</div>
+       <!-- Add a form to submit changes to the server -->
+ <form th:action="@{/api/account/update}" method="post" th:object="${user}">
+            <!-- Field for updating email -->
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="text" id="email" th:value="${user.email}" name="email" placeholder="Your email" readonly>
+                <input type="hidden" name="field" value="email">
+                <button type="button" class="change-button" onclick="editField('email')">Change</button>
+            </div>
 
-<!-- Add a JavaScript function to handle field editing -->
-<script>
-    function editField(fieldName) {
-        var field = document.getElementById(fieldName);
-        var button = document.querySelector('[onclick="editField(\'' + fieldName + '\')"]');
+            <!-- Field for updating location -->
+            <div class="form-group">
+                <label for="newLocation">New Location:</label>
+                <input type="text" id="newLocation" name="location" placeholder="Change location">
+                <input type="hidden" name="field" value="location">
+                <button type="button" class="change-button" onclick="editField('newLocation')">Change</button>
+            </div>
+
+            <!-- Field for updating alternative number -->
+            <div class="form-group">
+                <label for="alternativeNumber">Alternative Number:</label>
+                <input type="text" id="alternativeNumber" name="alternativeMobile" placeholder="Add alternative number">
+                <input type="hidden" name="field" value="alternativeMobile">
+                <button type="button" class="change-button" onclick="editField('alternativeNumber')">Change</button>
+            </div>
+
+            <!-- Add a submit button to save changes -->
+            <button type="submit" class="change-button">Save Changes</button>
+        </form>
+    </div>
+
+    <!-- Add a JavaScript function to handle field editing -->
+    <script>
+        function editField(fieldName) {
+            var field = document.getElementById(fieldName);
+            var button = document.querySelector('[onclick="editField(\'' + fieldName + '\')"]');
         
-        // Toggle the readonly attribute to enable or disable editing
-        field.readOnly = !field.readOnly;
+            // Toggle the readonly attribute to enable or disable editing
+            field.readOnly = !field.readOnly;
         
-        // Update the button text based on the field's state
-        if (field.readOnly) {
-            button.textContent = "Change";
-        } else {
-            button.textContent = "Save";
+            // Update the button text based on the field's state
+            if (field.readOnly) {
+                button.textContent = "Change";
+            } else {
+                button.textContent = "Save";
+            }
         }
-    }
-</script>
-
+    </script>
 </body>
 </html>
