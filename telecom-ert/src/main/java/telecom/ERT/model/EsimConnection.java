@@ -31,7 +31,6 @@ public class EsimConnection {
 
     @NotEmpty(message = "simtype is required")
     private String simtype;
-
     
 
     public String getSimtype() {

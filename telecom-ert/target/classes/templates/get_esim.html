@@ -61,7 +61,7 @@
             <div class="row">
                 <div class="col-xs-12 col-md-6 col-md-offset-3">
                     
- <form action="/get_esim/edit/{id}/{simType}/{cardType}" method="post">
+<form action="/get_esim/edit/{id}/{simType}/{cardType}" method="post">
                         <!-- Name -->
                         <div class="form-group">
                             <label for="name" style="font-size: 18px;">Name</label>
@@ -95,17 +95,17 @@
         <option value="aadhar">Aadhar Card</option>
         <option value="pan">PAN Card</option>
     </select>
-</div>               <!-- Aadhar Card Number Input (Initially hidden) -->
-                        <div class="form-group" id="aadharInput" style="display: none;">
-                            <label for="aadhar" style="font-size: 18px;">Aadhar Card Number (12 digits)</label>
-                            <input type="text" class="form-control" id="aadhar" name="aadhar">
-                        </div>
+</div>             <!-- Aadhar Card Number Input (Initially hidden) -->
+<div class="form-group" id="aadharInput" style="display: none;">
+    <label for="aadhar" style="font-size: 18px;">Aadhar Card Number (12 digits)</label>
+    <input type="text" class="form-control" id="aadhar" name="aadhar">
+</div>
 
-                        <!-- PAN Card Number Input (Initially hidden) -->
-                        <div class="form-group" id="panInput" style="display: none;">
-                            <label for="pan" style="font-size: 18px;">PAN Card Number (e.g., ABCDE1234F)</label>
-                            <input type="text" class="form-control" id="pan" name="pan">
-                        </div>
+<!-- PAN Card Number Input (Initially hidden) -->
+<div class="form-group" id="panInput" style="display: none;">
+    <label for="pan" style="font-size: 18px;">PAN Card Number (e.g., ABCDE1234F)</label>
+    <input type="text" class="form-control" id="pan" name="pan">
+</div>
                         
                       
                         <!-- Success message (Initially hidden) -->

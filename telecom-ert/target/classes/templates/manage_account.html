@@ -73,11 +73,12 @@
             <!-- Field for updating email -->
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="text" id="email" th:value="${user.email}" name="email" placeholder="Your email" readonly>
+                <!--input type="text" id="email" th:value="${user.email}" name="email" placeholder="Your email" readonly-->
+                 <input type="text" id="email" name="email" placeholder="Change email">
                 <input type="hidden" name="field" value="email">
                 <button type="button" class="change-button" onclick="editField('email')">Change</button>
             </div>
-
+			
             <!-- Field for updating location -->
             <div class="form-group">
                 <label for="newLocation">New Location:</label>
@@ -93,7 +94,13 @@
                 <input type="hidden" name="field" value="alternativeMobile">
                 <button type="button" class="change-button" onclick="editField('alternativeNumber')">Change</button>
             </div>
-
+			<!-- Field for updating password -->
+            <div class="form-group">
+                <label for="newpassword">New Password:</label>
+                <input type="text" id="newpassword" name="password" placeholder="Change password">
+                <input type="hidden" name="field" value="password">
+                <button type="button" class="change-button" onclick="editField('newpassword')">Change</button>
+            </div>
             <!-- Add a submit button to save changes -->
             <button type="submit" class="change-button">Save Changes</button>
         </form>
@@ -117,4 +124,4 @@
         }
     </script>
 </body>
-</html>
+</html>  
