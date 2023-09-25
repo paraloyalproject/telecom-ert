@@ -30,8 +30,17 @@ public class MainController {
             return "error";
         }
     }
+    @GetMapping("NewSim/get_esim")
+    public String get_esim() {
+        try {
+            return "get_esim";
+        } catch (Exception ex) {
+            
+            ex.printStackTrace();
 
-   
+            return "error";
+        }
+    }
     @GetMapping("/get_broadband")
     public String getbroadbandPage() {
         try {

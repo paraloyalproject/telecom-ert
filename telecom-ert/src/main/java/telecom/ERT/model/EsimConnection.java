@@ -31,7 +31,33 @@ public class EsimConnection {
 
     @NotEmpty(message = "simtype is required")
     private String simtype;
-    
+   
+    private String aadhar;
+    public String getCardtype() {
+		return cardtype;
+	}
+
+	public void setCardtype(String cardtype) {
+		this.cardtype = cardtype;
+	}
+
+	public String getAadhar() {
+		return aadhar;
+	}
+
+	public void setAadhar(String aadhar) {
+		this.aadhar = aadhar;
+	}
+
+	public String getPan() {
+		return pan;
+	}
+
+	public void setPan(String pan) {
+		this.pan = pan;
+	}
+
+	private String pan;
 
     public String getSimtype() {
 		return simtype;
