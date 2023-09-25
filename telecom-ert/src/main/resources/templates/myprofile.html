@@ -1,5 +1,7 @@
 <!DOCTYPE html>
+
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,24 +10,38 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&family=Lora&family=Nunito:wght@400;500&family=Open+Sans:wght@500&display=swap');
 
+
+
+
+
         /* Apply custom styles to labels and input fields */
         .form-group {
             margin-bottom: 30px;
             font-size: 19px;
-            color: black;
+            color: white;
             font-weight: bold;
         }
+
+
+
 
             .form-group label {
                 display: inline-block;
                 width: 150px;
+        font-family: 'Your Custom Font', Roboto;
                 
             }
 
+
+
+
             /* Adjust the width of the input fields */
             .form-group input[type="text"] {
-                width: 400px;
+                width: 300px;
             }
+
+
+
 
         /* Style the button */
         .settings-button {
@@ -37,16 +53,22 @@
             font-size: 18px;
         }
 
+
+
+
         /* Style the navbar with a light blue background */
         .navbar {
-            background-color: #53B0B2 !important;
+            background-color: white !important;
            
             margin-bottom: 120px;
         }
 
 
+
+
+
         .navbar-brand {
-            background-color: #53B0B2;
+            background-color: white;
             color: black !important;
             font-size: 30px;
             padding: 8px 0;
@@ -56,22 +78,25 @@
         }
 
 
+
+
+
         /* Additional styling for layout and appearance */
         .container {
             margin-top: 30px;
             font-family: 'Kanit', sans-serif;
         }
         body {
-            background-image: url('images/side3.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-color: white;
-            color: black;
+            background-color: #4B0082 !important; 
+            color: white;
+            min-height: 70vh; 
+            padding-top: 1px;
         }
        
     </style>
+
 </head>
+
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -93,6 +118,9 @@
             </div>
         </div>
     </nav>
+
+
+
 
     <div class="container text-center">
         <br><br><br><br>
@@ -124,12 +152,14 @@
                 <input type="text" id="connectionId" th:value="${user.connectionId}">
             </div>
 
-            <a href="/callhistory" class="form-group">Call History</a><br><br>
-            <a href="/banktransactions" class="form-group">Bank Transactions</a><br><br />
-            <a href="/settings" class="form-group">Settings</a>
         </form>
     </div>
 
+
+
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
 </body>
+
 </html>

@@ -28,7 +28,7 @@ public class SubmitEsimController {
         model.addAttribute("esimConnection", new EsimConnection());
         return "submit_esim";
     }
-
+    
     @PostMapping
     public String submitEsimForm(@ModelAttribute EsimConnection esimConnection) {
         try {

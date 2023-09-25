@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title><a href="javascript:history.back()">Login</a></title>
+
+
+
+
+
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+
+
+
+
+    <style>
+        .navbar {
+            background-color: white;
+            padding: 8px 0;
+            margin-bottom: 120px;
+        }
+
+
+
+
+        .navbar-brand {
+            color: black !important;
+            font-size: 28px;
+            padding: 20px 15px;
+        }
+
+
+
+
+        body {
+            background-color: #4B0082; 
+            color: white;
+            min-height: 70vh; 
+            padding-top: 1px;
+        }
+
+
+
+
+        .form-label {
+            font-size: 22px;
+            display: inline-block;
+            width: 150px;
+        }
+
+
+
+
+        .form-control {
+            display: inline-block;
+        flex: 1;
+            max-width: 250px; /* Adjust the maximum width as needed */
+            width: calc(100% - 150px);
+            margin-left: 10px;
+            font-size: 18px;
+        }
+
+
+
+
+        .alert-danger {
+            display: none;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed"
+                        data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                        aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#" th:href="@{/}">
+                    Bill Payments
+                </a>
+            </div>
+        </div>
+    </nav>
+    <br /><br /><br /><br /><br />
+<table border="1">
+
+    <thead>
+
+        <tr>
+
+            <th style="background-color:white; color:black;">&nbsp;&nbsp; User_name&nbsp;&nbsp;</th>
+
+            <th style="background-color:white; color:black;">&nbsp;&nbsp;Phone_Number&nbsp;&nbsp;</th>
+
+            <th style="background-color:white; color:black;">&nbsp;&nbsp;Transaction_ID&nbsp;&nbsp;</th>
+
+            <th style="background-color:white; color:black;">&nbsp;&nbsp;payment_Type&nbsp;&nbsp;</th>
+
+            <th style="background-color:white; color:black;">&nbsp;&nbsp;Package_Validity&nbsp;&nbsp;</th>
+
+            <th style="background-color:white; color:black;">&nbsp;&nbsp;Amount_Paid&nbsp;&nbsp;</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        <!-- Loop through the user transactions and display them -->
+
+        <tr th:each="transaction : ${transactions}">
+
+            <td th:text="${transaction.username}"></td>
+
+            <td th:text="${transaction.phoneNumber}"></td>
+
+            <td th:text="${transaction.transactionId}"></td>
+
+            <td th:text="${transaction.paymentType}"></td>
+
+            <td th:text="${transaction.packageValidity}"></td>
+
+            <td th:text="${transaction.amountPaid}"></td>
+
+        </tr>
+
+    </tbody>
+
+</table>
+
+
+
+
+</body>
+
+</html>

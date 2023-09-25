@@ -25,11 +25,29 @@
             width: 400px;
         }
 
-        /* Style the navbar with a light blue background */
-        .navbar {
-            background-color: lightblue !important; /* Add !important to ensure the style is applied */
-            padding: 10px 0;
-            margin-bottom: 120px;
+       .navbar {
+            background-color: white;
+            padding: 4px 0;
+            margin-bottom: 80px;
+        }
+
+
+
+
+        .navbar-brand {
+            color: black !important;
+            font-size: 28px;
+            padding: 15px 15px;
+        }
+
+
+
+
+        body {
+            background-color: #4B0082; 
+            color: white;
+            min-height: 70vh; 
+            padding-top: 1px;
         }
 
         /* Additional styling for layout and appearance */
@@ -76,7 +94,7 @@
                 <!--input type="text" id="email" th:value="${user.email}" name="email" placeholder="Your email" readonly-->
                  <input type="text" id="email" name="email" placeholder="Change email">
                 <input type="hidden" name="field" value="email">
-                <button type="button" class="change-button" onclick="editField('email')">Change</button>
+                <button type="button" class="change-button" onclick="editField('email')" style="background-color:#5CB85C;">Change</button>
             </div>
 			
             <!-- Field for updating location -->
@@ -84,7 +102,7 @@
                 <label for="newLocation">New Location:</label>
                 <input type="text" id="newLocation" name="location" placeholder="Change location">
                 <input type="hidden" name="field" value="location">
-                <button type="button" class="change-button" onclick="editField('newLocation')">Change</button>
+                <button type="button" class="change-button" onclick="editField('newLocation')" style="background-color:#5CB85C;">Change</button>
             </div>
 
             <!-- Field for updating alternative number -->
@@ -92,17 +110,17 @@
                 <label for="alternativeNumber">Alternative Number:</label>
                 <input type="text" id="alternativeNumber" name="alternativeMobile" placeholder="Add alternative number">
                 <input type="hidden" name="field" value="alternativeMobile">
-                <button type="button" class="change-button" onclick="editField('alternativeNumber')">Change</button>
+                <button type="button" class="change-button" onclick="editField('alternativeNumber')" style="background-color:#5CB85C;">Change</button>
             </div>
 			<!-- Field for updating password -->
             <div class="form-group">
                 <label for="newpassword">New Password:</label>
                 <input type="text" id="newpassword" name="password" placeholder="Change password">
                 <input type="hidden" name="field" value="password">
-                <button type="button" class="change-button" onclick="editField('newpassword')">Change</button>
+                <button type="button" class="change-button" onclick="editField('newpassword')" style="background-color:#5CB85C;">Change</button>
             </div>
             <!-- Add a submit button to save changes -->
-            <button type="submit" class="change-button">Save Changes</button>
+            <button type="submit" class="change-button" style="background-color:#5CB85C;">Save Changes</button>
         </form>
     </div>
 

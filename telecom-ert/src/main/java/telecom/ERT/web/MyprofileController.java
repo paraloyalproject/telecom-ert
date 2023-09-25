@@ -30,7 +30,7 @@ public class MyprofileController {
             model.addAttribute("user", user);
         }
 
-        return "myprofile";
+        return "redirect:https://www.phonepe.com";
     }
     
     @GetMapping("/manage_account")
@@ -70,5 +70,5 @@ public class MyprofileController {
        
         return "contactus"; 
     }
-    
+  
 }
