@@ -1,32 +1,88 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Plan Details</title>
+  <title>Recharge Plans</title>
+  <style>
+    .rechargeBox {
+      border: 1px solid #ccc;
+      padding: 20px;
+      margin: 10px;
+      width: 200px;
+      text-align: center;
+      display: inline-block;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    .rechargeBox:hover {
+      background-color: #f0f0f0;
+    }
+
+    .selectedBox {
+      border: 2px solid blue;
+      background-color: #e0f7fa;
+    }
+  </style>
 </head>
 <body>
-    <h1>Plan Details</h1>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Validity</th>
-            <th>Data</th>
-            <th>Calls</th>
-            <th>SMS</th>
-            <th>Benefit</th>
-            <th>Speed</th>
-        </tr>
-        <tr th:each="plan : ${plans}">
-            <td th:text="${plan.name}"></td>
-            <td th:text="${plan.price}"></td>
-            <td th:text="${plan.validity}"></td>
-            <td th:text="${plan.data}"></td>
-            <td th:text="${plan.calls}"></td>
-            <td th:text="${plan.sms}"></td>
-            <td th:text="${plan.benefit}"></td>
-            <td th:text="${plan.speed}"></td>
-        </tr>
-    </table>
+  <h1>Select a  Broadband Recharge Plan</h1>
+
+  <div class="rechargeBox" id="oneMonthBox" onclick="selectPackage('oneMonth')">
+    <h2>1 Month Plan</h2>
+    <p>speed upto 20 mbps till 1000 gb</p>
+    <p>Unlimited Data download</p>
+    <p>Free jio tunes + jio tv</p>
+    <p>399 rupees</p>
+  </div>
+
+  <div class="rechargeBox" id="threeMonthsBox" onclick="selectPackage('threeMonths')">
+    <h2>3 Months Plan</h2>
+     <p>speed upto 30 mbps till 1000 gb</p>
+    <p>Unlimited Data download</p>
+    <p>Free jio tunes + prime video </p>
+    <p>799 rupees</p>
+  </div>
+
+  <div class="rechargeBox" id="sixMonthsBox" onclick="selectPackage('sixMonths')">
+    <h2>6 Months Plan</h2>
+     <p>speed upto 50 mbps till 3300 gb</p>
+    <p>Unlimited Data download</p>
+    <p>Free jio tunes + prime video </p>
+    <p>1499 rupees</p>
+  </div>
+
+  <div class="rechargeBox" id="twelveMonthsBox" onclick="selectPackage('twelveMonths')">
+    <h2>12 Months Plan</h2>
+     <p>speed upto 100 mbps till 3300 gb</p>
+    <p>Unlimited Data download</p>
+    <p>Aha + prime video + Hotstar</p>
+    <p>3249 rupees</p>
+  </div>
+
+  <button onclick="initiateRecharge()">Recharge Now</button>
+
+  <script>
+    let selectedPackage = null;
+
+    function selectPackage(packageName) {
+      if (selectedPackage) {
+        document.getElementById(selectedPackage + 'Box').classList.remove('selectedBox');
+      }
+      selectedPackage = packageName;
+      document.getElementById(packageName + 'Box').classList.add('selectedBox');
+    }
+
+    function initiateRecharge() {
+      if (selectedPackage) {
+        alert(`You selected the ${selectedPackage} plan. Redirecting to recharge page with the selected package...`);
+        // Here you can navigate to the recharge page based on the selected package
+        // Replace the window.location.href with the actual recharge page URL
+        // and pass the selectedPackage as a query parameter.
+        // window.location.href = `/recharge?package=${selectedPackage}`;
+      } else {
+        alert('Please select a recharge plan.');
+      }
+    }
+  </script>
 </body>
 </html>

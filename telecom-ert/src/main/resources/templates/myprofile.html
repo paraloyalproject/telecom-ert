@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head>
+    <!-- Add your meta tags, title, and styles here -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Profile</title>
@@ -10,95 +9,47 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&family=Lora&family=Nunito:wght@400;500&family=Open+Sans:wght@500&display=swap');
 
-
-
-
-
         /* Apply custom styles to labels and input fields */
         .form-group {
             margin-bottom: 30px;
-            font-size: 19px;
-            color: white;
+        }
+
+        .form-group label {
+            display: inline-block;
+            width: 150px;
             font-weight: bold;
+	    font-family: 'Your Custom Font', Roboto;
         }
 
-
-
-
-            .form-group label {
-                display: inline-block;
-                width: 150px;
-        font-family: 'Your Custom Font', Roboto;
-                
-            }
-
-
-
-
-            /* Adjust the width of the input fields */
-            .form-group input[type="text"] {
-                width: 300px;
-            }
-
-
-
-
-        /* Style the button */
-        .settings-button {
-            background-color: white;
-            color: black;
-            padding: 10px 10px;
-            border: none;
-            cursor: pointer;
-            font-size: 18px;
+        /* Adjust the width of the input fields */
+        .form-group input[type="text"] {
+            width: 400px;
         }
-
-
-
 
         /* Style the navbar with a light blue background */
         .navbar {
-            background-color: white !important;
-           
+            background-color: white !important; /* Add !important to ensure the style is applied */
+            padding: 10px 0;
             margin-bottom: 120px;
         }
-
-
-
-
-
-        .navbar-brand {
-            background-color: white;
-            color: black !important;
-            font-size: 30px;
-            padding: 8px 0;
-            display: block;
-            text-align: center;
-            line-height: 40px;
+	 
+	body {
+            background-color: #4B0082 !important; 
+            color: white;
+	        min-height: 70vh; 
+            padding-top: 1px;
         }
-
-
-
-
 
         /* Additional styling for layout and appearance */
         .container {
             margin-top: 30px;
             font-family: 'Kanit', sans-serif;
         }
-        body {
-            background-color: #4B0082 !important; 
-            color: white;
-            min-height: 70vh; 
-            padding-top: 1px;
-        }
-       
     </style>
-
 </head>
-
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <!-- Your navbar and container structure remains the same -->
+     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -107,8 +58,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/" style="color: black; font-size: 32px;"th:href="@{/}">MyProfile</a>
-               
+                <a class="navbar-brand" href="/" style="color: black; font-size: 32px;">MyProfile</a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <!-- Thymeleaf expression to display logout button for authenticated users -->
@@ -118,48 +68,44 @@
             </div>
         </div>
     </nav>
+    
 
-
-
-
-    <div class="container text-center">
-        <br><br><br><br>
-       
+    <div class="container">
+        <h1>My Profile</h1>
+        <!-- Display user information -->
         <form>
-           
+            <br><br><br><br>
             <div class="form-group">
                 <label for="name">Name:</label>
-                <input type="text" id="name" th:value="${user.name}">
+                <!-- Empty input box for the name -->
+                <input type="text" id="name" placeholder=" ">
+            </div>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <!-- Empty input box for the address -->
+                <input type="text" id="address" placeholder=" ">
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <!-- Empty input box for the phone number -->
+                <input type="text" id="phone" placeholder=" ">
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="text" id="email" th:value="${user.email}">
+                <!-- Empty input box for the email -->
+                <input type="text" id="email" placeholder=" ">
             </div>
             <div class="form-group">
-                <label for="mobile">Mobile Number:</label>
-                <input type="text" id="mobile" th:value="${user.mobile}">
+                <label for="aadhar">Aadhar Card:</label>
+                <!-- Empty input box for the Aadhar card -->
+                <input type="text" id="aadhar" placeholder=" ">
             </div>
             <div class="form-group">
-                <label for="pkg">Current Package:</label>
-                <input type="text" id="pkg" th:value="${user.pkg}">
+                <label for="location">Current Location:</label>
+                <!-- Empty input box for the current location -->
+                <input type="text" id="location" placeholder=" ">
             </div>
-            <div class="form-group">
-                <label for="connections">Broadband Connections:</label>
-                <input type="text" id="connections" th:value="${user.connections}">
-            </div>
-            <div class="form-group">
-                <label for="connectionId">Connection ID:</label>
-                <input type="text" id="connectionId" th:value="${user.connectionId}">
-            </div>
-
         </form>
     </div>
-
-
-
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
 </body>
-
 </html>
