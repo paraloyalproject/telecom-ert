@@ -1,4 +1,3 @@
-
 package telecom.ERT.model;
 
 import javax.persistence.Entity;
@@ -8,7 +7,6 @@ import javax.persistence.Table;
 import java.math.BigDecimal;
 
 import javax.persistence.*;
-
 @Entity
 @Table(name = "plans")
 public class Plan {
@@ -102,4 +100,3 @@ public class Plan {
     
    
 }
-
