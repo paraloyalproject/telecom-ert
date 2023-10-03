@@ -1,4 +1,3 @@
-
 package telecom.ERT.web;
 
 import java.security.Principal;
@@ -24,26 +23,37 @@ public class MyprofileController {
 
     @GetMapping
     public String myProfile(Model model, Principal principal) {
-        String userEmail = principal.getName(); 
-        User user = userService.findByEmail(userEmail);
+        try {
+            String userEmail = principal.getName();
+            User user = userService.findByEmail(userEmail);
 
-        if (user != null) {
-            model.addAttribute("user", user);
+            if (user != null) {
+                model.addAttribute("user", user);
+            }
+
+            return "myprofile";
+        } catch (Exception ex) {
+            // Handle the exception, you can log it and return an error page or message
+            model.addAttribute("errorMessage", "An error occurred while fetching the user profile: " + ex.getMessage());
+            return "error"; // Replace "error" with the actual name of your error view
         }
-
-        return "myprofile";
     }
-    
+
     @GetMapping("/manage_account")
     public String manageAccount(Model model, Principal principal) {
-        String userEmail = principal.getName();
-        User user = userService.findByEmail(userEmail);
+        try {
+            String userEmail = principal.getName();
+            User user = userService.findByEmail(userEmail);
 
-        if (user != null) {
-            model.addAttribute("user", user);
+            if (user != null) {
+                model.addAttribute("user", user);
+            }
+
+            return "manage_account";
+        } catch (Exception ex) {
+            // Handle the exception, you can log it and return an error page or message
+            model.addAttribute("errorMessage", "An error occurred while managing the account: " + ex.getMessage());
+            return "error"; // Replace "error" with the actual name of your error view
         }
-
-        return "manage_account"; 
     }
-    
 }

@@ -15,7 +15,7 @@ import telecom.ERT.exception.ResourceNotFoundException; // Import your custom ex
 @Controller
 @RequestMapping("/submit-broadband")
 public class SubmitBroadbandController {
-	
+
     private BroadbandConnectionRepository broadbandConnectionRepository;
 
     @Autowired
@@ -30,7 +30,7 @@ public class SubmitBroadbandController {
     }
 
     @PostMapping
-    public String submitBroadbandForm(@ModelAttribute BroadbandConnection broadbandConnection) {
+    public String submitBroadbandForm(@ModelAttribute BroadbandConnection broadbandConnection, Model model) {
         try {
             System.out.println("Name: " + broadbandConnection.getName());
             System.out.println("Mobile: " + broadbandConnection.getMobile());
@@ -39,11 +39,13 @@ public class SubmitBroadbandController {
         } catch (DataAccessException ex) {
             // Handle database-related exceptions
             ex.printStackTrace();
-            throw new ResourceNotFoundException("Error while saving broadband connection: " + ex.getMessage());
+            model.addAttribute("errorMessage", "Error while saving broadband connection. Please try again later.");
+            return "error";
         } catch (Exception ex) {
             // Handle other exceptions
             ex.printStackTrace();
-            throw new ResourceNotFoundException("An error occurred: " + ex.getMessage());
+            model.addAttribute("errorMessage", "An error occurred. Please try again later.");
+            return "error";
         }
     }
 }

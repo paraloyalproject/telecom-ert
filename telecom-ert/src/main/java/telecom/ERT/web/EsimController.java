@@ -1,7 +1,5 @@
 package telecom.ERT.web;
 
-import java.util.Optional;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,41 +7,37 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import telecom.ERT.repository.*;
-import telecom.ERT.service.EsimConnectionService;
-import telecom.ERT.model.*;
-import telecom.ERT.web.*;
-import java.util.*;
-import telecom.ERT.exception.*;
+import telecom.ERT.exception.MyCustomException;
+import telecom.ERT.model.EsimConnection;
+import telecom.ERT.repository.EsimConnectionRepository;
+
+import java.util.List;
+import java.util.Optional;
+
 @Controller
 @RequestMapping("/get_esim")
 public class EsimController {
 
-	 @GetMapping("/trigger-exception")
-	    public String triggerCustomException() {
-		 boolean someConditionIsMet = false; 
-	        if (someConditionIsMet) {
-	            throw new MyCustomException("This is a custom exception message.");
-	        }
-	        return "Success";
-	    }
-	
-	@GetMapping
+    @GetMapping("/trigger-exception")
+    public String triggerCustomException() {
+        boolean someConditionIsMet = false;
+        if (someConditionIsMet) {
+            throw new MyCustomException("This is a custom exception message.");
+        }
+        return "Success";
+    }
+
+    @GetMapping
     public String getEsimPage() {
-        return "get_esim"; 
+        return "get_esim";
     }
 
     @Autowired
     private EsimConnectionRepository esimConnectionRepository;
-    
+
     @GetMapping("/create")
     public String createEsimForm(Model model) {
-       
         model.addAttribute("connection", new EsimConnection());
         return "create_get_esim";
     }
@@ -65,37 +59,56 @@ public class EsimController {
         }
     }
 
-
     @GetMapping("/list")
     public String listEsimConnections(Model model) {
-     
-        List<EsimConnection> allConnections = esimConnectionRepository.findAll();
-        model.addAttribute("connections", allConnections);
-        return "list_get_esim";
+        try {
+            List<EsimConnection> allConnections = esimConnectionRepository.findAll();
+            model.addAttribute("connections", allConnections);
+            return "list_get_esim";
+        } catch (DataAccessException ex) {
+            // Handle database-related exceptions
+            ex.printStackTrace();
+            return "error_page"; // Redirect to an error page or show an error message
+        }
     }
 
     @GetMapping("/edit/{id}")
     public String editEsimForm(@PathVariable Long id, Model model) {
-      
-        Optional<EsimConnection> foundConnection = esimConnectionRepository.findById(id);
-        if (foundConnection.isPresent()) {
-            model.addAttribute("connection", foundConnection.get());
-            return "edit_get_esim";
-        } else {
-            return "redirect:/get_esim/list";
+        try {
+            Optional<EsimConnection> foundConnection = esimConnectionRepository.findById(id);
+            if (foundConnection.isPresent()) {
+                model.addAttribute("connection", foundConnection.get());
+                return "edit_get_esim";
+            } else {
+                return "redirect:/get_esim/list";
+            }
+        } catch (DataAccessException ex) {
+            ex.printStackTrace();
+            return "error_page"; 
         }
     }
 
     @PostMapping("/edit/{id}")
     public String editEsim(@PathVariable Long id, @ModelAttribute EsimConnection connection) {
-        connection.setId(id);
-        esimConnectionRepository.save(connection);
-        return "redirect:/get_esim/list";
+        try {
+            connection.setId(id);
+            esimConnectionRepository.save(connection);
+            return "redirect:/get_esim/list";
+        } catch (DataAccessException ex) {
+            // Handle database-related exceptions
+            ex.printStackTrace();
+            return "error_page"; // Redirect to an error page or show an error message
+        }
     }
 
     @GetMapping("/delete/{id}")
     public String deleteEsim(@PathVariable Long id) {
-        esimConnectionRepository.deleteById(id);
-        return "redirect:/get_esim/list";
+        try {
+            esimConnectionRepository.deleteById(id);
+            return "redirect:/get_esim/list";
+        } catch (DataAccessException ex) {
+            ex.printStackTrace();
+            return "error_page"; // Redirect to an error page or show an error message
+        }
     }
 }

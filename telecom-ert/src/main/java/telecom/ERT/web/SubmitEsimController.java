@@ -17,7 +17,7 @@ import telecom.ERT.exception.ResourceNotFoundException;
 public class SubmitEsimController {
 
     private EsimConnectionService esimConnectionService;
-    
+
     @Autowired
     public SubmitEsimController(EsimConnectionService esimConnectionService) {
         this.esimConnectionService = esimConnectionService;
@@ -30,19 +30,20 @@ public class SubmitEsimController {
     }
 
     @PostMapping
-    public String submitEsimForm(@ModelAttribute EsimConnection esimConnection) {
+    public String submitEsimForm(@ModelAttribute EsimConnection esimConnection, Model model) {
         try {
             esimConnectionService.saveEsimConnection(esimConnection);
             return "redirect:/";
         } catch (DataAccessException ex) {
             // Handle database-related exceptions
             ex.printStackTrace();
-            throw new ResourceNotFoundException("Error while saving broadband connection: " + ex.getMessage());
+            model.addAttribute("errorMessage", "Error while saving Esim connection. Please try again later.");
+            return "error";
         } catch (Exception ex) {
             // Handle other exceptions
             ex.printStackTrace();
-            throw new ResourceNotFoundException("An error occurred: " + ex.getMessage());
+            model.addAttribute("errorMessage", "An error occurred. Please try again later.");
+            return "error";
         }
     }
 }
- 
