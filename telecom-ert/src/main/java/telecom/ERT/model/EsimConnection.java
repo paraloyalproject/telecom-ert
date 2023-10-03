@@ -21,7 +21,7 @@ public class EsimConnection {
     private String name;
 
     @NotEmpty(message = "Existing Phone Number is required")
-    private String phone;
+    private String mobile;
     
     @NotEmpty(message = "Email Address is required")
     @Email(message = "Invalid email address")
@@ -95,12 +95,12 @@ public class EsimConnection {
         this.name = name;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getMobile() {
+        return mobile;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
     public String getCardType() {
@@ -118,4 +118,6 @@ public class EsimConnection {
     public void setEmail(String email) {    
         this.email = email;
     }
+
+	
 }
