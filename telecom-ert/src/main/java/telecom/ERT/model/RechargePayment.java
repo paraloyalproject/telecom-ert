@@ -1,10 +1,8 @@
 package telecom.ERT.model;
 
-
 	import javax.persistence.*;
 	import java.util.Date;
 
-	
 	@Entity
 	@Table(name = "mobile_recharge")
 	public class RechargePayment {
@@ -85,6 +83,5 @@ package telecom.ERT.model;
 
 	    
 	}
-
 
 

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Plan Details</title>
+</head>
+<body>
+    <h1>Plan Details</h1>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Validity</th>
+            <th>Data</th>
+            <th>Calls</th>
+            <th>SMS</th>
+            <th>Benefit</th>
+            <th>Speed</th>
+        </tr>
+        <tr th:each="plan : ${plans}">
+            <td th:text="${plan.name}"></td>
+            <td th:text="${plan.price}"></td>
+            <td th:text="${plan.validity}"></td>
+            <td th:text="${plan.data}"></td>
+            <td th:text="${plan.calls}"></td>
+            <td th:text="${plan.sms}"></td>
+            <td th:text="${plan.benefit}"></td>
+            <td th:text="${plan.speed}"></td>
+        </tr>
+    </table>
+</body>
+</html>

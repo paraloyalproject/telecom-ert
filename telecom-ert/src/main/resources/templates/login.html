@@ -1,108 +1,121 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Registration and Login App</title>
+    <meta charset="ISO-8859-1">
+    <title><a href="javascript:history.back()">Login</a></title>
 
-<link rel="stylesheet"
-    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-    crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
 
-<style>
-    .navbar-inverse {
-        background-color: lightblue;
-        height: 80px; /* Increase the height of the navigation bar */
-    }
-
-    .navbar-brand {
-        color: black !important;
-        font-size: 28px;
-        padding: 20px 15px; /* Adjust padding for the navbar brand */
-    }
-    /* Set the background image */
-        body {
-            background-image: url('/image1.jpg'); /* Replace with your image file path or URL */
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            color: white;
-	    padding-top: 100px; /* Add padding to push content below the navigation bar */
+    <style>
+        .navbar {
+            background-color: white;
+            padding: 8px 0;
+            margin-bottom: 120px;
         }
-    
-       
-    
 
-    /* Increase font size for label text */
-    .form-label {
-        font-size: 22px; /* You can adjust the font size as needed */
-    }
+        .navbar-brand {
+            color: black !important;
+            font-size: 28px;
+            padding: 20px 15px;
+        }
 
-    /* Increase font size for login text */
-    .login-text {
-        font-size: 22px; /* You can adjust the font size as needed */
-    }
-    /* Change color of anchor tag in login text to white */
-    .login-text a {
-        color: white;
-    }
-</style>
+        body {
+            background-color: #4B0082; 
+            color: white;
+	        min-height: 70vh; 
+            padding-top: 1px;
+        }
+
+        .form-label {
+            font-size: 22px;
+            display: inline-block;
+            width: 150px;
+        }
+
+        .form-control {
+            display: inline-block;
+	    flex: 1;
+            max-width: 250px; /* Adjust the maximum width as needed */
+            width: calc(100% - 150px);
+            margin-left: 10px;
+            font-size: 18px;
+        }
+
+        .alert-danger {
+            display: none;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed"
-                data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-                aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span> <span
-                    class="icon-bar"></span> <span class="icon-bar"></span> <span
-                    class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#" th:href="@{/}">Registration  and
-                Login  Module</a>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed"
+                        data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                        aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#" th:href="@{/}">
+                    Login 
+                </a>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
+    <br /><br /><br /><br /><br />
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <h1 class="login-text"> Login </h1>
-            <form th:action="@{/login}" method="post">
-                <!-- error message -->
-                <div th:if="${param.error}">
-                    <div class="alert alert-danger">Invalid username or
-                        password.</div>
-                </div>
-                <!-- logout message -->
-                <div th:if="${param.logout}">
-                    <div class="alert alert-info">You have been logged out.</div>
-                </div>
-                <div class="form-group">
-                    <label for="username" class="form-label"> Username </label> : <input type="text" class="form-control"
-                        id="username" name="username" placeholder="Enter Email ID" autofocus="autofocus">
-                </div>
-                <div class="form-group">
-                    <label for="password" class="form-label">Password</label>: <input type="password" id="password" name="password"
-                        class="form-control" placeholder="Enter Password" />
-                </div>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-sm-6 col-sm-offset-3">
-                            <input type="submit" name="login-submit" id="login-submit"
-                                class="form-control btn btn-primary" value="Log In" />
+                <br /><br />
+                <form th:action="@{/login}" method="post" onsubmit="return validateForm()">
+                    <!-- error message -->
+                    <div id="error-message" class="alert alert-danger">
+                        Invalid username or password.
+                    </div>
+                    <div class="form-group">
+                        <label for="username" class="form-label">Username:</label>
+                        <input type="text" class="form-control" id="username" name="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="form-label">Password:</label>
+                        <input type="password" id="password" name="password" class="form-control">
+                    </div><br />
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6 col-sm-offset-3">
+                                <input type="submit" name="login-submit" id="login-submit" class="form-control btn btn-primary" value="Log In">
+                            </div>
                         </div>
                     </div>
+                </form>
+                <div class="form-group">
+                    <span class="login-text">New user? <a href="/" th:href="@{/registration}" style="color:white;">Register here</a></span>
                 </div>
-            </form>
-            <div class="form-group">
-                <span class="login-text">New user? <a href="/" th:href="@{/registration}">Register
-                        here</a></span>
             </div>
         </div>
     </div>
-</div>
+
+    <script>
+    function validateForm() {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        var errorMessage = document.getElementById("error-message");
+
+        if (username === "" || password === "") {
+            errorMessage.style.display = "block";
+            return false;
+        } else {
+            errorMessage.style.display = "none";
+            return true;
+        }
+    }
+    </script>
+
 </body>
 </html>

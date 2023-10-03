@@ -9,4 +9,3 @@ import telecom.ERT.model.RechargePayment;
 public interface RechargePaymentRepository extends JpaRepository<RechargePayment, Long> {
 	
 }
-
