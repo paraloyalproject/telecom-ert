@@ -11,7 +11,7 @@ import telecom.ERT.repository.PlanRepository;
 import java.util.List; 
 
 @Controller
-@RequestMapping("/viewplans")
+@RequestMapping("/packages")
 public class PlanController {
 
     private final PlanRepository planRepository;
@@ -25,6 +25,6 @@ public class PlanController {
     public String viewPlans(Model model) {
         List<Plan> plans = planRepository.findAll();
         model.addAttribute("plans", plans);
-        return "viewplans";
+        return "packages";
     }
 }

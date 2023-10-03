@@ -21,17 +21,7 @@ public class MyprofileController {
         this.userService = userService;
     }
 
-    @GetMapping
-    public String myProfile(Model model, Principal principal) {
-        String userEmail = principal.getName(); 
-        User user = userService.findByEmail(userEmail);
-
-        if (user != null) {
-            model.addAttribute("user", user);
-        }
-
-        return "redirect:https://www.phonepe.com";
-    }
+   
     
     @GetMapping("/manage_account")
     public String manageAccount(Model model, Principal principal) {
@@ -44,6 +34,18 @@ public class MyprofileController {
 
         return "manage_account"; 
     }
+    @GetMapping("/profile")
+    public String userProfile(Model model, Principal principal) {
+        String userEmail = principal.getName();
+        User user = userService.findByEmail(userEmail);
+
+        if (user != null) {
+            model.addAttribute("user", user);
+        }
+
+        return "profile";
+    }
+
     @GetMapping("/callhistory")
     public String callhistory(Model model, Principal principal) {
         String userEmail = principal.getName();

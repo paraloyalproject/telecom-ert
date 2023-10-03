@@ -8,33 +8,36 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.dao.DataAccessException; // Import DataAccessException for handling database exceptions
+
 import telecom.ERT.model.BroadbandConnection;
+
 import telecom.ERT.repository.BroadbandConnectionRepository;
+
 import telecom.ERT.exception.ResourceNotFoundException; // Import your custom exception
 
 @Controller
 @RequestMapping("/submit-broadband")
 public class SubmitBroadbandController {
 	
-    private BroadbandConnectionRepository broadbandConnectionRepository;
+    private BroadbandConnectionRepository broadbandconnectionRepository;
 
     @Autowired
-    public SubmitBroadbandController(BroadbandConnectionRepository broadbandConnectionRepository) {
-        this.broadbandConnectionRepository = broadbandConnectionRepository;
+    public SubmitBroadbandController(BroadbandConnectionRepository broadbandconnectionRepository) {
+        this.broadbandconnectionRepository = broadbandconnectionRepository;
     }
 
     @GetMapping
     public String showBroadbandForm(Model model) {
-        model.addAttribute("broadbandConnection", new BroadbandConnection());
+        model.addAttribute("broadbandconnection", new BroadbandConnection());
         return "submit_broadband";
     }
 
     @PostMapping
-    public String submitBroadbandForm(@ModelAttribute BroadbandConnection broadbandConnection) {
+    public String submitBroadbandForm(@ModelAttribute BroadbandConnection broadbandconnection) {
         try {
-            System.out.println("Name: " + broadbandConnection.getName());
-            System.out.println("Mobile: " + broadbandConnection.getMobile());
-            broadbandConnectionRepository.save(broadbandConnection);
+            System.out.println("Name: " + broadbandconnection.getName());
+           // System.out.println("Mobile: " + broadbandPlan.getMobile());
+            broadbandconnectionRepository.save(broadbandconnection);
             return "redirect:/";
         } catch (DataAccessException ex) {
             // Handle database-related exceptions
@@ -46,4 +49,5 @@ public class SubmitBroadbandController {
             throw new ResourceNotFoundException("An error occurred: " + ex.getMessage());
         }
     }
+    
 }

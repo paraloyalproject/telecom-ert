@@ -1,5 +1,6 @@
 package telecom.ERT.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,7 +34,20 @@ public class EsimConnection {
     private String simtype;
    
     private String aadhar;
-    public String getCardtype() {
+    private String pan;
+  
+    @Column(name = "reference_id")
+    private String referenceId;
+    
+    public String getReferenceId() {
+		return referenceId;
+	}
+
+	public void setReferenceId(String referenceId) {
+		this.referenceId = referenceId;
+	}
+
+	public String getCardtype() {
 		return cardtype;
 	}
 
@@ -56,8 +70,6 @@ public class EsimConnection {
 	public void setPan(String pan) {
 		this.pan = pan;
 	}
-
-	private String pan;
 
     public String getSimtype() {
 		return simtype;

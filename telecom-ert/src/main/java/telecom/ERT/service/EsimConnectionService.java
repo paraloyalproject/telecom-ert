@@ -20,4 +20,12 @@ public class EsimConnectionService {
        
         esimConnectionRepository.save(esimConnection);
     }
+    private static int referenceIdCounter = 111111; // Starting reference ID
+
+    public static String generateNextReferenceId() {
+        String formattedReferenceId = String.format("%06d", referenceIdCounter);
+        referenceIdCounter++;
+        return formattedReferenceId;
+    }
+
 }
