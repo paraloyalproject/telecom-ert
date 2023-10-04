@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Broadband Plans</title>
+</head>
+<body>
+    <h1>Broadband Plans</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Plan</th>
+                <th>Data</th>
+                <th>Validity</th>
+                <th>Speed</th>
+                <th>Benifits</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="plan : ${plans}">
+                <td th:text="${plan.id}"></td>
+                <td th:text="${plan.name}"></td>
+                <td th:text="${plan.plan}"></td>
+                <td th:text="${plan.Data}"></td>
+                <td th:text="${plan.validity}"></td>
+                <td th:text="${plan.speed}"></td>
+                <td th:text="${plan.Benifits}"></td>
+                <td th:text="${plan.price}"></td>
+                <td><a th:href="@{'/select-package/' + ${plan.id}}">Select</a></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
