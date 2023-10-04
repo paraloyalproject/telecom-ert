@@ -143,71 +143,15 @@
                 <th>Call Type</th>
             </tr>
         </thead>
-        <tbody>
-            <!-- Example row, add more rows with call history data here -->
-            <tr data-call-type="incoming">
-                <td>3/9/2023</td>
-                <td>3243245345</td>
-                <td>09:35:04</td>
-                <td>09:37:24</td>
-                <td>2min 20sec</td>
-                <td>Incoming Call</td>
-            </tr>
-            <tr data-call-type="outgoing">
-                <td>2/9/2023</td>
-                <td>1234567890</td>
-                <td>10:00:00</td>
-                <td>10:05:00</td>
-                <td>5min 0sec</td>
-                <td>Outgoing Call</td>
-            </tr>
-            <tr data-call-type="incoming">
-                <td>4/8/2023</td>
-                <td>3243245345</td>
-                <td>19:35:04</td>
-                <td>19:37:24</td>
-                <td>2min 20sec</td>
-                <td>Incoming Call</td>
-            </tr>
-            <tr data-call-type="outgoing">
-                <td>1/8/2023</td>
-                <td>1234567890</td>
-                <td>12:00:00</td>
-                <td>12:05:20</td>
-                <td>5min 20sec</td>
-                <td>Outgoing Call</td>
-            </tr>
-            <tr data-call-type="incoming">
-                <td>13/7/2023</td>
-                <td>3243245345</td>
-                <td>09:35:04</td>
-                <td>09:37:24</td>
-                <td>2min 20sec</td>
-                <td>Incoming Call</td>
-            </tr>
-            <tr data-call-type="outgoing">
-                <td>11/7/2023</td>
-                <td>1234567890</td>
-                <td>10:00:00</td>
-                <td>10:05:00</td>
-                <td>5min 0sec</td>
-                <td>Outgoing Call</td>
-            </tr>
-            <tr data-call-type="incoming">
-                <td>4/7/2023</td>
-                <td>3243245345</td>
-                <td>19:35:04</td>
-                <td>19:37:24</td>
-                <td>2min 20sec</td>
-                <td>Incoming Call</td>
-            </tr>
-            <tr data-call-type="outgoing">
-                <td>1/7/2023</td>
-                <td>1234567890</td>
-                <td>12:02:00</td>
-                <td>12:05:20</td>
-                <td>3min 20sec</td>
-                <td>Outgoing Call</td>
+      
+             <tbody>
+            <tr th:each="entry : ${callHistory}">
+                <td th:text="${entry.date}"></td>
+                <td th:text="${entry.mobileNo}"></td>
+                <td th:text="${entry.startingTime}"></td>
+                <td th:text="${entry.endingTime}"></td>
+                <td th:text="${entry.duration}"></td>
+                <td th:text="${entry.callType}"></td>
             </tr>
         </tbody>
     </table>
