@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Broadband Plans</title>
+
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+
+    <style>
+        .navbar {
+            background-color: white;
+            padding: 8px 0;
+            margin-bottom: 120px;
+        }
+
+        .navbar-brand {
+            color: black !important;
+            font-size: 28px;
+            padding: 20px 15px;
+        }
+
+        body {
+            background-color: #4B0082; 
+            color: white;
+            min-height: 70vh; 
+            padding-top: 1px;
+        }
+
+        .fetchedData {
+            margin-top: 20px;
+        }
+
+        /* Styles for displaying broadband plans */
+        .rechargeBox {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 10px;
+            width: 200px;
+            text-align: center;
+            display: inline-block;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .rechargeBox:hover {
+            background-color: #f0f0f0;
+        }
+
+        .selectedBox {
+            border: 2px solid blue;
+            background-color: #e0f7fa;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed"
+                        data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                        aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#" th:href="@{/}">
+                    Broadband Plans
+                </a>
+            </div>
+        </div>
+    </nav>
+    <br /><br /><br /><br /><br />
+
+    <h1>Select a Broadband Plan</h1>
+
+    <table border="1">
+
+        <thead>
+
+            <tr>
+
+                <th style="background-color:white; color:black;">&nbsp;&nbsp; Calls&nbsp;&nbsp;</th>
+
+                <th style="background-color:white; color:black;">&nbsp;&nbsp;Data&nbsp;&nbsp;</th>
+
+                <th style="background-color:white; color:black;">&nbsp;&nbsp;Offers&nbsp;&nbsp;</th>
+
+                <th style="background-color:white; color:black;">&nbsp;&nbsp;Price&nbsp;&nbsp;</th>
+
+                <th style="background-color:white; color:black;">&nbsp;&nbsp;SMS&nbsp;&nbsp;</th>
+
+                <th style="background-color:white; color:black;">&nbsp;&nbsp;Speed&nbsp;&nbsp;</th>
+
+                <th style="background-color:white; color:black;">&nbsp;&nbsp;Validity&nbsp;&nbsp;</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+           
+            <tr th:each="package_details : ${packages}">
+                <td th:text="${package.calls}"></td>
+                <td th:text="${package.data}+'GB'"></td>
+                <td th:text="${package.offers}"></td>
+                <td th:text="${package.price} + ' rupees'"></td>
+                <td th:text="${package.sms}+'/Day'"></td>
+                <td th:text="${package.speed}+'mbps'"></td>
+                <td th:text="+ ${package.validity} + ' days'"></td>
+            </tr>
+
+        </tbody>
+
+    </table>
+    <button onclick="fetchPackageDetails()"> Package Details</button>
+
+    <div id="fetchedData" class="fetchedData">
+        <!-- Fetched broadband plan details will be displayed here -->
+    </div>
+
+    <script>
+        function fetchPackageDetails() {
+            fetch('/api/package_details') // Replace with your API endpoint
+                .then(response => response.json())
+                .then(data => displayPackageDetails(data))
+                .catch(error => console.error('Error fetching package details:', error));
+        }
+
+        function displayPackageDetails(packageDetails) {
+            const fetchedDataDiv = document.getElementById('fetchedData');
+            fetchedDataDiv.innerHTML = ''; // Clear previous content
+
+            packageDetails.forEach(details => {
+                const packageDiv = document.createElement('div');
+                packageDiv.classList.add('rechargeBox');
+                packageDiv.innerHTML = `
+                    <h2>${details.name}</h2>
+                    <p>Validity: ${details.validity} days</p>
+                    <p>Calls: ${details.calls}</p>
+                    <p>Data: ${details.data}</p>
+                    <p>SMS: ${details.sms}</p>
+                    <p>Offers: ${details.offers}</p>
+                    <p>Price: ${details.price} rupees</p>
+                `;
+                fetchedDataDiv.appendChild(packageDiv);
+            });
+        }
+    </script>
+    
+
+</body>
+
+</html>

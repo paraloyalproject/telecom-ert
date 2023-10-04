@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Broadband Plans</title>
+   <style>
+        /* Add some spacing to table cells */
+        table {
+            border-collapse: collapse; /* Collapse table borders */
+            width: 100%; /* Make table span the full width */
+        }
+
+        th, td {
+            padding: 8px; /* Add padding to table cells */
+            text-align: left; /* Align text to the left within cells */
+        }
+
+        tr:nth-child(even) {
+            background-color: #4B0082; /* Add alternating row background color */
+        }
+
+        /* Style the header row with a white background */
+        .header-row th {
+            background-color: white;
+            color: black;
+        }
+
+        body {
+            background-color: #4B0082 !important; 
+            color: white;
+            min-height: 70vh; 
+            padding-top: 1px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Broadband Plans</h1>
+ <form method="post" action="/select-plan"> <!-- Create a form for selecting a plan -->
+   
+    <table>
+        
+            <tr class="header-row">
+                <th>ID</th>
+                <th>Name</th>
+                <th>Plan</th>
+                <th>Data</th>
+                <th>Validity</th>
+                <th>Speed</th>
+                <th>Benifits</th>
+                <th>Price</th>
+            </tr>
+        
+      
+            <tr th:each="plan : ${plans}">
+                <td th:text="${plan.id}"></td>
+                <td th:text="${plan.name}"></td>
+                <td th:text="${plan.data}"></td>
+                <td th:text="${plan.validity}"></td>
+                <td th:text="${plan.speed}"></td>
+                <td th:text="${plan.benifits}"></td>
+                <td th:text="${plan.price}"></td>
+            <td>
+ <!-- Add a form with a submit button to select the plan -->
+                    <form method="post" th:action="@{/select-plan}">
+                        <input type="hidden" name="planId" th:value="${plan.id}">
+                        <button type="submit">Select</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

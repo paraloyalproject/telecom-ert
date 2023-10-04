@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Add your meta tags and title here -->
+    <meta charset="UTF-8">
+    <title>Get New E-SIM</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+
+
+
+    <!-- Custom CSS for styling -->
+    <style>
+        .navbar {
+            background-color: white !important;
+            padding: 8px 0;
+            margin-bottom: 120px;
+            color: white !important;
+        }
+
+
+        body {
+            background-color: #4B0082; 
+            color: black;
+            min-height: 70vh; 
+            padding-top: 1px;
+        }
+
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Your Custom Font', Arial, sans-serif;
+            color:white; /* Set text color to light yellow */
+        }
+
+
+
+
+        .h1 {
+            text-align: center; 
+            color: white !important;
+        }
+       
+        .page-container {
+            padding: 20px; 
+        }
+
+
+
+
+        
+        .navbar-nav li a[href="/logout"] {
+            color: black !important;
+        }
+
+
+
+
+        
+        .form-group-container {
+            display: flex;
+        align-items: center;
+            margin-bottom: 15px;
+        }
+
+
+
+
+        
+        .form-label {
+            flex: 1;
+
+
+
+
+        font-size: 22px;
+            font-family: 'Your Custom Font', Roboto;
+            color:white /* Set text color to light yellow */
+        }
+
+
+
+
+        /* Style for input fields */
+        .form-control {
+            flex: 1;
+
+
+
+
+    }
+
+
+
+
+        /* Set text color for form controls */
+        .form-control {
+            color: black !important;
+
+
+
+
+    }
+    </style>
+
+</head>
+
+   
+<body>
+  <br /><br /><br /><br /><br />
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                   
+                </button>
+                <a class="navbar-brand" href="/" style="color: black; font-size: 32px;">Registration Successful</a>
+            </div>
+        </div>
+    </nav>
+ <div class="row">
+                <div class="col-xs-12 col-md-6 col-md-offset-3">
+                    <form action="/submit-esim" method="post">
+  <div class="form-group-container">
+    <p style="color:white; font-size:22px;">Customer reference ID: <span th:text="${referenceId}"></span></p>
+</div>
+ <div class="form-group-container">    
+<p style="color:white; font-size:22px;" > Customer name: <span th:text="${name}"></span></p>
+</div>
+
+</form>
+</div>
+</div>
+</body>
+</html>
