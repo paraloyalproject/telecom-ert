@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Selected Prepaid Plan</title>
+    <!-- Add your CSS styling here if needed -->
+    <style>
+     .navbar {
+            background-color: white !important;
+            padding: 8px 0;
+            margin-bottom: 120px;
+            color: white !important;
+        }
+
+
+
+
+        body {
+            background-color: #4B0082;
+            color: black;
+            min-height: 70vh;
+            padding-top: 1px;
+        }
+
+
+
+       
+       
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin: 10px auto;
+        }
+
+
+
+       th {
+        background-color: #f2f2f2;
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+    width:30%;
+        }
+     td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        color:white;
+        text-size:22px;
+    width:70%;
+
+
+
+       
+    </style>
+</head>
+<body>
+    <h1 style="text-align:center;color :white;size:32px;">Selected Prepaid Plan Details</h1>
+    <br><br>
+    <table>
+        <tr>
+            <th>ID</th>
+             <td th:text="${selectedPlan.id}"></td>
+               </tr>
+            <th>Name</th>
+            <td th:text="${selectedPlan.name}"></td>
+              </tr>
+            <th>Plan</th>
+            <td th:text="${selectedPlan.data}"></td>
+              </tr>
+            <th>validity</th>
+            
+            <td th:text="${selectedPlan.plan}"></td>
+              </tr>
+            <th>Calls</th>
+            <td th:text="${selectedPlan.sms}"></td>
+              </tr>
+            <th>Sms</th>
+            <td th:text="${selectedPlan.validity}"></td>
+              </tr>
+            <th>Data</th>
+            <td th:text="${selectedPlan.calls}"></td>
+              </tr>
+            <th>Price</th>
+            <td th:text="${selectedPlan.price}"></td>
+              </tr>
+            <th>Additional Benefits</th>
+            
+            <td th:text="${selectedPlan.AdditionalBenefits}"></td>
+        </tr>
+        
+    </table>
+    
+    <!-- Add a "Recharge Now" button -->
+    <form method="post" action="/recharge" style="text-align:center">
+        <input type="hidden" name="planId" th:value="${selectedPlan.id}">
+        <button href="/recharge" type="submit" >Recharge Now</button>
+    </form>
+</body>
+</html>
+
+
+
+

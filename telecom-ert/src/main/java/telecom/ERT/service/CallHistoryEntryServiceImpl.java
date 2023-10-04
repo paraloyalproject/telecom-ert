@@ -4,7 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import telecom.ERT.model.CallHistoryEntry;
 import telecom.ERT.repository.CallHistoryEntryRepository;
-import java.util.List;
+import java.util.*;
+import java.util.Optional;
 
 @Service
 public class CallHistoryEntryServiceImpl implements CallHistoryEntryService {
@@ -22,16 +23,13 @@ public class CallHistoryEntryServiceImpl implements CallHistoryEntryService {
     }
 
     @Override
-    public  List<CallHistoryEntry> getCallHistoryEntryByMobileNo(String mobileNo) {
-        List<CallHistoryEntry> entries = entryRepository.findByMobileNo(mobileNo);
-        if (!entries.isEmpty()) {
-            return (List<CallHistoryEntry>) entries.get(0); // Return the first entry in the list
-        } else {
-            return null; // Return null if no matching entry is found
-        }
+    public List<CallHistoryEntry> getCallHistoryEntryById(Long Id) {
+        Optional<CallHistoryEntry> entry = entryRepository.findById(Id);
+        return entry.map(Collections::singletonList).orElse(Collections.emptyList());
     }
+
  /*   @Override
-    public List<CallHistoryEntry> getCallHistoryEntryByMobileNo(String mobileNo) {
+    public List<CallHistoryEntry> getCallHistoryEntryById(Long Id) {
         return entryRepository.findByMobileNo(mobileNo);
     }*/
 
@@ -51,6 +49,5 @@ public class CallHistoryEntryServiceImpl implements CallHistoryEntryService {
     public void deleteCallHistoryEntry(Long id) {
         entryRepository.deleteById(id);
     }
-
 
 }

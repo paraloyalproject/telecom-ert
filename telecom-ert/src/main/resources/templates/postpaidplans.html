@@ -35,7 +35,7 @@
 </head>
 <body>
     <h1>Mobile Postpaid Plans</h1>
-    <form method="post" action="/select-plan"> <!-- Create a form for selecting a plan -->
+    <form method="post" action="/selectedplan"> <!-- Create a form for selecting a plan -->
         <table>
             <tr class="header-row">
                 <th>ID</th>
@@ -59,9 +59,9 @@
                 <td th:text="${plan.price}"></td>
                 <td>
                     <!-- Add a form with a submit button to select the plan -->
-                    <form method="post" th:action="@{/select-plan}">
+                    <form method="post" th:action="@{/selectedplan}">
                         <input type="hidden" name="planId" th:value="${plan.id}">
-                        <button type="submit">Select</button>
+                        <button type="submit">Recharge</button>
                     </form>
                 </td>
             </tr>

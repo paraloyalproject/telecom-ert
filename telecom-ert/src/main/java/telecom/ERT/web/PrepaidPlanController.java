@@ -26,5 +26,22 @@ public class PrepaidPlanController {
         model.addAttribute("plans", plans);
         return "prepaidplans"; 
     }
-    
+    @PostMapping("/select-plan")
+
+    public String selectPlan(@RequestParam("planId") Long planId, Model model) {
+
+        // Retrieve the selected plan from the database
+
+        PrepaidPlan selectedPlan = planRepository.findById(planId).orElse(null);
+
+
+
+
+        // Pass the selected plan to the next page
+
+        model.addAttribute("selectedPlan", selectedPlan);
+
+        return "select-plan";
+
+        }
 }

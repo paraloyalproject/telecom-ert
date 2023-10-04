@@ -59,13 +59,8 @@ public class BillPaymentController {
         
         List<UserTransaction> transactions = billPaymentService.getAllTransactions();
 
-
-
-
         model.addAttribute("transactions", transactions);
-    
-         
+        
         return "bill";
     }
-
 }

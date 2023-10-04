@@ -21,6 +21,6 @@ public class CallHistoryController {
     public String getCallHistory(Model model) {
         List<CallHistoryEntry> callHistory = callHistoryEntryService.getAllCallHistoryEntries();
         model.addAttribute("callHistory", callHistory);
-        return "call-history-view"; // Return the name of the view
+        return "callhistory"; 
     }
 }
