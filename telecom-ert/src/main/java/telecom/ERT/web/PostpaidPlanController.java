@@ -37,12 +37,7 @@ public class PostpaidPlanController {
         return "selectedPlan";
    } 
     
-    @GetMapping("/generatebill")
-    public String generateBill(Model model) {
-        // Add any necessary data to the model if needed
-        return "generatebill";
-    }
-
+   
     }
     
 

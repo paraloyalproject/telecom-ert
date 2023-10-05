@@ -1,220 +1,216 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
-  <title>Recharge Confirmation</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin-top: 50px;
-      background-color: #4B0082 !important; 
-    }
-    
-    .navbar {
-      background-color: white !important; /* Add !important to ensure the style is applied */
-      color: black !important;
-      font-size: 30px;
-      padding: 8px 0;
-      display: block;
-      text-align: center;
-      line-height: 40px;
-    }
+    <meta charset="UTF-8">
+    <title>Recharge Payment</title>
+    <style>
+        body {
+            background-color: #4B0082;
+            color: black;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
 
-    .confirmation {
-      border: 2px solid #3498db;
-      padding: 20px;
-      max-width: 400px;
-      margin: auto;
-      background-color: #f9f9f9;
-      margin-top:80px;
-    }
+        .navbar {
+            background-color: white;
+            color: black;
+            font-size: 30px;
+            padding: 8px 0;
+            display: block;
+            text-align: center;
+            line-height: 40px;
+        }
 
-    .confirmation h2 {
-      color: #3498db;
-    }
+        .confirmation {
+            border: 2px solid #3498db;
+            padding: 20px;
+            max-width: 400px;
+            margin: auto;
+            background-color: #f9f9f9;
+            margin-top: 80px;
+        }
 
-    .confirmation p {
-      margin-bottom: 10px;
-    }
+        .confirmation h2 {
+            color: #3498db;
+        }
 
-    .form-container {
-      max-width: 400px;
-      margin: auto;
-      padding: 20px;
-      background-color: #f9f9f9;
-      border: 2px solid #3498db;
-    }
+        .confirmation p {
+            margin-bottom: 10px;
+        }
 
-    .form-container label {
-      display: block;
-      text-align: left;
-      margin-bottom: 5px;
-    }
+        .form-container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 2px solid #3498db;
+        }
 
-    .form-container input {
-      width: 60% ;
-      padding: 6px;
-      margin-bottom: 10px;
-    }
+        .form-container label {
+            display: block;
+            text-align: left;
+            margin-bottom: 5px;
+        }
 
-    .form-container button {
-      padding: 10px 20px;
-      background-color: #3498db;
-      border: none;
-      color: #fff;
-      cursor: pointer;
-      margin-right: 8px;
-    }
+        .form-container input {
+            width: 60%;
+            padding: 6px;
+            margin-bottom: 10px;
+        }
 
-    .payment-options {
-      margin-top: 20px;
-      color:white !important;
-    }
+        .form-container button {
+            padding: 10px 20px;
+            background-color: #3498db;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            margin-right: 8px;
+        }
 
-    .card-details {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-    }
-    
-    .card-details .input-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center; /* Center horizontally */
-      margin-bottom: 10px;
-    }
-    
-    .card-details .input-container label {
-      text-align: center; /* Center text horizontally */
-      margin-bottom: 5px;
-    }
-    
-    .card-details .input-container input {
-      width: 30%;
-      padding: 6px;
-      margin-top: 5px;
-    }
-  </style>
+        .payment-options {
+            margin-top: 20px;
+            color: white;
+        }
+
+        .card-details {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .card-details .input-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .card-details .input-container label {
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .card-details .input-container input {
+            width: 30%;
+            padding: 6px;
+            margin-top: 5px;
+        }
+    </style>
 </head>
 <body>
-  <div class="navbar">Recharge Payments</div>
-  <div class="confirmation">
-    <h2>Recharge </h2>
-    <label for="selectedPackage"> Package Details:</label>
-    <input type="text" id="selectedPackage" th:value="${user.pkg}">
- 
-    <h2>Provide Mobile Number</h2>
-    <label for="mobileNumber">Mobile Number:</label>
-    <input type="text" id="mobileNumber" placeholder="Enter your mobile number">
-    <br><br><br>
-    <button onclick="showPaymentOptions()">Proceed to Payment</button>
-  </div>
-
-  <div class="payment-options" id="paymentOptions" style="display: none;">
-    <h2>Select Payment Option</h2>
-    <button onclick="selectPaymentOption('UPI')">UPI</button>
-    <button onclick="selectPaymentOption('Internet Banking')">Internet Banking</button>
-    <button onclick="selectPaymentOption('Card Payment')">Card Payment</button>
-  </div>
-
-  <div id="upiOptions" class="payment-options" style="display: none;">
-    <h2>Select UPI App</h2>
-    <button onclick="redirectUPIApp('Google Pay')">Google Pay (GPay)</button>
-    <button onclick="redirectUPIApp('PhonePe')">PhonePe</button>
-    <button onclick="redirectUPIApp('Paytm')">Paytm</button>
-  </div>
-
-  <div id="internetBankingOptions" class="payment-options" style="display: none;">
-    <h2>Select Bank</h2>
-    <button onclick="redirectInternetBanking('Axis Bank')">Axis Bank</button>
-    <button onclick="redirectInternetBanking('ICICI Bank')">ICICI Bank</button>
-    <button onclick="redirectInternetBanking('HDFC Bank')">HDFC Bank</button>
-    <button onclick="redirectInternetBanking('SBI Bank')">SBI Bank</button>
-  </div>
-
-  <div id="cardPayment" class="payment-options card-details" style="display: none;">
-    <!-- Card payment details here -->
-    <h2>Card Payment Details</h2>
-  
-    <div class="input-container">
-      <label for="cardNumber">Card Number (16 digits):</label>
-      <input type="text" id="cardNumber" placeholder="Enter your card number">
-    </div>
-  
-    <div class="input-container">
-      <label for="bankName">Bank Name:</label>
-      <input type="text" id="bankName" placeholder="Enter your bank name">
-    </div>
-  
-    <div class="input-container">
-      <label for="expiryDate">Expiry Date (MM/YYYY):</label>
-      <input type="text" id="expiryDate" placeholder="MM/YYYY">
-    </div>
+    <div class="navbar">Recharge Payments</div>
+    <div class="confirmation">
+        <h2>Recharge</h2>
+        <label for="selectedPackage"> Package Details:</label>
+        <input type="text" id="selectedPackage" name="selectedPackage" required>
     
-    <div class="input-container">
-      <label for="cvv">CVV (3 digits):</label>
-      <input type="text" id="cvv" placeholder="Enter CVV">
+        <h2>Provide Mobile Number</h2>
+        <label for="mobileNumber">Mobile Number:</label>
+        <input type="text" id="mobileNumber" name="mobileNumber" placeholder="Enter your mobile number" required>
+        <br><br><br>
+        <button onclick="showPaymentOptions()">Proceed to Payment</button>
     </div>
-  
-    <button onclick="generateOTP()">Pay Now</button>
-  </div>
 
-  <div id="otpSection" class="payment-options card-details" style="display: none;">
-    <h2>Enter OTP</h2>
-    <label for="otp">OTP (4 digits):</label>
-    <input type="text" id="otp" placeholder="Enter OTP"><br>
+    <div class="payment-options" id="paymentOptions" style="display: none;">
+        <h2>Select Payment Option</h2>
+        <button onclick="selectPaymentOption('upi')">UPI</button>
+        <button onclick="selectPaymentOption('netbanking')">Net Banking</button>
+        <button onclick="selectPaymentOption('creditcard')">Credit Card</button>
+    </div>
 
-    <button onclick="verifyOTP()">Done</button>
-  </div>
+    <div id="upiOptions" class="payment-options" style="display: none;">
+        <h2>Select UPI App</h2>
+        <button onclick="redirectUPIApp('googlepay')">Google Pay (GPay)</button>
+        <button onclick="redirectUPIApp('phonepay')">PhonePe</button>
+        <button onclick="redirectUPIApp('paytm')">Paytm</button>
+    </div>
 
-  <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const selectedPackage = urlParams.get('package');
-    document.getElementById('selectedPackage').innerText = selectedPackage;
+    <div id="netbankingOptions" class="payment-options" style="display: none;">
+        <h2>Select Bank</h2>
+        <button onclick="redirectInternetBanking('Axis Bank')">Axis Bank</button>
+        <button onclick="redirectInternetBanking('ICICI Bank')">ICICI Bank</button>
+        <button onclick="redirectInternetBanking('HDFC Bank')">HDFC Bank</button>
+        <button onclick="redirectInternetBanking('SBI Bank')">SBI Bank</button>
+    </div>
 
-    function showPaymentOptions() {
-      document.getElementById('paymentOptions').style.display = 'block';
-    }
+    <div id="creditCardOptions" class="payment-options card-details" style="display: none;">
+        <h2>Card Payment Details</h2>
+      
+        <div class="input-container">
+            <label for="cardNumber">Card Number (16 digits):</label>
+            <input type="text" id="cardNumber" name="cardNumber" placeholder="Enter your card number" required>
+        </div>
+      
+        <div class="input-container">
+            <label for="expiryDate">Expiry Date (MM/YYYY):</label>
+            <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YYYY" required>
+        </div>
+        
+        <div class="input-container">
+            <label for="cvv">CVV (3 digits):</label>
+            <input type="text" id="cvv" name="cvv" placeholder="Enter CVV" required>
+        </div>
+      
+        <button onclick="generateOTP()">Pay Now</button>
+    </div>
 
-    function selectPaymentOption(option) {
-      document.getElementById('upiOptions').style.display = 'none';
-      document.getElementById('internetBankingOptions').style.display = 'none';
-      document.getElementById('cardPayment').style.display = 'none';
-      document.getElementById('otpSection').style.display = 'none';
+    <div id="otpSection" class="payment-options card-details" style="display: none;">
+        <h2>Enter OTP</h2>
+        <label for="otp">OTP (4 digits):</label>
+        <input type="text" id="otp" name="otp" placeholder="Enter OTP" required><br>
+    
+        <button onclick="verifyOTP()">Done</button>
+    </div>
 
-      if (option === 'UPI') {
-        document.getElementById('upiOptions').style.display = 'block';
-      } else if (option === 'Internet Banking') {
-        document.getElementById('internetBankingOptions').style.display = 'block';
-      } else if (option === 'Card Payment') {
-        document.getElementById('cardPayment').style.display = 'block';
-      }
-    }
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const selectedPackage = urlParams.get('package');
+        document.getElementById('selectedPackage').value = selectedPackage;
 
-    function redirectUPIApp(app) {
-      alert(`Redirecting to ${app} UPI app for ${selectedPackage} recharge.`);
-      // Here you can redirect to the respective UPI app based on the selected option and package
-      // Replace the window.location.href with the actual redirection URL
-      // window.location.href = `/redirect-to-upi-app?package=${selectedPackage}&app=${app}`;
-    }
+        function showPaymentOptions() {
+            document.getElementById('paymentOptions').style.display = 'block';
+        }
 
-    function redirectInternetBanking(bank) {
-      alert(`Redirecting to ${bank} Internet Banking for ${selectedPackage} recharge.`);
-      // Here you can redirect to the respective bank's Internet Banking based on the selected option and package
-      // Replace the window.location.href with the actual redirection URL
-      // window.location.href = `/redirect-to-internet-banking?package=${selectedPackage}&bank=${bank}`;
-    }
+        function selectPaymentOption(option) {
+            document.getElementById('upiOptions').style.display = 'none';
+            document.getElementById('netbankingOptions').style.display = 'none';
+            document.getElementById('creditCardOptions').style.display = 'none';
+            document.getElementById('otpSection').style.display = 'none';
 
-    function generateOTP() {
-      alert('OTP generated and sent to your registered mobile number.');
-      document.getElementById('otpSection').style.display = 'block';
-    }
+            if (option === 'upi') {
+                document.getElementById('upiOptions').style.display = 'block';
+            } else if (option === 'netbanking') {
+                document.getElementById('netbankingOptions').style.display = 'block';
+            } else if (option === 'creditcard') {
+                document.getElementById('creditCardOptions').style.display = 'block';
+            }
+        }
 
-    function verifyOTP() {
-      alert('Payment successful! Recharge completed.');
-    }
-  </script>
+        function redirectUPIApp(app) {
+            alert(`Redirecting to ${app} UPI app for ${selectedPackage} recharge.`);
+            // Here you can redirect to the respective UPI app based on the selected option and package
+            // Replace the window.location.href with the actual redirection URL
+            // window.location.href = `/redirect-to-upi-app?package=${selectedPackage}&app=${app}`;
+        }
+
+        function redirectInternetBanking(bank) {
+            alert(`Redirecting to ${bank} Internet Banking for ${selectedPackage} recharge.`);
+            // Here you can redirect to the respective bank's Internet Banking based on the selected option and package
+            // Replace the window.location.href with the actual redirection URL
+            // window.location.href = `/redirect-to-internet-banking?package=${selectedPackage}&bank=${bank}`;
+        }
+
+        function generateOTP() {
+            alert('OTP generated and sent to your registered mobile number.');
+            document.getElementById('otpSection').style.display = 'block';
+        }
+
+        function verifyOTP() {
+            alert('Payment successful! Recharge completed.');
+        }
+    </script>
 </body>
 </html>
