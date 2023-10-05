@@ -6,4 +6,4 @@ import telecom.ERT.model.BroadbandPlan;
 
 public interface BroadbandPlanRepository extends JpaRepository<BroadbandPlan, Long> {
 	
-}
+}    

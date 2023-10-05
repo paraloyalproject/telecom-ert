@@ -32,14 +32,13 @@
             padding-top: 1px;
         }
     </style>
+    
 </head>
 <body>
-    <h1>Broadband Plans</h1>
- <form method="post" action="/select-plan"> <!-- Create a form for selecting a plan -->
-   
+    <h1 style="color:white">Broadband Plans</h1>
     <table>
-        
-            <tr class="header-row">
+        <thead>
+           <tr class="header-row">
                 <th>ID</th>
                 <th>Name</th>
                 <th>Plan</th>
@@ -48,26 +47,22 @@
                 <th>Speed</th>
                 <th>Benifits</th>
                 <th>Price</th>
+                <th>Action</th>
             </tr>
-        
-      
+        </thead>
+        <tbody>
             <tr th:each="plan : ${plans}">
                 <td th:text="${plan.id}"></td>
                 <td th:text="${plan.name}"></td>
-                <td th:text="${plan.data}"></td>
+                <td th:text="${plan.plan}"></td>
+                <td th:text="${plan.Data}"></td>
                 <td th:text="${plan.validity}"></td>
                 <td th:text="${plan.speed}"></td>
-                <td th:text="${plan.benifits}"></td>
+                <td th:text="${plan.Benifits}"></td>
                 <td th:text="${plan.price}"></td>
-            <td>
- <!-- Add a form with a submit button to select the plan -->
-                    <form method="post" th:action="@{/select-plan}">
-                        <input type="hidden" name="planId" th:value="${plan.id}">
-                        <button type="submit">Select</button>
-                    </form>
-                </td>
+                <td><a style="color:white" th:href="@{'/select-package/' + ${plan.id}}">Select</a></td>
             </tr>
-        </table>
-    </form>
+        </tbody>
+    </table>
 </body>
 </html>
