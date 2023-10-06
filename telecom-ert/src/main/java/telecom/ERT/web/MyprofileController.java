@@ -57,6 +57,17 @@ public class MyprofileController {
 
         return "callhistory"; 
     }
+    @GetMapping("/banktransaction")
+    public String banktransaction(Model model, Principal principal) {
+        String userEmail = principal.getName();
+        User user = userService.findByEmail(userEmail);
+
+        if (user != null) {
+            model.addAttribute("user", user);
+        }
+
+        return "banktransaction"; 
+    }
     @GetMapping("/aboutus")
     public String aboutus() {
        

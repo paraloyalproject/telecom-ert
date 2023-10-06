@@ -1,0 +1,48 @@
+[9/26 3:23 PM] Karthik Chirala
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>Postpaid Recharge Plans</title>
+  <!-- Styles and other details ... -->
+
+
+
+
+
+  <script>
+    function initiateRecharge(packageName) {
+      const redirectUrl = `/recharge-confirmation?package=${encodeURIComponent(packageName)}`;
+      window.location.href = redirectUrl;
+    }
+  </script>
+
+</head>
+
+<body>
+  <!-- Your existing HTML content for postpaid plans with modified onclick -->
+  <div class="rechargeBox" id="oneMonthBox">
+    <h2>1 Month Plan</h2>
+    <!-- ... other details ... -->
+    <button onclick="initiateRecharge('1 Month Plan')">Recharge Now</button>
+  </div>
+
+
+
+
+  <div class="rechargeBox" id="threeMonthsBox">
+    <h2>3 Months Plan</h2>
+    <!-- ... other details ... -->
+    <button onclick="initiateRecharge('3 Months Plan')">Recharge Now</button>
+  </div>
+
+
+
+
+  <!-- Repeat this pattern for other packages -->
+
+</body>
+
+</html>

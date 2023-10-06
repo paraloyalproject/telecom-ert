@@ -90,7 +90,7 @@
             display: none;
             position: absolute;
             background-color: #f9f9f9;
-            min-width: 170px;
+            min-width: 180px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
         }
@@ -183,7 +183,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/" style="color: black; font-size: 32px;">Telecom App</a>
+                <a class="navbar-brand" href="/" style="color: black; font-size: 32px;">App </a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
@@ -191,7 +191,7 @@
                         <a href="#" style="color: black; font-size: 22px;" onclick="toggleDropdown('prepaid-dropdown')">Prepaid</a>
                         <div class="dropdown-content" id="prepaid-dropdown">
                             <a href="/get_esim">New Sim</a><br>
-                            <a href="/prepaidplans">View plans</a>
+                            <a href="/plans">View plans</a>
                         </div>
                     </li>
 
@@ -200,7 +200,7 @@
                         <div class="dropdown-content" id="postpaid-dropdown">
                             <a href="/get_esim">New Sim</a><br>
                             <a href="/postpaidplans">View plans</a><br>
-                            <a href="#">Pay Bill</a>
+                            <a href="/paybill">Pay Bill</a>
                         </div>
                     </li>
                     <li class="dropdown">
@@ -210,6 +210,10 @@
                             <a href="/broadband-plans">View Plans</a><br>
                             <a href="#">Pay Bill</a>
                         </div>
+                    </li>
+                      <li class="dropdown">
+                        <a href="/sms" style="color: black; font-size: 22px;" >SMS</a>
+                       
                     </li>
                     
                 </ul>

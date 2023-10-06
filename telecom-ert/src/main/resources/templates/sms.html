@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sms Charges</title>
+    <style>
+        /* Your CSS styles go here */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sms Charges</h1>
+
+    <!-- Table for Postpaid Offers -->
+    <h2>Postpaid Offers</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>National SMS Charge</th>
+                <th>International SMS Charge</th>
+                <th>Local Roaming Charge</th>
+                <th>International Roaming Charge</th>
+                <th>Postpaid Offer</th>
+                <th>Special Offer</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Thymeleaf loop to populate table rows with data from your Spring Boot application -->
+            <tr th:each="plan : ${postpaidPlans}">
+                <td th:text="${plan.name}"></td>
+                <td th:text="${plan.nationalSmsCharge}"></td>
+                <td th:text="${plan.internationalSmsCharge}"></td>
+                <td th:text="${plan.localRoamingCharge}"></td>
+                <td th:text="${plan.internationalRoamingCharge}"></td>
+                <td th:text="${plan.postpaidOffer}"></td>
+                <td th:text="${plan.specialOffer}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Table for Prepaid Offers -->
+    <h2>Prepaid Offers</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>National SMS Charge</th>
+                <th>International SMS Charge</th>
+                <th>Local Roaming Charge</th>
+                <th>International Roaming Charge</th>
+                <th>Prepaid Offer</th>
+                <th>Special Offer</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Thymeleaf loop to populate table rows with data from your Spring Boot application -->
+            <tr th:each="plan : ${prepaidPlans}">
+                <td th:text="${plan.name}"></td>
+                <td th:text="${plan.nationalSmsCharge}"></td>
+                <td th:text="${plan.internationalSmsCharge}"></td>
+                <td th:text="${plan.localRoamingCharge}"></td>
+                <td th:text="${plan.internationalRoamingCharge}"></td>
+                <td th:text="${plan.prepaidOffer}"></td>
+                <td th:text="${plan.specialOffer}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

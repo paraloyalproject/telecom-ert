@@ -15,17 +15,34 @@ import org.springframework.web.bind.annotation.RequestParam;
 import telecom.ERT.model.PrepaidPlan;
 import telecom.ERT.repository.PrepaidPlanRepository;
 
+
 @Controller
+
 public class PrepaidPlanController {
+
     @Autowired
+
     private PrepaidPlanRepository planRepository;
 
-    @GetMapping("/prepaidplans")
+
+
+
+    @GetMapping("/plans")
+
     public String getAllPlans(Model model) {
+
         List<PrepaidPlan> plans = planRepository.findAll();
+
         model.addAttribute("plans", plans);
-        return "prepaidplans"; 
+
+        return "plans"; 
+
     }
+
+    
+
+   
+
     @PostMapping("/select-plan")
 
     public String selectPlan(@RequestParam("planId") Long planId, Model model) {
@@ -41,7 +58,48 @@ public class PrepaidPlanController {
 
         model.addAttribute("selectedPlan", selectedPlan);
 
-        return "select-plan";
+
+
+
+        return "selected-plan"; 
 
         }
-}
+
+    
+
+
+
+
+
+
+
+        @PostMapping("/recharge")
+
+        public String recharge(@RequestParam("planId") Long planId, Model model) {
+
+                        return "recharge"; 
+
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+   
+
+  
+
+
+
+
+
+
+
+

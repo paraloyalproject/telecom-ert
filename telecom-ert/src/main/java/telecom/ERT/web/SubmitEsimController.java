@@ -73,7 +73,7 @@ public class SubmitEsimController {
             model.addAttribute("mobile" ,mobile);
             model.addAttribute("name", name);
            
-            return "success_view";
+            return "success-view";
             
         } catch (DataAccessException ex) {
             // Handle database-related exceptions
