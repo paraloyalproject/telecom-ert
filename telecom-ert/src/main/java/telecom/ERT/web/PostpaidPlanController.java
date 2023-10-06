@@ -26,19 +26,16 @@ public class PostpaidPlanController {
     }
     @PostMapping("/selectedplan")
     public String selectPostpaidPlan(@RequestParam("planId") Long planId, Model model) {
-        // Retrieve the selected plan from the repository
         PostpaidPlan selectedPlan = planRepository.findById(planId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid plan ID: " + planId));
 
-        // Add the selected plan to the model
         model.addAttribute("selectedPlan", selectedPlan);
 
-        // Return the new template to display the selected plan details
         return "selectedPlan";
    } 
     
    
-    }
+      }
     
 
 

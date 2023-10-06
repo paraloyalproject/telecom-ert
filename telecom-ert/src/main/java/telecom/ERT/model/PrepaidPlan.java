@@ -39,7 +39,6 @@ public class PrepaidPlan {
         this.additionalBenefits = additionalBenefits;
     }
 
-    // Getters and setters
     public Long getId() {
         return id;
     }

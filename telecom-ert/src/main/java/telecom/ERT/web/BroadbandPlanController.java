@@ -33,7 +33,11 @@ public class BroadbandPlanController {
         return "plan-details"; // This is the name of the plan details HTML template
     }
     
-   
+    @GetMapping("/recharge")
+    public String recharge(Model model) {
+        // Add any necessary data to the model for the recharge page
+        return "recharge"; // This is the name of your recharge HTML template
+    }
     
      
 }

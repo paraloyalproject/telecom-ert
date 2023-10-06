@@ -59,7 +59,7 @@
                 <td th:text="${plan.price}"></td>
                 <td>
                     <!-- Add a form with a submit button to select the plan -->
-                    <form method="post" th:action="@{/select-plan}">
+                    <form method="post" th:action="@{/selectedplan}">
                         <input type="hidden" name="planId" th:value="${plan.id}">
                         <button type="submit">Recharge</button>
                     </form>

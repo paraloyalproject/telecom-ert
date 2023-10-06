@@ -42,6 +42,14 @@
             width: 70%;
         }
     </style>
+
+    <!-- JavaScript for displaying the pop-up message -->
+     <script>
+        function showSuccessPopup() {
+            alert("Recharge successfully! Bill Will Be Generate And Send To Your Register Mobile Number");
+            return false; 
+        }
+    </script>
 </head>
 <body>
     <h1 style="text-align:center;color:white;font-size:32px;">Selected Postpaid Plan Details</h1>
@@ -81,8 +89,8 @@
         </tr>
     </table><br>
     <!-- Replace the form with a link to navigate to the Generate Bill page -->
-          <div style="text-align:center;">
-        <a th:href="@{/generatebill}" style="font-size: 24px;">Generate Bill</a>
+    <div style="text-align:center;">
+        <a th:href="@{/}" style="font-size: 24px;" onclick="showSuccessPopup()">Recharge Now</a>
     </div>         
 </body>
 </html>
