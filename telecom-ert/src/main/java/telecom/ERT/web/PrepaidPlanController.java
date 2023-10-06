@@ -26,7 +26,7 @@ public class PrepaidPlanController {
         model.addAttribute("plans", plans);
         return "prepaidplans"; 
     }
-    @PostMapping("/select-plan")
+    @PostMapping("/selected-plan")
 
     public String selectPlan(@RequestParam("planId") Long planId, Model model) {
 
@@ -41,7 +41,15 @@ public class PrepaidPlanController {
 
         model.addAttribute("selectedPlan", selectedPlan);
 
-        return "select-plan";
+        return "selected-plan";
 
         }
+    
+    @PostMapping("/recharge")
+
+    public String recharge(@RequestParam("planId") Long planId, Model model) {
+
+                    return "recharge";
+
+    }
 }
