@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>Recharge Payment</title>
+
+    <style>
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+        }
+
+        .container {
+
+            width: 400px;
+
+            margin: 0 auto;
+
+        }
+
+        .payment-methods {
+
+            margin-top: 20px;
+
+        }
+
+        .upi-input {
+
+            display: none;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Recharge Payment</h1>
+
+        <form id="paymentForm" action="/processPayment" method="post">
+
+            <label for="mobileNumber">Mobile Number:</label>
+
+            <input type="text" id="mobileNumber" name="mobileNumber" required><br><br>
+
+            <label for="amount">Amount:</label>
+
+            <input type="number" id="amount" name="amount" required><br><br>
+
+            <div class="payment-methods">
+
+                <label for="paymentMethod">Payment Method:</label>
+
+                <select id="paymentMethod" name="paymentMethod" onchange="toggleUPIInput()">
+
+                    <option value="">Select Payment Method</option>
+
+                    <option value="upi">UPI</option>
+
+                </select><br><br>
+
+                <div class="upi-input" id="upiInput">
+
+                    <label for="upiId">Enter your UPI ID:</label>
+
+                    <input type="text" id="upiId" name="upiId" required><br><br>
+
+                </div>
+
+            </div>
+
+            <button type="submit" id="payNow">Pay Now</button>
+
+        </form>
+
+        <!-- You can add error messages here if needed -->
+
+    </div>
+
+
+
+
+    <script>
+
+        function toggleUPIInput() {
+
+            var paymentMethod = document.getElementById("paymentMethod").value;
+
+            var upiInput = document.getElementById("upiInput");
+
+
+
+
+            if (paymentMethod === "upi") {
+
+                upiInput.style.display = "block";
+
+            } else {
+
+                upiInput.style.display = "none";
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>
