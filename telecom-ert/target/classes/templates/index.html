@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org">
@@ -12,16 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-
-
-
-
-
     <style>
-
-
-
-
         body {
             background-color: #4B0082; 
             color: white;
@@ -34,10 +23,6 @@
             margin-bottom: 120px;
         }
 
-
-
-
-
         .center-content {
             display: flex;
             justify-content: center;
@@ -45,17 +30,10 @@
             height: 100vh;
         }
 
-
-
-
-
         .welcome-message {
             margin-left: 30px;
             font-weight: bold;
         }
-
-
-
 
         .h1, .h2, .h3, h1, h2, h3 {
             margin-top: 65px;
@@ -65,26 +43,17 @@
             color: white;
         }
 
-
-
-
         .custom-link {
             font-size: 18px;
             color: black;
             background-color: white;
         }
 
-
-
-
         .button-container {
             padding: 5px;
             width: max-content;
             margin-left: 50px;
         }
-
-
-
 
         .dropdown-content {
             display: none;
@@ -95,9 +64,6 @@
             z-index: 1;
         }
 
-
-
-
             .dropdown-content a {
                 float: none;
                 color: black;
@@ -107,9 +73,6 @@
                 text-align: left;
             }
 
-
-
-
                 .dropdown-content a:hover {
                     background-color: #ddd;
                     font-size: 18px;
@@ -117,15 +80,9 @@
                     background-color: white;
                 }
 
-
-
-
         .dropdown:hover .dropdown-content {
             display: block;
         }
-
-
-
 
         .navbar-right {
             background-color: white;
@@ -133,17 +90,9 @@
           
         }
 
-
-
-
         .banner_section {
-            background-color: #4B0082;
-            
-            
+            background-color: #4B0082;                      
         }
-
-
-
 
         .mobile-image {
             width: 500px;
@@ -158,9 +107,6 @@
         display: block;
         text-align: left;
     }
-
-
-
 
     .dropdown-content a:hover {
         background-color: #ddd;
@@ -215,13 +161,13 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                  
-                                    <li class="dropdown">
+                <li class="dropdown">
                     <a href="/myprofile" style="color: black; font-size: 22px;" onclick="toggleDropdown('profile-dropdown')">My Profile</a>
                     <div class="dropdown-content" id="profile-dropdown">
                         <a href="/myprofile">Profile</a><br>
                         <a href="/myprofile/manage_account">Manage Account</a><br>
                         <a href="/view_bills">View Bills</a><br>
-                        <a href="myprofile/callhistory">Call History</a><br>
+                        <a href="/call-history-page">Call History</a><br>
                         <a href="/myprofile/aboutus">About</a><br>
                         <a href="/myprofile/ourstores">Our Stores</a><br>
                         <a href="/myprofile/contactus">Contact Us</a>

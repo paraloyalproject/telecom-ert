@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Call History</title>
+    <style>
+        /* Optional: Add some styling to the buttons for better visibility */
+        button {
+            margin-right: 10px;
+        }
+
+        body {
+            background-color: #4B0082 !important;
+            color: white !important;
+            min-height: 70vh;
+            padding-top: 1px;
+        }
+    </style>
+    <script>
+        // Function to filter calls based on call type
+        function filterCalls(callType) {
+            var rows = document.querySelectorAll('.call-row');
+
+            rows.forEach(function (row) {
+                var type = row.children[1].textContent.trim(); // Assuming callType is the second column
+
+                // Convert both callType and type to lowercase for case-insensitive comparison
+                if (callType.toLowerCase() === 'all' || type.toLowerCase() === callType.toLowerCase()) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+            // Store the selected filter in localStorage
+            localStorage.setItem('callFilter', callType);
+        }
+
+        // Function to retrieve the stored filter from localStorage
+        function retrieveFilter() {
+            return localStorage.getItem('callFilter') || 'All'; // Default to 'All' if no filter is found
+        }
+
+        function updateDateTime() {
+            var rows = document.querySelectorAll('.call-row');
+
+            rows.forEach(function (row) {
+                var callDateElement = row.querySelector('.call-date');
+                var startTimeElement = row.querySelector('.start-time');
+                var endTimeElement = row.querySelector('.end-time');
+
+                // Get the current date and time
+                var now = new Date();
+                var formattedDate = now.toLocaleDateString(); // Format date as needed
+                var formattedTime = now.toLocaleTimeString(); // Format time as needed
+
+                callDateElement.textContent = formattedDate;
+                startTimeElement.textContent = formattedTime;
+
+                // Extract call duration in minutes and seconds
+                var callDurationString = row.querySelector('.call-duration').textContent;
+                var { minutes, seconds } = parseCallDuration(callDurationString);
+
+                var callDurationMilliseconds = (parseInt(minutes) * 60 + parseInt(seconds)) * 1000; // Convert minutes and seconds to milliseconds
+
+                // Parse the start time from the element content
+                var startTimeString = startTimeElement.textContent;
+                var startTime = new Date(formattedDate + ' ' + startTimeString);
+
+                // Calculate end time by adding call duration to start time
+                var endTime = new Date(startTime.getTime() + callDurationMilliseconds);
+
+                // Format and set the end time in the element
+                endTimeElement.textContent = formatTime(endTime);
+            });
+        }
+
+        function parseCallDuration(durationString) {
+            // Check if the duration is in the format '2:20'
+            if (durationString.includes(':')) {
+                var [minutes, seconds] = durationString.split(':');
+                return { minutes, seconds };
+            } else {
+                // Assume the format is '2min20sec' and extract minutes and seconds
+                var match = durationString.match(/(\d+)min(\d+)sec/);
+                if (match) {
+                    var minutes = match[1];
+                    var seconds = match[2];
+                    return { minutes, seconds };
+                }
+            }
+
+            // Default to 0 minutes and 0 seconds if the format is not recognized
+            return { minutes: 0, seconds: 0 };
+        }
+
+        function formatTime(date) {
+            // Implement your own time formatting logic here
+            return date.toLocaleTimeString();
+        }
+
+        // Update the current date, time, and end time after the Thymeleaf rendering
+        document.addEventListener('DOMContentLoaded', function () {
+            // Retrieve the stored filter and apply it
+            var storedFilter = retrieveFilter();
+            filterCalls(storedFilter);
+
+            // Update date and time
+            updateDateTime();
+        });
+
+        // Update the current date, time, and end time on page load
+        window.onload = function () {
+            // Retrieve the stored filter and apply it
+            var storedFilter = retrieveFilter();
+            filterCalls(storedFilter);
+        };
+    </script>
+</head>
+
+<body>
+    <h1>Call History</h1>
+    <div>
+        <button onclick="filterCalls('All')">All</button>
+        <button onclick="filterCalls('Incoming')">Incoming</button>
+        <button onclick="filterCalls('Outgoing')">Outgoing</button>
+    </div>
+
+    <table>
+        <tr>
+            <th>id</th>
+            <th>Call Type</th>
+            <th>Call Date</th>
+            <th>Call Duration</th>
+            <th>Mobile Number</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+        </tr>
+        <tr th:each="callHistory : ${callHistoryList}" data-call-type="${callHistory.callType}" class="call-row">
+            <td th:text="${callHistory.id}"></td>
+            <td th:text="${callHistory.callType}"></td>
+            <td class="call-date"></td>
+            <td class="call-duration" th:text="${callHistory.callDuration}"></td>
+            <td th:text="${callHistory.mobileNumber}"></td>
+            <td class="start-time"></td>
+            <td class="end-time"></td>
+        </tr>
+    </table>
+</body>
+
+</html>
