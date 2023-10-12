@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bank Transactions</title>
+    <style>
+        /* Add styles for better readability */
+        body {
+            background: linear-gradient(135deg, #7117EA, #EA6060);
+            color: white;
+            min-height: 100vh;
+            padding-top: 1px;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 80%; /* Adjust container width as needed */
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        .header-row th {
+            background-color: white;
+            color: black;
+        }
+
+        /* Style the table header separately */
+        .header-row th {
+            background-color: #333;
+            color: white;
+        }
+
+        /* Style table data rows */
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* Add some margin to the table for better spacing */
+        table {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bank Transactions</h1>
+
+        <table>
+            <thead class="header-row">
+                <tr>
+                    <th>Transaction ID</th>
+                    <th>Reference Number</th>
+                    <th>Mobile Number</th>
+                    <th>Amount</th>
+                    <th>Payment Method</th>
+                    <th>Bank Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="payment, iterStat : ${paymentList}" th:class="${iterStat.odd}? 'odd' : 'even'">
+                    <td th:text="${payment.transactionId}"></td>
+                    <td th:text="${payment.referenceNumber}"></td>
+                    <td th:text="${payment.mobileNumber}"></td>
+                    <td th:text="${payment.amount}"></td>
+                    <td th:text="${payment.paymentMethod}"></td>
+                    <td th:text="${payment.bankName}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -44,7 +44,20 @@ public class MyprofileController {
 
         return "manage_account"; 
     }
-    
-    
-    
+    @GetMapping("/callhistory")
+    public String callhistory(Model model, Principal principal) {
+        String userEmail = principal.getName();
+
+        User user = userService.findByEmail(userEmail);
+
+        if (user != null) {
+
+            model.addAttribute("user", user);
+
+        }
+
+        return "callhistory";
+
+    }
+
 }

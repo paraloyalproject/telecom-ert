@@ -46,6 +46,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/submit-broadband").permitAll()
             .antMatchers("/get-esim").permitAll() 
             .antMatchers("/get-Balance").permitAll()
+            .antMatchers("/BankTransaction").permitAll()
             .anyRequest().authenticated()
             .and()
             .formLogin()

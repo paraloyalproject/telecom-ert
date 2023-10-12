@@ -12,9 +12,6 @@ import javax.persistence.Id;
 @Entity
 public class MobileBalance {
 
-
-
-
    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,9 +19,6 @@ public class MobileBalance {
     private String rechargedPackage;
     public Long getId() {
         return id;
-
-
-
 
    }
     public void setId(Long id) {

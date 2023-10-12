@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Selection</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #7117EA, #EA6060);
+            color: white !important;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .choice-btn {
+            background-color: #7117EA;
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+             margin-right: 50px; /* Add margin between buttons */
+        }
+
+        .choice-btn:hover {
+            background-color: #5420a9;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Porting Services</h1>
+    
+    <button class="choice-btn" onclick="redirectToPortingPage()">prepaidToPostpaid</button>
+    <button class="choice-btn" onclick="redirectToPortingPage1()">postpaidToPrepaid</button>
+    <!-- Add other service buttons if needed -->
+
+    <script>
+        function redirectToPortingPage() {
+            window.location.href = 'prepaidToPostpaid.html';
+        }
+        function redirectToPortingPage1() {
+           window.location.href = 'postpaidToPrepaid.html';
+       }
+    </script>
+
+</body>
+</html>

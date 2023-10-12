@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Recharge Payment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 400px;
+            margin: 0 auto;
+        }
+
+        .payment-methods {
+            margin-top: 20px;
+        }
+
+        .upi-input {
+            display: none;
+        }
+
+        .error {
+            color: red;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Recharge Payment</h1>
+        <form id="paymentForm" action="/processPayment" method="post">
+            <label for="mobileNumber">Mobile Number (10 digits):</label>
+            <input type="text" id="mobileNumber" name="mobileNumber" required><br>
+            <span class="error" id="mobileNumberError">Mobile number should be 10 digits</span><br><br>
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" name="amount" required><br><br>
+            <label for="bankName">Bank Name:</label>
+            <input type="text" id="bankName" name="bankName" required><br><br>
+            <div class="payment-methods">
+                <label for="paymentMethod">Payment Method:</label>
+                <select id="paymentMethod" name="paymentMethod" onchange="toggleUPIInput()">
+                    <option value="">Select Payment Method</option>
+                    <option value="upi">UPI</option>
+                </select><br><br>
+                <div class="upi-input" id="upiInput">
+                    <label for="upiId">Enter your UPI ID:</label>
+                    <input type="text" id="upiId" name="upiId" required><br><br>
+                </div>
+            </div>
+            <button type="submit" id="payNow">Pay Now</button>
+        </form>
+    </div>
+    <script>
+        function toggleUPIInput() {
+            var paymentMethod = document.getElementById("paymentMethod").value;
+            var upiInput = document.getElementById("upiInput");
+            var mobileNumberInput = document.getElementById("mobileNumber");
+            var mobileNumberError = document.getElementById("mobileNumberError");
+
+            if (paymentMethod === "upi") {
+                upiInput.style.display = "block";
+            } else {
+                upiInput.style.display = "none";
+            }
+
+            if (mobileNumberInput.checkValidity()) {
+                mobileNumberError.style.display = "none";
+            } else {
+                mobileNumberError.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
