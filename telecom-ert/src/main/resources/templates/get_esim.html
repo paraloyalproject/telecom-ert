@@ -1,16 +1,10 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
     <!-- Add your meta tags and title here -->
     <meta charset="UTF-8">
     <title>Get New E-SIM</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-
-
-
 
     <!-- Custom CSS for styling -->
     <style>
@@ -21,27 +15,17 @@
             color: white !important;
         }
 
-
-
-
         body {
             background-color: #4B0082; 
             color: black;
             min-height: 70vh; 
             padding-top: 1px;
         }
-
-
-
-
-        
+     
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Your Custom Font', Arial, sans-serif;
             color:white; /* Set text color to light yellow */
         }
-
-
-
 
         .h1 {
             text-align: center; 
@@ -51,65 +35,35 @@
         .page-container {
             padding: 20px; 
         }
-
-
-
-
-        
+       
         .navbar-nav li a[href="/logout"] {
             color: black !important;
         }
-
-
-
-
         
         .form-group-container {
             display: flex;
         align-items: center;
             margin-bottom: 15px;
         }
-
-
-
-
         
         .form-label {
             flex: 1;
-
-
-
 
         font-size: 22px;
             font-family: 'Your Custom Font', Roboto;
             color:white /* Set text color to light yellow */
         }
 
-
-
-
         /* Style for input fields */
         .form-control {
             flex: 1;
-
-
-
-
     }
-
-
-
 
         /* Set text color for form controls */
         .form-control {
             color: black !important;
-
-
-
-
     }
     </style>
-
 </head>
 
 <body>
@@ -129,9 +83,6 @@
         </div>
     </nav>
 
-
-
-
     <!-- Wrap the content in a div with a background color -->
     <div class="page-container">
         <div class="container">
@@ -145,9 +96,6 @@
                             <input type="text" class="form-control" id="name" name="name" required maxlength="40"> 
                         </div>
 
-
-
-
                         <!-- Existing Phone Number -->
                         <div class="form-group-container">
                             <label for="phone" class="form-label">Existing Phone Number:</label>
@@ -160,9 +108,6 @@
                             <input type="email" class="form-control" id="email" name="email" required>
                         </div>
 
-
-
-
                         <!-- Aadhar Card or PAN Card -->
                         <div class="form-group-container">
                             <label for="cardType" class="form-label">Select Card Type:</label>
@@ -172,17 +117,11 @@
                             </select>
                         </div>
 
-
-
-
                         <!-- Aadhar Card Number Input (Initially hidden) -->
                         <div class="form-group-container" id="aadharInput" style="display: none;">
                             <label for="aadhar" class="form-label">Aadhar Card Number (12 digits):</label>
                             <input type="text" class="form-control" id="aadhar" name="aadhar">
                         </div>
-
-
-
 
                         <!-- PAN Card Number Input (Initially hidden) -->
                         <div class="form-group-container" id="panInput" style="display: none;">
@@ -199,38 +138,25 @@
                             </select>
                         </div>
 
-
-
-
                         <!-- Success message (Initially hidden) -->
                         <div class="alert alert-success" id="successMessage" style="display: none;">
                             <strong>Success!</strong> 
                             <span id="serviceTypeMessage"></span> SIM registered successfully.
                         </div>
 
-
-
-
                         <!-- Submit Button -->
                         <div class="text-center">
                             <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">Submit</button>
                         </div>
-                    </form>
-                    
+                    </form>                   
                 </div>
             </div>
         </div>
     </div>
 
-
-
-
     <!-- Include Bootstrap CSS and other scripts if needed -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+fyO5z5gz4C5z5F5z5z5z5z5z5z5z5z5z5z5z5z5z5z5z5z5z5z5z5z5z5z" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-
-
 
     <script>
         // JavaScript to show/hide Aadhar or PAN input based on selection
@@ -238,9 +164,6 @@
             var cardType = this.value;
             var aadharInput = document.getElementById('aadharInput');
             var panInput = document.getElementById('panInput');
-
-
-
 
             if (cardType === 'aadhar') {
                 aadharInput.style.display = 'block';
@@ -254,17 +177,11 @@
             }
         });
 
-
-
-
         // JavaScript to display success message after form submission
         document.getElementById('submitBtn').addEventListener('click', function () {
             var successMessage = document.getElementById('successMessage');
             var serviceType = document.getElementById('serviceType').value;
             var serviceTypeMessage = document.getElementById('serviceTypeMessage');
-
-
-
 
             if (serviceType === 'prepaid') {
                 serviceTypeMessage.innerHTML = 'Prepaid';
@@ -272,27 +189,13 @@
                 serviceTypeMessage.innerHTML = 'Postpaid';
             }
 
-
-
-
             successMessage.style.display = 'none'; 
             var aadharInput = document.getElementById('aadhar').value;
-            var panInput = document.getElementById('pan').value;
-
-
-
-
-            
+            var panInput = document.getElementById('pan').value;           
             var aadharPattern = /^\d{12}$/;
-
-
-
 
             // Regular expression pattern for PAN Card (5 capital letters, 4 numbers, 1 capital letter)
             var panPattern = /^[A-Z]{5}\d{4}[A-Z]{1}$/;
-
-
-
 
             if (serviceType === 'aadhar' && !aadharPattern.test(aadharInput)) {
                 alert('Please enter a valid Aadhar Card number (12 digits only).');
@@ -301,14 +204,8 @@
                 alert('Please enter a valid PAN Card number (e.g., ABCDE1234F).');
                 return false;
             }
-
-
-
-
             successMessage.style.display = 'block';
         });
     </script>
-
 </body>
-
 </html>
