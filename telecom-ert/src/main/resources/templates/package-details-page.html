@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Selected Package Details</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #7117EA, #EA6060);
+            color: white;
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #package-details {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid white;
+        }
+
+        th, td {
+            padding: 8px;
+        }
+
+        th {
+            background-color: #7117EA;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        h2 {
+            margin-top: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label, input {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Selected Package Details</h1>
+    <div id="package-details">
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>Operator</th>
+                <th>Package Name</th>
+                <th>Number of Lines</th>
+                <th>Data</th>
+                <th>SMS</th>
+                <th>Other Benefits</th>
+                <th>Price</th>
+            </tr>
+            <tr>
+                <td th:text="${package.id}"></td>
+                <td th:text="${package.operator}"></td>
+                <td th:text="${package.packageName}"></td>
+                <td th:text="${package.numberOfLines}"></td>
+                <td th:text="${package.data}"></td>
+                <td th:text="${package.sms}"></td>
+                <td th:text="${package.otherbenfits}"></td>
+                <td th:text="${package.price}"></td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>Add Members</h2>
+    <form th:action="@{'/add-members/' + ${package.id}}" method="post">
+        <input type="hidden" name="packageId" th:value="${package.id}" />
+        <label for="numMembers">Number of Members (Max: <span th:text="${package.numberOfLines}"></span>):</label>
+        <input type="number" id="numMembers" name="numMembers" min="1" th:max="${package.numberOfLines}" required />
+
+        <!-- Input fields for member phone numbers -->
+        <div th:each="i : ${#numbers.sequence(1, package.numberOfLines)}">
+            <label th:for="'memberPhoneNumber' + ${i}">Member ${i} Phone Number:</label>
+            <input type="tel" id="'memberPhoneNumber' + ${i}" name="memberPhoneNumbers" required />
+        </div>
+
+        <input type="submit" value="Add Members" />
+    </form>
+</body>
+</html>

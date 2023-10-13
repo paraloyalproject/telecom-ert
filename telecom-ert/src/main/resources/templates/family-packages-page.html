@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Prepaid Family Packages</title>
+    <style>
+        /* Include the same styles as in the first HTML code */
+        body {
+            background: linear-gradient(135deg, #7117EA, #EA6060);
+            color: white !important;
+            min-height: 70vh;
+            padding-top: 1px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        /* Style the header row with a white background */
+        .header-row th {
+            background-color: white !important;
+            color: black;
+        }
+
+        /* Define a class for the table in the second HTML */
+        .package-table {
+            background: linear-gradient(135deg, #7117EA, #EA6060);
+            color: white;
+            min-height: 70vh;
+            padding-top: 1px;
+        }
+    </style>
+</head>
+<body class="package-table"> <!-- Apply the background to the body -->
+    <h1>Prepaid Family Packages</h1>
+    <table>
+        <tr class="header-row"> <!-- Add the class to the header row -->
+            <th>Id</th>
+            <th>Operator</th>
+            <th>Package Name</th>
+            <th>Number of Lines</th>
+            <th>Data</th>
+            <th>Sms</th>
+            <th>Other Benefits</th>
+            <th>Price</th>
+            <th>Select</th> <!-- Add the Select column header -->
+        </tr>
+        <tr th:each="package : ${familyPackages}">
+            <td th:text="${package.id}"></td>
+            <td th:text="${package.operator}"></td>
+            <td th:text="${package.packageName}"></td>
+            <td th:text="${package.numberOfLines}"></td>
+            <td th:text="${package.data}"></td>
+            <td th:text="${package.sms}"></td>
+            <td th:text="${package.otherbenfits}"></td>
+            <td th:text="${package.price}"></td>
+            <td>
+                <form th:action="@{'/select-package/' + ${package.id}}" method="post">
+                    <button type="submit">Select</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
