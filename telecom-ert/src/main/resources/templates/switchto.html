@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Add your meta tags and title here -->
+    <meta charset="UTF-8">
+    <title>Prepaid to Postpaid</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Custom CSS for styling -->
+    <style>
+        .navbar {
+            background-color: #53B0B2 !important;
+            padding: 8px 0;
+            margin-bottom: 120px;
+        }
+
+        body {
+            background-image: url('images/side3.jpg'); /* Replace with your image file path or URL */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: black;
+        }
+
+        /* Custom font for headings */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Your Custom Font', Arial, sans-serif;
+        }
+
+        .h1 {
+            text-align: center; /* Center-align the text */
+            color: black !important;
+        }
+
+        .page-container {
+            padding: 20px; /* Add padding to the container */
+        }
+
+        /* Set the color of the logout text to black */
+        .navbar-nav li a[href="/logout"] {
+            color: black !important;
+        }
+
+        /* Style for label and input container */
+        .form-group-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        /* Style for label */
+        .form-label {
+            flex: 1;
+            font-size: 20px;
+            font-family: 'Your Custom Font', Roboto;
+        }
+
+        /* Style for input fields */
+        .form-control {
+            flex: 1;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+   
+    </style>
+</head>
+<body>
+    <!-- Add navigation bar if needed -->
+    <br /><br /><br /><br /><br />
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/" style="color: black; font-size: 32px;">Prepaid to Postpaid</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                   
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Wrap the content in a div with a background color -->
+    <div class="page-container">
+        <div class="container">
+            <h1 class="welcome-heading" style="text-align: center;">Switch Prepaid to Postpaid</h1>
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-md-offset-3">
+                    <form action="/submit-esim" method="post">
+                        <!-- Mobile Number -->
+                        <div class="form-group-container">
+                            <label for="mobileNumber" class="form-label">Mobile Number:</label>
+                            <input type="tel" class="form-control" id="mobileNumber" name="mobileNumber" pattern="[0-9]{10}" title="Please enter 10-digit mobile number" required>
+                        </div>
+
+                       <!-- OTP Section (Initially Hidden) -->
+<div class="form-group-container" id="otpSection" style="display: none;">
+    <label for="otp" class="form-label">OTP:</label>
+    <input type="text" class="form-control" id="otp" name="otp" required>
+</div>
+<div class="form-group-container" id="otpSection" style="display: none;">
+    <label for="otp" class="form-label">displayOTP:</label>
+    <input type="text" class="form-control" id="otp" name="otp" required>
+</div>
+
+    <div class="container">
+     
+        <button id="generateOTPBtn" class="btn btn-primary">Generate OTP</button>
+        <div id="otpDisplay" style="display: none;">
+            <h2>Generated OTP:</h2>
+            <p id="otpValue"></p>
+        </div>
+    </div>
+   
+
+
+<!-- KYC Section (Initially Hidden) -->
+<div id="kycSection" style="display: none;">
+    <h2 class="form-label">KYC Details</h2>
+
+    <!-- City -->
+    <div class="form-group-container">
+        <label for="city" class="form-label">City:</label>
+        <input type="text" class="form-control" id="city" name="city" required>
+    </div>
+
+    <!-- House Number -->
+    <div class="form-group-container">
+        <label for="houseNumber" class="form-label">House Number:</label>
+        <input type="text" class="form-control" id="houseNumber" name="houseNumber" required>
+    </div>
+
+    <!-- Email Address -->
+    <div class="form-group-container">
+        <label for="email" class="form-label">Email Address:</label>
+        <input type="email" class="form-control" id="email" name="email" required>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="text-center">
+        <button type="button" class="btn btn-primary btn-lg" id="submitBtn" style="display: none;">Submit</button>
+    </div>
+</div>
+
+<script>
+
+        document.getElementById('generateOTPBtn').addEventListener('click', function () {
+            // Generate a random 6-digit OTP
+            var otp = Math.floor(100000 + Math.random() * 900000);
+            
+            // Display the OTP
+            document.getElementById('otpValue').textContent = otp;
+            document.getElementById('otpDisplay').style.display = 'block';
+        });
+    
+    // JavaScript to show the OTP section after entering 10-digit mobile number and clicking "Generate OTP" button
+    document.getElementById('generateOTPBtn').addEventListener('click', function () {
+        var mobileNumber = document.getElementById('mobileNumber').value;
+        if (mobileNumber.length === 10 && !isNaN(mobileNumber)) {
+            document.getElementById('otpSection').style.display = 'block';
+            document.getElementById('kycSection').style.display = 'block';
+            document.getElementById('generateOTPBtn').style.display = 'none'; // Hide Generate OTP button
+            document.getElementById('submitBtn').style.display = 'block'; // Show Submit button
+        } else {
+            alert("Please enter a valid 10-digit mobile number.");
+        }
+    });
+
+    // JavaScript to submit the form when the "Submit" button is clicked
+    document.getElementById('submitBtn').addEventListener('click', function () {
+        // You can add additional validation logic here before submitting the form
+        document.querySelector('form').submit(); // Submit the form
+    });
+</script>
+

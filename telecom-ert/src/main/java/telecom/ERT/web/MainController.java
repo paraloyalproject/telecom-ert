@@ -1,5 +1,7 @@
 package telecom.ERT.web;
 
+import java.security.Principal;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -7,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MainController {
 
     @GetMapping("/")
-    public String home() {
+    public String page() {
         try {
 
             return "index";
@@ -28,6 +30,16 @@ public class MainController {
             ex.printStackTrace();
 
             return "error";
+        }
+    }
+    @GetMapping("/home")
+    public String home(Principal principal) {
+        if (principal != null) {
+            // User is authenticated
+            return "home";
+        } else {
+            // Redirect to the login page or handle unauthenticated access
+            return "redirect:/login";
         }
     }
     @GetMapping("NewSim/get_esim")

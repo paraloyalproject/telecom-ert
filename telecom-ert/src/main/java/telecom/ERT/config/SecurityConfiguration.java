@@ -34,24 +34,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(authenticationProvider());
-    }
-
-    @Override
     protected void configure(HttpSecurity http) throws Exception {
-    	http.csrf().disable()
-        .authorizeRequests()
-            .antMatchers("/", "/registration", "/js/**", "/css/**", "/img/**").permitAll()
-            .antMatchers("/submit-broadband").permitAll()
-            .antMatchers("/get-esim").permitAll() 
-            .antMatchers("/get-Balance").permitAll()
-            .anyRequest().authenticated()
-            .and()
-            .formLogin()
+        http
+            .authorizeRequests()
+                .antMatchers("/", "/registration", "/js/**", "/css/**", "/img/**").permitAll()
+                .antMatchers("/submit-broadband").permitAll()
+                .antMatchers("/get-esim").permitAll()
+                .antMatchers("/get-Balance").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
                 .loginPage("/login")
+                .successForwardUrl("/loginSuccess") // Use successForwardUrl to specify the custom success URL
                 .permitAll()
-            .and()
+                .and()
             .logout()
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)

@@ -55,20 +55,20 @@
         }
 
 
-
-
-        body {
-
-            background-color: #4B0082 !important;
-
+ body{
+         background: linear-gradient(135deg, #7117EA, #EA6060) ; 
             color: white;
-
-            min-height: 70vh;
-
+            min-height: 100vh; 
             padding-top: 1px;
-
         }
-
+        
+        .navbar {
+            background-color: white;
+            padding: 8px 0;
+            margin-bottom: 120px;
+        }
+		
+		
     </style>
 
 </head>
@@ -117,7 +117,7 @@
 
             <td th:text="${plan.sms}"></td>
 
-            <td th:text="${plan.data}"></td>
+            <td th:text="${plan.data + ' GB/Day'}"></td>
 
             <td th:text="${plan.price}"></td>
 

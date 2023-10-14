@@ -1,26 +1,34 @@
 package telecom.ERT.web;
+
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import telecom.ERT.model.*;
-import java.util.*;
-import telecom.ERT.service.CallHistoryEntryService;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import telecom.ERT.model.CallHistory;
+import telecom.ERT.service.CallHistoryService;
 
 @Controller
 public class CallHistoryController {
-
-    private final CallHistoryEntryService callHistoryEntryService;
+    private final CallHistoryService callHistoryService;
 
     @Autowired
-    public CallHistoryController(CallHistoryEntryService callHistoryEntryService) {
-        this.callHistoryEntryService = callHistoryEntryService;
+    public CallHistoryController(CallHistoryService callHistoryService) {
+        this.callHistoryService = callHistoryService;
     }
 
     @GetMapping("/callhistory")
     public String getCallHistory(Model model) {
-        List<CallHistoryEntry> callHistory = callHistoryEntryService.getAllCallHistoryEntries();
-        model.addAttribute("callHistory", callHistory);
-        return "callhistory"; 
+        List<CallHistory> callHistoryList = callHistoryService.getAllCallHistory();
+        model.addAttribute("callHistoryList", callHistoryList);
+        return "calllhistory";
+    }
+
+    @PostMapping("/save-call-record")
+    public String saveCallRecord(@ModelAttribute CallHistory callHistory) {
+        callHistoryService.saveCallRecord(callHistory);
+        return "redirect:/callhistory";
     }
 }

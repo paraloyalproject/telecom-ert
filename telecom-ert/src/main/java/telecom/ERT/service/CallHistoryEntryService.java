@@ -2,13 +2,13 @@ package telecom.ERT.service;
 
 import java.util.List;
 
-import telecom.ERT.model.CallHistoryEntry;
+import telecom.ERT.model.CallHistory;
 
 public interface CallHistoryEntryService {
-    List<CallHistoryEntry> getAllCallHistoryEntries();
+    List<CallHistory> getAllCallHistoryEntries();
     
-    List<CallHistoryEntry> getCallHistoryEntryById(Long Id);
-    CallHistoryEntry createCallHistoryEntry(CallHistoryEntry entry);
-    CallHistoryEntry updateCallHistoryEntry(CallHistoryEntry entry);
+    List<CallHistory> getCallHistoryEntryById(Long Id);
+    CallHistory createCallHistoryEntry(CallHistory entry);
+    CallHistory updateCallHistoryEntry(CallHistory entry);
     void deleteCallHistoryEntry(Long id);
 }

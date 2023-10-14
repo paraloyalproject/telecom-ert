@@ -1,240 +1,151 @@
 <!DOCTYPE html>
-
-<html>
-
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Call History</title>
     <style>
-        
-        /* Center-align the table */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-              background-color: #4B0082 !important; 
-            color: white;
+        /* Optional: Add some styling to the buttons for better visibility */
+        button {
+            margin-right: 10px;
         }
-
-
-
-
+        
         body {
-            background-color: #4B0082; 
-            color: black;
+             background: linear-gradient(135deg, #7117EA, #EA6060) ; 
+            color: white !important;
             min-height: 70vh; 
             padding-top: 1px;
         }
-
-
-
-
-        th, td {
-            text-align: center;
-            padding: 8px;
-        }
-
-
-
-
-        th {
-            background-color:  white;
-            color: black;
-        }
-
-
-
-
-        tr:nth-child(even) {
-            background-color: #4B0082;
-        }
-
-
-
-
-        tr:nth-child(odd) {
-            background-color: #4B0082;
-        }
-
-
-
-
-        /* Style the buttons */
-        .button-container {
-            text-align: left;
-            margin-top: 10px; /* Reduce top margin */
-        }
-
-
-
-
-        .button {
-            background-color: #5cb85c;
-            color: black;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            margin: 5px;
-        }
-
-
-
-
-        .navbar {
-            background-color: white !important;
-            padding: 4px 0;
-            margin-bottom: 20px; /* Reduce bottom margin */
-        }
-
-
-
-
-        /* Style for the "View More" button */
-        #view-more-button {
-            background-color: #5cb85c;
-            color: black;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            margin: 5px;
-        }
-
-
-
-
-        /* Hide all rows initially */
-        tr[data-plan-type] {
-            display: none;
-        }
-
-
-
-
-        /* Style the active button */
-        .button.active {
-            background-color:white;
-        }
     </style>
-
-</head>
-
-<body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <h1 class="navbar-brand" style="color: black; font-size: 32px; background-color: white; line-height:0.5;">History</h1>
-            </div>
-        </div>
-    </nav>
-    <div class="button-container">
-        <!-- Use data-attribute to specify the call type for each button -->
-        <button class="button" data-call-type="all">All</button>
-        <button class="button" data-call-type="incoming">Incoming</button>
-        <button class="button" data-call-type="outgoing">Outgoing</button>
-    </div>
-    <table>
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Mobile No</th>
-                <th>Starting Time</th>
-                <th>Ending Time</th>
-                <th>Duration</th>
-                <th>Call Type</th>
-            </tr>
-        </thead>
-      
-             <tbody>
-            <tr th:each="entry : ${callHistory}">
-                <td th:text="${entry.date}"></td>
-                <td th:text="${entry.mobileNo}"></td>
-                <td th:text="${entry.startingTime}"></td>
-                <td th:text="${entry.endingTime}"></td>
-                <td th:text="${entry.duration}"></td>
-                <td th:text="${entry.callType}"></td>
-            </tr>
-        </tbody>
-    </table>
-
-
-
-
-    <div class="button-container">
-        <button id="view-more-button">View More</button>
-    </div>
-
-
-
-
     <script>
-        // Get all buttons with the "button" class
-        const buttons = document.querySelectorAll('.button');
+        function filterCalls(callType) {
+            var rows = document.querySelectorAll('.call-row');
+            
+            rows.forEach(function(row) {
+                var type = row.children[1].textContent.trim(); // Assuming callType is the second column
 
-
-
-
-        // Get all rows with data-call-type attribute
-        const rows = document.querySelectorAll('tr[data-call-type]');
-        const viewMoreButton = document.getElementById('view-more-button');
-        let displayCount = 5;
-
-
-
-
-        // Initially, hide rows beyond the first 3
-        rows.forEach((row, index) => {
-            if (index >= displayCount) {
-                row.style.display = 'none';
-            }
-        });
-      // Function to change button color on click
-  function changeButtonColor(clickedButton) {
-      buttons.forEach(button => {
-          button.classList.remove('active');
-      });
-      clickedButton.classList.add('active');
-  }
-        // Add click event listeners to the buttons
-        buttons.forEach(button => {
-            button.addEventListener('click', () => {
-                const callType = button.getAttribute('data-call-type');
-
-changeButtonColor(button);
-                // Toggle visibility of rows based on the call type
-                rows.forEach(row => {
-                    const rowCallType = row.getAttribute('data-call-type');
-                    if (callType === 'all' || callType === rowCallType) {
-                        row.style.display = 'table-row';
-                    } else {
-                        row.style.display = 'none';
-                    }
-                });
-            });
-        });
-
-
-
-
-        // Add click event listener to the "View More" button
-        viewMoreButton.addEventListener('click', () => {
-            displayCount += 5; // Increase the number of rows to display
-            // Show additional rows up to displayCount
-            rows.forEach((row, index) => {
-                if (index < displayCount) {
-                    row.style.display = 'table-row';
+                // Convert both callType and type to lowercase for case-insensitive comparison
+                if (callType.toLowerCase() === 'all' || type.toLowerCase() === callType.toLowerCase()) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
                 }
             });
-            // Hide the "View More" button if all rows are displayed
-            if (displayCount >= rows.length) {
-                viewMoreButton.style.display = 'none';
-            }
+        }
+
+function updateDateTime() {
+    var rows = document.querySelectorAll('.call-row');
+
+    rows.forEach(function (row) {
+        var callDateElement = row.querySelector('.call-date');
+        var startTimeElement = row.querySelector('.start-time');
+        var endTimeElement = row.querySelector('.end-time');
+
+        // Get the current date and time
+        var now = new Date();
+        var formattedDate = now.toLocaleDateString(); // Format date as needed
+        var formattedTime = now.toLocaleTimeString(); // Format time as needed
+
+        callDateElement.textContent = formattedDate;
+        startTimeElement.textContent = formattedTime;
+
+        // Calculate end time based on start time and call duration
+        var callDuration = parseInt(row.querySelector('.call-duration').textContent);
+        if (!isNaN(callDuration)) {
+            // Convert call duration to milliseconds
+            var callDurationMilliseconds = callDuration * 60 * 1000; // Convert minutes to milliseconds
+
+            // Parse the start time from the element content
+            var startTimeString = startTimeElement.textContent;
+            var startTime = new Date(formattedDate + ' ' + startTimeString);
+
+            // Calculate end time by adding call duration to start time
+            var endTime = new Date(startTime.getTime() + callDurationMilliseconds);
+
+            // Format and set the end time in the element
+            endTimeElement.textContent = formatTime(endTime);
+        }
+    });
+}
+
+function formatTime(date) {
+    // Implement your own time formatting logic here
+    return date.toLocaleTimeString();
+}
+
+        // Helper function to format time as needed
+        function formatTime(date) {
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            var seconds = date.getSeconds();
+
+            // Ensure leading zeros for single-digit minutes and seconds
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+
+            return hours + ':' + minutes + ':' + seconds;
+        }
+
+        // Update the current date, time, and end time on page load
+        window.onload = function () {
+            updateDateTime();
+        };
+
+        // Update the current date, time, and end time after the Thymeleaf rendering
+        document.addEventListener('DOMContentLoaded', function () {
+            updateDateTime();
         });
-
-
-
-
     </script>
+    <style>
+    table {
+            border-collapse: collapse; /* Collapse table borders */
+            width: 100%; /* Make table span the full width */
+        }
 
+        th, td {
+            padding: 8px; /* Add padding to table cells */
+            text-align: left; /* Align text to the left within cells */
+        }
+
+         body {
+              background: linear-gradient(135deg, #7117EA, #EA6060) ; 
+            color: white;
+            min-height: 100vh; 
+            padding-top: 1px;
+        }
+
+        /* Style the header row with a white background */
+        .header-row th {
+            background-color: white ! important;
+            color: black;
+        }
+        </style>
+</head>
+<body>
+    <h1>Call History</h1>
+    <div>
+        <button onclick="filterCalls('All')">All</button>
+        <button onclick="filterCalls('Incoming')">Incoming</button>
+        <button onclick="filterCalls('Outgoing')">Outgoing</button>
+    </div>
+
+    <table>
+        <tr class="header-row">
+            <th>id</th>
+            <th>Call Type</th>
+            <th>Call Date</th>
+            <th>Call Duration</th>
+            <th>Mobile Number</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+        </tr>
+        <tr th:each="callHistory : ${callHistoryList}" data-call-type="${callHistory.callType}" class="call-row">
+            <td th:text="${callHistory.id}"></td>
+            <td th:text="${callHistory.callType}"></td>
+            <td class="call-date"></td>
+            <td class="call-duration" th:text="${callHistory.callDuration}"></td>
+            <td th:text="${callHistory.mobileNumber}"></td>
+            <td class="start-time"></td>
+            <td class="end-time"></td>
+        </tr>
+    </table>
 </body>
-
 </html>
