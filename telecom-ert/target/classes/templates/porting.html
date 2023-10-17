@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -36,18 +37,23 @@
 <body>
 
     <h1>Porting Services</h1>
-    
-    <button class="choice-btn" onclick="redirectToPortingPage()">prepaidToPostpaid</button>
-    <button class="choice-btn" onclick="redirectToPortingPage1()">postpaidToPrepaid</button>
+     
+   
+    <button class="choice-btn" onclick="redirectToPortingPage()">Porting Prepaid To Postpaid</button>
+    <button class="choice-btn" onclick="redirectToPortingPage1()">Porting Postpaid To Prepaid</button>
+   
     <!-- Add other service buttons if needed -->
 
     <script>
+    
+         
         function redirectToPortingPage() {
-            window.location.href = 'prepaidToPostpaid.html';
+            window.location.href = 'prepaidToPostpaid';
         }
         function redirectToPortingPage1() {
-           window.location.href = 'postpaidToPrepaid.html';
+           window.location.href = 'postpaidToPrepaid';
        }
+     
     </script>
 
 </body>
