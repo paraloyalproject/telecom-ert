@@ -1,58 +1,34 @@
 package telecom.ERT.web;
 
 
-import java.util.List;
 
-import javax.servlet.http.HttpSession;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.PathVariable;
 import telecom.ERT.model.PrepaidPlan;
 import telecom.ERT.repository.PrepaidPlanRepository;
 
 @Controller
 public class PrepaidPlanController {
     @Autowired
-    private PrepaidPlanRepository planRepository;
+    private PrepaidPlanRepository prepaidPlanRepository;
 
-    @GetMapping("/plans")
-    public String getAllPlans(Model model) {
-        List<PrepaidPlan> plans = planRepository.findAll();
+    @GetMapping("/prepaid-plans")
+    public String listPrepaidPlans(Model model) {
+        List<PrepaidPlan> plans = prepaidPlanRepository.findAll();
         model.addAttribute("plans", plans);
-        return "plans"; 
-    }
-    
-   
-    @PostMapping("/select-plan")
-    public String selectPlan(@RequestParam("planId") Long planId, Model model) {
-        PrepaidPlan selectedPlan = planRepository.findById(planId).orElse(null);
-
-        model.addAttribute("selectedPlan", selectedPlan);
-
-        return "selected-plan"; 
-        }
-    
- 
-
-        @PostMapping("/recharge")
-        public String recharge(@RequestParam("planId") Long planId, Model model) {
-                        return "recharge"; 
-        }
+        return "prepaid-plans"; 
     }
 
-
-
-   
-  
-
-
-
-
-
+    @GetMapping("/select-prepaid-package/{id}")
+    public String selectPrepaidPackage(@PathVariable Long id, Model model) {
+        PrepaidPlan selectedPlan = prepaidPlanRepository.findById(id).orElse(null);
+        model.addAttribute("plan", selectedPlan);
+        return "prepaid-plan-details"; 
+    }
+}
     

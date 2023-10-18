@@ -8,107 +8,75 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "prepaid_plans")
+@Table(name = "prepaidplans")
 public class PrepaidPlan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
-    private String plan;
-    private String validity;
-    private int calls;
-    private int sms;
-    private double data;
+    private String packvalidity;
+    private String totaldata;
+    private String dataathighspeed;
+    private String calls;
+    private String sms;
+    private String subscriptions;
     private double price;
-    private String additionalBenefits;
-
-    
-    public PrepaidPlan() {
-       
-    }
-
-    public PrepaidPlan(String name, String plan, String validity, int calls, int sms, double data, double price, String additionalBenefits) {
-        this.name = name;
-        this.plan = plan;
-        this.validity = validity;
-        this.calls = calls;
-        this.sms = sms;
-        this.data = data;
-        this.price = price;
-        this.additionalBenefits = additionalBenefits;
-    }
-
+	
     public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPlan() {
-        return plan;
-    }
-
-    public void setPlan(String plan) {
-        this.plan = plan;
-    }
-
-    public String getValidity() {
-        return validity;
-    }
-
-    public void setValidity(String validity) {
-        this.validity = validity;
-    }
-
-    public int getCalls() {
-        return calls;
-    }
-
-    public void setCalls(int calls) {
-        this.calls = calls;
-    }
-
-    public int getSms() {
-        return sms;
-    }
-
-    public void setSms(int sms) {
-        this.sms = sms;
-    }
-
-    public double getData() {
-        return data;
-    }
-
-    public void setData(double data) {
-        this.data = data;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public String getAdditionalBenefits() {
-        return additionalBenefits;
-    }
-
-    public void setAdditionalBenefits(String additionalBenefits) {
-        this.additionalBenefits = additionalBenefits;
-    }
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getPackvalidity() {
+		return packvalidity;
+	}
+	public void setPackvalidity(String packvalidity) {
+		this.packvalidity = packvalidity;
+	}
+	public String getTotaldata() {
+		return totaldata;
+	}
+	public void setTotaldata(String totaldata) {
+		this.totaldata = totaldata;
+	}
+	public String getDataathighspeed() {
+		return dataathighspeed;
+	}
+	public void setDataathighspeed(String dataathighspeed) {
+		this.dataathighspeed = dataathighspeed;
+	}
+	public String getCalls() {
+		return calls;
+	}
+	public void setCalls(String calls) {
+		this.calls = calls;
+	}
+	public String getSms() {
+		return sms;
+	}
+	public void setSms(String sms) {
+		this.sms = sms;
+	}
+	
+	public String getSubscriptions() {
+		return subscriptions;
+	}
+	public void setSubscriptions(String subscriptions) {
+		this.subscriptions = subscriptions;
+	}
+	public double getPrice() {
+		return price;
+	}
+	public void setPrice(double price) {
+		this.price = price;
+	}
+  
 }
-
