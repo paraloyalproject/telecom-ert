@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Add your meta tags, title, and styles here -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Account</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&family=Lora&family=Nunito:wght@400;500&family=Open+Sans:wght@500&display=swap');
+
+        /* Apply custom styles to labels and input fields */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: inline-block;
+            width: 150px;
+            font-weight: bold;
+        }
+
+        /* Adjust the width of the input fields */
+        .form-group input[type="text"] {
+            width: 400px;
+        }
+
+       .navbar {
+            background-color: white;
+            padding: 4px 0;
+            margin-bottom: 80px;
+        }
+
+
+
+
+        .navbar-brand {
+            color: black !important;
+            font-size: 28px;
+            padding: 15px 15px;
+        }
+
+
+
+
+        body {
+            background-color: #4B0082; 
+            color: white;
+            min-height: 70vh; 
+            padding-top: 1px;
+        }
+
+        /* Additional styling for layout and appearance */
+        .container {
+            margin-top: 30px;
+            font-family: 'Kanit', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <!-- Your navbar and container structure remains the same -->
+     <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/" style="color: black; font-size: 32px;">Manage Account</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <!-- Thymeleaf expression to display logout button for authenticated users -->
+                <ul class="nav navbar-nav navbar-right" th:if="${#request.isUserInRole('USER')}">
+                    <li><a href="/logout" style="color: black; font-size: 22px;">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+
+    <!-- Your HTML structure remains the same -->
+<div class="container">
+    <h1>Manage Account</h1>
+    <!-- Display user account management options -->
+  
+        <br><br><br><br>
+       <!-- Add a form to submit changes to the server -->
+ <form th:action="@{/api/account/update}" method="post" th:object="${user}">
+            <!-- Field for updating email -->
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <!--input type="text" id="email" th:value="${user.email}" name="email" placeholder="Your email" readonly-->
+                 <input type="text" id="email" name="email" placeholder="Change email">
+                <input type="hidden" name="field" value="email">
+                <button type="button" class="change-button" onclick="editField('email')" style="background-color:#5CB85C;">Change</button>
+            </div>
+			
+            <!-- Field for updating location -->
+            <div class="form-group">
+                <label for="newLocation">New Location:</label>
+                <input type="text" id="newLocation" name="location" placeholder="Change location">
+                <input type="hidden" name="field" value="location">
+                <button type="button" class="change-button" onclick="editField('newLocation')" style="background-color:#5CB85C;">Change</button>
+            </div>
+
+            <!-- Field for updating alternative number -->
+            <div class="form-group">
+                <label for="alternativeNumber">Alternative Number:</label>
+                <input type="text" id="alternativeNumber" name="alternativeMobile" placeholder="Add alternative number">
+                <input type="hidden" name="field" value="alternativeMobile">
+                <button type="button" class="change-button" onclick="editField('alternativeNumber')" style="background-color:#5CB85C;">Change</button>
+            </div>
+			<!-- Field for updating password -->
+            <div class="form-group">
+                <label for="newpassword">New Password:</label>
+                <input type="text" id="newpassword" name="password" placeholder="Change password">
+                <input type="hidden" name="field" value="password">
+                <button type="button" class="change-button" onclick="editField('newpassword')" style="background-color:#5CB85C;">Change</button>
+            </div>
+            <!-- Add a submit button to save changes -->
+            <button type="submit" class="change-button" style="background-color:#5CB85C;">Save Changes</button>
+        </form>
+    </div>
+
+    <!-- Add a JavaScript function to handle field editing -->
+    <script>
+        function editField(fieldName) {
+            var field = document.getElementById(fieldName);
+            var button = document.querySelector('[onclick="editField(\'' + fieldName + '\')"]');
+        
+            // Toggle the readonly attribute to enable or disable editing
+            field.readOnly = !field.readOnly;
+        
+            // Update the button text based on the field's state
+            if (field.readOnly) {
+                button.textContent = "Change";
+            } else {
+                button.textContent = "Save";
+            }
+        }
+    </script>
+</body>
+</html>  

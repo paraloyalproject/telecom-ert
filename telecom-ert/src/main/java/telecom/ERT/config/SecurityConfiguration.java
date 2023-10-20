@@ -24,7 +24,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
+    
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
@@ -45,7 +45,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/", "/registration", "/js/**", "/css/**", "/img/**").permitAll()
             .antMatchers("/submit-broadband").permitAll()
             .antMatchers("/get-esim").permitAll() 
-            
+            .antMatchers("/get-Balance").permitAll()
+            .antMatchers(" /select-plan").permitAll()
+           
             .anyRequest().authenticated()
             .and()
             .formLogin()

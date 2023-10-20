@@ -26,9 +26,12 @@ public class User {
 	@Column(name = "first_name")
 	private String firstName;
 	
-	@Column(name = "last_name")
-	private String lastName;
-	
+	@Column(name = "mobile_no")
+	private String mobileno;
+	@Column(name = "alternative_mobile")
+	private String alternativemobile;
+	@Column(name = "location")
+	private String location;
 	private String email;
 	
 	private String password;
@@ -47,11 +50,14 @@ public class User {
 		
 	}
 	
-	public User(String firstName, String lastName, String email, String password, Collection<Role> roles) {
+	public User(String firstName, String mobileno, String email,String alternativemobile,String location, String password, Collection<Role> roles) {
 		super();
 		this.firstName = firstName;
-		this.lastName = lastName;
+		this.mobileno = mobileno;
 		this.email = email;
+		
+		this.alternativemobile=alternativemobile;
+		this.location=location;
 		this.password = password;
 		this.roles = roles;
 	}
@@ -67,12 +73,13 @@ public class User {
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+	public String getMobileno() {
+        return mobileno;
+    }
+
+    public void setMobileno(String mobileno) {
+        this.mobileno = mobileno;
+    }
 	public String getEmail() {
 		return email;
 	}
@@ -92,4 +99,19 @@ public class User {
 		this.roles = roles;
 	}
 
+	public String getAlternativemobile() {
+		return alternativemobile;
+	}
+
+	public void setAlternativemobile(String alternativemobile) {
+		this.alternativemobile = alternativemobile;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
 }

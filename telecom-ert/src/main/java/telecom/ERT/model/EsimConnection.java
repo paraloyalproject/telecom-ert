@@ -21,17 +21,53 @@ public class EsimConnection {
 
     @NotEmpty(message = "Existing Phone Number is required")
     private String phone;
-
-    @NotEmpty(message = "Aadhar Card or PAN Card is required")
-    private String card;
-
+    
     @NotEmpty(message = "Email Address is required")
     @Email(message = "Invalid email address")
     private String email;
-
     
+    @NotEmpty(message = "Aadhar Card or PAN Card is required")
+    private String cardtype;
 
-    public Long getId() {
+    @NotEmpty(message = "simtype is required")
+    private String simtype;
+   
+    private String aadhar;
+    public String getCardtype() {
+		return cardtype;
+	}
+
+	public void setCardtype(String cardtype) {
+		this.cardtype = cardtype;
+	}
+
+	public String getAadhar() {
+		return aadhar;
+	}
+
+	public void setAadhar(String aadhar) {
+		this.aadhar = aadhar;
+	}
+
+	public String getPan() {
+		return pan;
+	}
+
+	public void setPan(String pan) {
+		this.pan = pan;
+	}
+
+	private String pan;
+
+    public String getSimtype() {
+		return simtype;
+	}
+
+	public void setSimtype(String simtype) {
+		this.simtype = simtype;
+	}
+
+	public Long getId() {
         return id;
     }
 
@@ -55,20 +91,19 @@ public class EsimConnection {
         this.phone = phone;
     }
 
-    public String getCard() {
-        return card;
+    public String getCardType() {
+        return cardtype;
     }
 
-    public void setCard(String card) {
-        this.card = card;
+    public void setCardType(String cardtype) {
+        this.cardtype = cardtype;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(String email) {    
         this.email = email;
     }
 }
-

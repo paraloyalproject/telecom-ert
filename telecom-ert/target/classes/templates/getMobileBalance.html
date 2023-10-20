@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <style>
+        /* Add your CSS styles here */
+    </style>
+    <script>
+        var intervalId; // Variable to store the interval ID
+
+        function showPhoneNumberInput() {
+            var phoneNumberContainer = document.getElementById("phone-number-container");
+            var checkBalanceButton = document.getElementById("check-balance-button");
+            phoneNumberContainer.style.display = "block";
+            checkBalanceButton.style.display = "none";
+        }
+
+        function showInputForm() {
+            var phoneNumber = document.getElementById("phoneNumber").value;
+            if (phoneNumber.length === 10 && /^\d+$/.test(phoneNumber)) {
+                if (phoneNumber.startsWith("9")) {
+                    displayMobileInfo(phoneNumber, "prepaid");
+                } else if (phoneNumber.startsWith("8")) {
+                    displayMobileInfo(phoneNumber, "postpaid");
+                } else {
+                    alert("Only prepaid numbers (starting with 9) or postpaid numbers (starting with 8) are allowed.");
+                }
+            } else {
+                alert("Please enter a valid 10-digit phone number.");
+            }
+        }
+
+        function displayMobileInfo(phoneNumber, RechargeMode) {
+            var inputFormContainer = document.getElementById("input-form-container");
+            inputFormContainer.style.display = "block";
+
+            // Simulate fetching mobile information
+            var mobileInfo = {
+                mobileNumber: phoneNumber,
+                RechargeMode: RechargeMode,
+                package: "Sample Package",
+                dataValidity: "15 gb", // Default value for prepaid
+                calls: "Unlimited",
+                sms: "100 SMS",
+                days: "15 days" // Default value for prepaid
+            };
+
+            if (RechargeMode === "postpaid") {
+                // Calculate decreased values for postpaid
+                mobileInfo.dataValidity = "15 days"; // Decreased value for postpaid
+                mobileInfo.days = "7 days"; // Decreased value for postpaid
+            }
+
+            // Display the fetched data
+            document.getElementById("mobile-number").textContent = mobileInfo.mobileNumber;
+            document.getElementById("RechargeMode").textContent = mobileInfo.RechargeMode;
+            document.getElementById("package").textContent = mobileInfo.package;
+            document.getElementById("data-validity").textContent = mobileInfo.dataValidity;
+            document.getElementById("calls").textContent = mobileInfo.calls;
+            document.getElementById("sms").textContent = mobileInfo.sms;
+            document.getElementById("days").textContent = mobileInfo.days;
+
+            // Start the interval to decrease dataValidity and days
+            intervalId = setInterval(decreaseDataValidityAndDays, 86400000); // 86400000 milliseconds =  86400 minute
+        }
+
+        // Function to decrease dataValidity and days
+        function decreaseDataValidityAndDays() {
+            var dataValidityElement = document.getElementById("data-validity");
+            var daysElement = document.getElementById("days");
+
+            var dataValidity = dataValidityElement.textContent;
+            var days = daysElement.textContent;
+
+            // Extract the number of days from the text
+            var dataValidityDays = parseInt(dataValidity.match(/\d+/)[0]);
+            var daysDays = parseInt(days.match(/\d+/)[0]);
+
+            // Decrease the values by 1
+            dataValidityDays--;
+            daysDays--;
+
+            // Update the elements with the new values
+            dataValidityElement.textContent = dataValidity.replace(/\d+/, dataValidityDays);
+            daysElement.textContent = days.replace(/\d+/, daysDays);
+
+            // Stop the interval if both values reach 0
+            if (dataValidityDays === 0 && daysDays === 0) {
+                clearInterval(intervalId);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="welcome-heading">Check Balance</h1>
+        <!-- Thymeleaf expression to display welcome message after login -->
+        <div class="welcome-message" th:if="${#request.isUserInRole('USER')}">
+            <p>Welcome, <span th:text="${#authentication.principal.username}">User</span>!</p>
+        </div>
+        <div class="button-container">
+            <a href="#" class="btn btn-primary" onclick="showPhoneNumberInput()" id="check-balance-button">Check
+                Balance</a>
+        </div>
+        <div id="phone-number-container" style="display: none;">
+            <p>Enter phone number:</p>
+            <form>
+                <input type="text" name="phoneNumber" id="phoneNumber" placeholder="Phone Number">
+                <button type="button" class="btn btn-primary" onclick="showInputForm()">Submit</button>
+            </form>
+        </div>
+        <div id="input-form-container" style="display: none;">
+            <h2>Mobile Number Information</h2>
+            <p><strong>Mobile Number:</strong> <span id="mobile-number"></span></p>
+            <p><strong>RechargeMode:</strong> <span id="RechargeMode"></span></p>
+            <p><strong>Package:</strong> <span id="package"></span></p>
+            <p><strong>Data Validity:</strong> <span id="data-validity"></span></p>
+            <p><strong>Calls:</strong> <span id="calls"></span></p>
+            <p><strong>SMS:</strong> <span id="sms"></span></p>
+            <p><strong>Days:</strong> <span id="days"></span></p>
+        </div>
+    </div>
+</body>
+
+</html>

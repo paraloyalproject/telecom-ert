@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Postpaid Plan Details</title>
+    <style>
+        body {
+            background-color: #f0f0f0; /* Set your desired background color */
+            font-family: Arial, sans-serif; /* Choose an appropriate font */
+            text-align: center; /* Center align the contents */
+            color: #333; /* Text color */
+        }
+        h1 {
+            background-color: #333; /* Header background color */
+            color: white; /* Header text color */
+            padding: 10px; /* Header padding */
+        }
+        table {
+            margin: 0 auto; /* Center the table horizontally */
+            background-color: #fff; /* Table background color */
+            border-collapse: collapse;
+            width: 50%; /* Adjust the width as needed */
+        }
+        th, td {
+            border: none; /* Remove border */
+            padding: 10px; /* Cell padding */
+            text-align: left; /* Left-align table cells */
+        }
+        th {
+            background-color: #333; /* Header cell background color */
+            color: white; /* Header cell text color */
+        }
+        .recharge-button {
+            margin-top: 20px; /* Add space below the button */
+        }
+    </style>
+</head>
+<body>
+    <h1>Postpaid Plan Details</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <td th:text="${plan.id}"></td>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <td th:text="${plan.name}"></td>
+        </tr>
+        <tr>
+            <th>Plan</th>
+            <td th:text="${plan.plan}"></td>
+        </tr>
+        <tr>
+            <th>Data</th>
+            <td th:text="${plan.data}"></td>
+        </tr>
+        <tr>
+            <th>Validity</th>
+            <td th:text="${plan.validity}"></td>
+        </tr>
+        <tr>
+            <th>Benefits</th>
+            <td th:text="${plan.benefits}"></td>
+        </tr>
+        <tr>
+            <th>Price</th>
+            <td th:text="${plan.price}"></td>
+        </tr>
+    </table>
+    <div class="recharge-button">
+        <a href="/payment-form" style="text-decoration: none;">Recharge Now</a>
+    </div>
+</body>
+</html>

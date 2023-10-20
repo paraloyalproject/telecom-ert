@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recharge Payment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+            border-radius: 5px;
+        }
+
+        .payment-methods {
+            margin-top: 20px;
+        }
+
+        .upi-input,
+        .debit-card-input,
+        .internet-banking-input {
+            display: none;
+        }
+
+        .error {
+            color: red;
+            display: none;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Recharge Payment</h1>
+        <form id="paymentForm" action="/processPayment" method="post" onsubmit="return validateForm()">
+            <label for="mobileNumber">Mobile Number (10 digits):</label>
+            <input type="text" id="mobileNumber" name="mobileNumber" required>
+
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" name="amount" required>
+
+            <label for="bankName">Bank Name:</label>
+            <input type="text" id="bankName" name="bankName" required>
+
+            <div class="payment-methods">
+                <label for="paymentMethod">Payment Method:</label>
+                <select id="paymentMethod" name="paymentMethod" onchange="togglePaymentInput()">
+                    <option value="">Select Payment Method</option>
+                    <option value="upi">UPI</option>
+                    <option value="debitCard">Debit Card</option>
+                    <option value="internetBanking">Internet Banking</option>
+                </select>
+
+                <div class="upi-input" id="upiInput">
+                    <label for="upiId">Enter your UPI ID:</label>
+                    <input type="text" id="upiId" name="upiId" required>
+                </div>
+
+                <div class="debit-card-input" id="debitCardInput">
+                    <label for="debitCardNumber">Enter your Debit Card Number:</label>
+                    <input type="text" id="debitCardNumber" name="debitCardNumber" required>
+                </div>
+
+                <div class="internet-banking-input" id="internetBankingInput">
+                    <label for="internetBanking">Enter Internet Banking Username:</label>
+                    <input type="text" id="internetBanking" name="internetBanking" required>
+                </div>
+            </div>
+
+            <button type="submit" id="payNow">Pay Now</button>
+        </form>
+    </div>
+    <script>
+        function togglePaymentInput() {
+            var paymentMethod = document.getElementById("paymentMethod").value;
+            var upiInput = document.getElementById("upiInput");
+            var debitCardInput = document.getElementById("debitCardInput");
+            var internetBankingInput = document.getElementById("internetBankingInput");
+
+            if (paymentMethod === "upi") {
+                upiInput.style.display = "block";
+                debitCardInput.style.display = "none";
+                internetBankingInput.style.display = "none";
+            } else if (paymentMethod === "debitCard") {
+                upiInput.style.display = "none";
+                debitCardInput.style.display = "block";
+                internetBankingInput.style.display = "none";
+            } else if (paymentMethod === "internetBanking") {
+                upiInput.style.display = "none";
+                debitCardInput.style.display = "none";
+                internetBankingInput.style.display = "block";
+            } else {
+                upiInput.style.display = "none";
+                debitCardInput.style.display = "none";
+                internetBankingInput.style.display = "none";
+            }
+        }
+
+        function validateForm() {
+            var mobileNumber = document.getElementById("mobileNumber").value;
+            if (mobileNumber.length !== 10) {
+                alert("Mobile number should be 10 digits");
+                return false;
+            }
+            // Add more validation if needed
+            return true;
+        }
+    </script>
+</body>
+
+</html>

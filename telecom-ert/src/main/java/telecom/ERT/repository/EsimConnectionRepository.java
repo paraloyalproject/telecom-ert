@@ -8,3 +8,4 @@ import telecom.ERT.model.EsimConnection;
 public interface EsimConnectionRepository extends JpaRepository<EsimConnection, Long> {
 }
 
+ 

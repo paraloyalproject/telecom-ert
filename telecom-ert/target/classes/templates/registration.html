@@ -1,80 +1,151 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Registration</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-	crossorigin="anonymous">
+    <meta charset="ISO-8859-1">
+    <title><a href="javascript:history.back()"> Login </a></title>
+
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+
+    <style>
+        .navbar {
+            background-color: white !important;
+            padding: 4px 0;
+            margin-bottom: 80px;
+        }
+
+
+
+
+        .navbar-brand {
+            color: black !important;
+            font-size: 28px;
+            padding: 15px 15px;
+        }
+
+
+        body {
+            background-color: #4B0082 !important; 
+            color: white !important;
+            min-height: 70vh; 
+            padding-top: 1px;
+        }
+       
+
+        /* Increase font size for label text */
+        .form-label {
+            font-size: 22px; /* You can adjust the font size as needed */
+        }
+
+        /* Increase font size for login text */
+        .login-text {
+            font-size: 22px; /* You can adjust the font size as needed */
+            color:black;
+        }
+
+            /* Change color of anchor tag in login text to white */
+            .login-text a {
+                color: white;
+            }
+
+        /* Style for error message */
+        .alert-danger {
+            display: none;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
 
-	<!-- create navigation bar ( header) -->
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-					aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#" th:href="@{/}">Registration and
-					Login Module</a>
-			</div>
-		</div>
-	</nav>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed"
+                        data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                        aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#" th:href="@{/}">
+                    Registration
+                </a>
+            </div>
+        </div>
+    </nav>
+    <br /><br /><br /><br /><br />
 
-<br>
-<br>
-	<!-- Create HTML registration form -->
-	<div class="container">
-		<div class="row">
-			<div class="col-md-6 col-md-offset-3">
+<!-- Create HTML registration form -->
+<div class="container">
+<div class="row">
+<div class="col-md-6 col-md-offset-3">
 
-				<!-- success message -->
-				<div th:if="${param.success}">
-					<div class="alert alert-info">You've successfully registered
-						to our awesome app!</div>
-				</div>
+ 
 
-				<h1>Registration</h1>
+                <!-- success message -->
+<div th:if="${param.success}">
+<div class="alert alert-info">You've successfully registered
+                        to our awesome app!</div>
+</div>
 
-				<form th:action="@{/registration}" method="post" th:object="${user}">
-					<div class="form-group">
-						<label class="control-label" for="firstName"> First Name </label>
-						<input id="firstName" class="form-control" th:field="*{firstName}"
-							required autofocus="autofocus" />
-					</div>
+ 
 
-					<div class="form-group">
-						<label class="control-label" for="lastName"> Last Name </label> <input
-							id="lastName" class="form-control" th:field="*{lastName}"
-							required autofocus="autofocus" />
-					</div>
+                <h1>Registration</h1>
 
-					<div class="form-group">
-						<label class="control-label" for="email"> Email </label> <input
-							id="email" class="form-control" th:field="*{email}" required
-							autofocus="autofocus" />
-					</div>
+ 
 
-					<div class="form-group">
-						<label class="control-label" for="password"> Password </label> <input
-							id="password" class="form-control" type="password"
-							th:field="*{password}" required autofocus="autofocus" />
-					</div>
+                <form th:action="@{/registration}" method="post" th:object="${user}">
+<div class="form-group">
+<label class="control-label" for="firstName"> First Name </label>
+<input id="firstName" class="form-control" th:field="*{firstName}"
+                            required autofocus="autofocus" />
+</div>
 
-					<div class="form-group">
-						<button type="submit" class="btn btn-success">Register</button>
-						<span>Already registered? <a href="/" th:href="@{/login}">Login
-								here</a></span>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+ 
+
+                    <div class="form-group">
+<label class="control-label" for="mobileno">Mobile No </label> <input
+                            id="mobileno" class="form-control" th:field="*{mobileno}"
+                            required autofocus="autofocus" />
+</div>
+
+ 
+
+                    <div class="form-group">
+<label class="control-label" for="email"> Email </label> <input
+                            id="email" class="form-control" th:field="*{email}" required
+                            autofocus="autofocus" />
+</div>
+
+ 
+ 
+                
+  <div class="form-group">
+<label class="control-label" for="alternative_mobile">Alternative Mobile No </label> <input
+                            id="alternativemobile" class="form-control" th:field="*{alternativemobile}"
+                            required autofocus="autofocus" />
+</div>
+ 
+<div class="form-group">
+<label class="control-label" for="location"> Location </label> <input
+                            id="location" class="form-control" th:field="*{location}"
+                            required autofocus="autofocus" />
+</div>
+     <div class="form-group">
+<label class="control-label" for="password"> Password </label> <input
+                            id="password" class="form-control" type="password"
+                            th:field="*{password}" required autofocus="autofocus" />
+</div>
+
+                    <div class="form-group">
+<button type="submit" class="btn btn-success">Register</button>
+<span>Already registered? <a href="/" th:href="@{/login}" style="color:white;">Login
+                                here</a></span>
+</div>
+</form>
+</div>
+</div>
+</div>
 </body>
 </html>

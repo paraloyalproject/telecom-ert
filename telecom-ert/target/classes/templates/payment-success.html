@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment Success</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F5F5DC; /* Classic Beige */
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            background-color: #fff; /* White */
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333; /* Dark Gray */
+        }
+
+        .success-message {
+            font-size: 24px;
+            color: #008000; /* Classic Green */
+            margin: 20px 0;
+        }
+
+        .payment-details {
+            text-align: left;
+            margin: 20px 0;
+        }
+
+        .payment-details span {
+            display: block;
+            margin: 10px 0;
+            color: #666; /* Medium Gray */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Payment Success</h1>
+        <div class="success-message">Payment completed successfully.</div>
+        
+        <!-- Display other payment details -->
+        <div class="payment-details">
+            <span>Mobile Number: <span th:text="${mobileNumber}"></span></span>
+            <span>Amount: <span th:text="${amount}"></span></span>
+            <span>Bank Name: <span th:text="${bankName}"></span></span>
+            <span>Payment Method: <span th:text="${paymentMethod}"></span></span>
+            <span>UPI ID: <span th:text="${upiId}"></span></span>
+            <span>Reference Number: <span th:text="${referenceNumber}"></span></span>
+            <span>Transaction ID: <span th:text="${transactionId}"></span></span>
+        </div>
+    </div>
+</body>
+</html>

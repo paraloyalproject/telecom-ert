@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Boosters</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #65799B, #5E2563);
+            font-family: Arial, sans-serif; /* Example font family */
+            color: #fff; /* Text color */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            color: #000; /* Set text color to black */
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            color: #000; /* Set text color to black */
+        }
+        th {
+            background-color: #555;
+            color: #fff; /* Set text color to white for table headers */
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2; /* Set the background color for even rows */
+        }
+        tr:nth-child(odd) {
+            background-color: #e6e6e6; /* Set the background color for odd rows */
+        }
+        form {
+            display: inline;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 6px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Data Booster Packages</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Package Name</th>
+                <th>Price</th>
+                <th>Data</th>
+                <th>Validity</th>
+                <th>Benefits</th>
+                <th>Select</th> <!-- New column for the select button -->
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="booster, rowStat : ${dataBoosters}" th:class="${rowStat.odd} ? 'odd' : 'even'">
+                <td th:text="${booster.id}"></td>
+                <td th:text="${booster.packageName}"></td>
+                <td th:text="${booster.price}"></td>
+                <td th:text="${booster.data}"></td>
+                <td th:text="${booster.validity}"></td>
+                <td th:text="${booster.benefits}"></td>
+                <td>
+                    <form th:action="@{/select-package}" method="post">
+                        <input type="hidden" name="packageId" th:value="${booster.id}"/>
+                        <input type="submit" value="Select"/>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
