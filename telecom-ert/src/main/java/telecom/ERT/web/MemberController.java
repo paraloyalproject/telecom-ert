@@ -49,12 +49,9 @@ public class MemberController {
                     List<String> addedMembers = new ArrayList<>();
                     
                     for (String phoneNumber : memberPhoneNumbers) {
-                        // Check if the phone number is already added
                         if (!addedMembers.contains(phoneNumber)) {
-                            // Add the member with phoneNumber to the selected package
                             addedMembers.add(phoneNumber);
                         } else {
-                            // Display an error message if the phone number is a duplicate
                             model.addAttribute("error", "Phone number '" + phoneNumber + "' is already added.");
                             model.addAttribute("selectedPackage", selectedPackage);
                             model.addAttribute("addedMembers", addedMembers);
@@ -62,7 +59,6 @@ public class MemberController {
                         }
                     }
 
-                    // Pass the added members to the view
                     model.addAttribute("selectedPackage", selectedPackage);
                     model.addAttribute("addedMembers", addedMembers);
 
