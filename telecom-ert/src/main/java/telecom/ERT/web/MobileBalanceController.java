@@ -11,7 +11,5 @@ public class MobileBalanceController {
         return "get_checkbalance";
 
 
-
-
    }
 }

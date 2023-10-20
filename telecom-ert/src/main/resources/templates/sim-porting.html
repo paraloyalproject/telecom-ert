@@ -125,6 +125,9 @@
         <label for="current-carrier">Current Carrier:</label>
         <input type="text" id="current-carrier" name="current-carrier" required>
 
+        <label for="sim-type">Sim Type:</label>
+        <input type="text" id="sim-type" name="sim-type" required>
+        
         <h2>New Carrier Information</h2>
         <label for="new-carrier">Select New Carrier:</label>
         <select id="new-carrier" name="new-carrier" required>
@@ -198,7 +201,7 @@
         }
 
         function generateOTP() {
-            return Math.floor(100000 + Math.random() * 900000).toString();
+            return Math.floor(1000 + Math.random() * 9000).toString();
         }
 
         function verifyOTP() {
@@ -209,12 +212,13 @@
                     // Reload the page after a brief delay
                 setTimeout(function() {
                     location.reload();
-                }, 2000); // 2000 milliseconds (2 seconds) delay before refreshing
+                }, 10); // 10 milliseconds (2 seconds) delay before refreshing
             } else {
                 alert('Invalid OTP. Please try again.');
             }
         }
            
     </script>
+    
 </body>
 </html>

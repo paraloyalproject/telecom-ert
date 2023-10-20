@@ -15,6 +15,7 @@ public class SimPortingRequest {
     private String aadharNumber;
     private String currentAddress;
     private String currentCarrier;
+    private String simtype;
     private String newCarrier;
     private String newPlan;
 	public Long getId() {
@@ -25,6 +26,12 @@ public class SimPortingRequest {
 	}
 	public String getFullName() {
 		return fullName;
+	}
+	public String getSimtype() {
+		return simtype;
+	}
+	public void setSimtype(String simtype) {
+		this.simtype = simtype;
 	}
 	public void setFullName(String fullName) {
 		this.fullName = fullName;

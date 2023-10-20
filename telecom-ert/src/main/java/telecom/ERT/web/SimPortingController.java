@@ -27,9 +27,16 @@ public class SimPortingController {
     @GetMapping("")
     public String showForm(Model model) {
         model.addAttribute("simportingRequest", new SimPortingRequest());
-        return "sim-porting"; // Thymeleaf template name for the Porting page
+        return "sim-porting"; 
     }
-    
+    @PostMapping("/submit-porting-request")
+    public String submitPortingRequest(@ModelAttribute SimPortingRequest request) {
+        // Call the service to save the request
+        service.submitSimPortingRequest(request);
+        // You can add redirection or other logic here
+        return "redirect:/sim-porting"; // Redirect to the form page
+    }
+
  
 }
 

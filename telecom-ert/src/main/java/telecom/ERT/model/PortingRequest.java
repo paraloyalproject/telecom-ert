@@ -9,7 +9,7 @@ public class PortingRequest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String type; // Prepaid to Postpaid or Postpaid to Prepaid
+    private String type; 
     private String prepaidNumber;
     private String postpaidNumber;
     private String state;
