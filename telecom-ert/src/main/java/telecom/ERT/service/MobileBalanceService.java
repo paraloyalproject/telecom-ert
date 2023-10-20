@@ -3,8 +3,7 @@ import telecom.ERT.model.MobileBalance;
 
 public interface MobileBalanceService {
 
-    MobileBalance checkMobileBalance(String phoneNumber);
+    MobileBalance checkMobileBalance(String mobileNumber);
 
-    MobileBalance rechargePackage(String phoneNumber, String rechargedPackage);
-
+    MobileBalance rechargePackage(String mobileNumber, String rechargeMode,String packages,String dataValidity,String calls,String sms,String days);
 }

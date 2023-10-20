@@ -31,20 +31,15 @@
             margin-bottom: 80px;
         }
 
-
-
-
         .navbar-brand {
             color: black !important;
             font-size: 28px;
             padding: 15px 15px;
         }
 
-
-
-
         body {
-            background-color: #4B0082; 
+            background: url('/images/broadplanes.jpg') no-repeat center center fixed;
+            background-size: cover;
             color: white;
             min-height: 70vh; 
             padding-top: 1px;
@@ -78,25 +73,22 @@
             </div>
         </div>
     </nav>
-    
 
     <!-- Your HTML structure remains the same -->
-<div class="container">
-    <h1>Manage Account</h1>
-    <!-- Display user account management options -->
-  
+    <div class="container">
+        <h1>Manage Account</h1>
+        <!-- Display user account management options -->
         <br><br><br><br>
-       <!-- Add a form to submit changes to the server -->
- <form th:action="@{/api/account/update}" method="post" th:object="${user}">
+        <!-- Add a form to submit changes to the server -->
+        <form th:action="@{/api/account/update}" method="post" th:object="${user}">
             <!-- Field for updating email -->
             <div class="form-group">
                 <label for="email">Email:</label>
-                <!--input type="text" id="email" th:value="${user.email}" name="email" placeholder="Your email" readonly-->
-                 <input type="text" id="email" name="email" placeholder="Change email">
+                <input type="text" id="email" name="email" placeholder="Change email">
                 <input type="hidden" name="field" value="email">
                 <button type="button" class="change-button" onclick="editField('email')" style="background-color:#5CB85C;">Change</button>
             </div>
-			
+            
             <!-- Field for updating location -->
             <div class="form-group">
                 <label for="newLocation">New Location:</label>
@@ -107,12 +99,12 @@
 
             <!-- Field for updating alternative number -->
             <div class="form-group">
-                <label for="alternativeNumber">Alternative Number:</label>
+                <label for "alternativeNumber">Alternative Number:</label>
                 <input type="text" id="alternativeNumber" name="alternativeMobile" placeholder="Add alternative number">
                 <input type="hidden" name="field" value="alternativeMobile">
                 <button type="button" class="change-button" onclick="editField('alternativeNumber')" style="background-color:#5CB85C;">Change</button>
             </div>
-			<!-- Field for updating password -->
+            <!-- Field for updating password -->
             <div class="form-group">
                 <label for="newpassword">New Password:</label>
                 <input type="text" id="newpassword" name="password" placeholder="Change password">
@@ -128,7 +120,7 @@
     <script>
         function editField(fieldName) {
             var field = document.getElementById(fieldName);
-            var button = document.querySelector('[onclick="editField(\'' + fieldName + '\')"]');
+            var button = document.querySelector('[onclick="editField(\'' + fieldName + '\')']);
         
             // Toggle the readonly attribute to enable or disable editing
             field.readOnly = !field.readOnly;
@@ -142,4 +134,4 @@
         }
     </script>
 </body>
-</html>  
+</html>
