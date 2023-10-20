@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+    <title>Sim Porting Request</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #plansContainer {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .planBox {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .planHeader {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .planValidity {
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .planOffers {
+            margin-top: 10px;
+            color: #007bff;
+        }
+
+        .selectPlanButton {
+            margin-top: 10px;
+            background-color: #007bff;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button[type="button"] {
+            background-color: #007bff;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #otp-field {
+              width: 30%;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sim Porting Request</h1>
+    <form onsubmit="return false;">
+        <h2>Your Information</h2>
+        <label for="full-name">Full Name:</label>
+        <input type="text" id="full-name" name="full-name" required>
+
+        <label for="current-number">Current Phone Number:</label>
+        <input type="tel" id="current-number" name="current-number" required>
+
+        <label for="aadhar-number">Aadhar Number:</label>
+        <input type="tel" id="aadhar-number" name="aadhar-number" required>
+
+        <label for="current-address">Current Address:</label>
+        <input type="tel" id="current-address" name="current-address" required>
+
+        <label for="current-carrier">Current Carrier:</label>
+        <input type="text" id="current-carrier" name="current-carrier" required>
+
+        <label for="sim-type">Sim Type:</label>
+        <input type="text" id="sim-type" name="sim-type" required>
+        
+        <h2>New Carrier Information</h2>
+        <label for="new-carrier">Select New Carrier:</label>
+        <select id="new-carrier" name="new-carrier" required>
+            <option value="">Select Carrier</option>
+            <option value="jio">Jio</option>
+            <option value="airtel">Airtel</option>
+            <option value="idea">Idea</option>
+            <option value="bsnl">BSNL</option>
+            <option value="docomo">Docomo</option>
+            <option value="vodafone">Vodafone</option>
+        </select>
+
+        <label for="new-plan">Select New Plan:</label>
+        <select id="new-plan" name="new-plan" required>
+            <option value="">Select Plan</option>
+            <option value="Rs:199 calls:Unlimited Validity:21 Days Data:1.5 GB Per Day SMS:100 sms perday">Rs:199 calls:Unlimited Validity:21 days Data:1.5 GB Per Day SMS:100 sms perday</option>
+            <option value="Rs:299 calls:Unlimited Validity:28 Days Data:1.5 GB Per Day SMS:100 sms perday">Rs:299 calls:Unlimited Validity:28 days Data:1.5 GB Per Day SMS:100 sms perday</option>
+            <option value="Rs:499 calls:Unlimited Validity:58 Days Data:1.5 GB Per Day SMS:100 sms perday">Rs:499 calls:Unlimited Validity:58 Days Data:1.5 GB Per Day SMS:100 sms perday</option>
+            <option value="Rs:799 calls:Unlimited Validity:85 Days Data:1.5 GB Per Day SMS:100 sms perday">Rs:799 calls:Unlimited Validity:85 days Data:1.5 GB Per Day SMS:100 sms perday</option>
+            <option value="Rs:1099 calls:Unlimited Validity:100 Days Data:1.5 GB Per Day SMS:100 sms perday">Rs:1099 calls:Unlimited Validity:100 days Data:1.5 GB Per Day SMS:100 sms perday</option>
+            <option value="Rs:1399 calls:Unlimited Validity:150 Days Data:1.5 GB Per Day SMS:100 sms perday">Rs:1399 calls:Unlimited Validity:150 Days Data:1.5 GB Per Day SMS:100 sms perday</option>
+            <option value="Rs:1999 calls:Unlimited Validity:190 Days Data:2 GB Per Day SMS:100 sms perday">Rs:1999 calls:unlimited Validity:190 Days Data:2 GB Per Day SMS:100 sms perday</option>
+        </select>
+
+        <button type="button" id="submit-button" onclick="validateFields()">Submit Porting Request</button>
+
+        <div id="otp-field" style="display: none;">
+            <label for="otp">Enter OTP:</label>
+            <input type="text" id="otp" name="otp" required>
+            <button type="button" onclick="verifyOTP()">Verify OTP</button>
+        </div>
+        <div id="error-message" style="color: red;"></div>
+    </form>
+
+    <script>
+        let expectedOTP = '';
+
+        function validateFields() {
+            const fullName = document.getElementById('full-name').value;
+            const currentNumber = document.getElementById('current-number').value;
+            const aadharNumber = document.getElementById('aadhar-number').value;
+            const currentAddress = document.getElementById('current-address').value;
+            const currentCarrier = document.getElementById('current-carrier').value;
+            const newCarrier = document.getElementById('new-carrier').value;
+            const newPlan = document.getElementById('new-plan').value;
+
+            if (
+                fullName.trim() === '' ||
+                currentNumber.trim() === '' ||
+                aadharNumber.trim() === '' ||
+                currentAddress.trim() === '' ||
+                currentCarrier.trim() === '' ||
+                newCarrier === '' ||
+                newPlan === ''
+            ) {
+                document.getElementById('error-message').textContent = 'Please fill the required fields.';
+            } else {
+                document.getElementById('error-message').textContent = '';
+                sendOTP();
+            }
+        }
+
+        function sendOTP() {
+            const phoneNumber = document.getElementById('current-number').value;
+            expectedOTP = generateOTP();
+
+            // Simulate sending OTP via a mock API
+            // Replace this with an actual SMS gateway in a real application
+            alert(`OTP sent to ${phoneNumber} via SMS: ${expectedOTP}`);
+            document.getElementById('otp-field').style.display = 'block';
+        }
+
+        function generateOTP() {
+            return Math.floor(1000 + Math.random() * 9000).toString();
+        }
+
+        function verifyOTP() {
+            const enteredOTP = document.getElementById('otp').value;
+            if (enteredOTP === expectedOTP) {
+                alert('OTP verified successfully. Porting request  completed Successfully.');
+                // You can submit the form data to your server for further processing here
+                    // Reload the page after a brief delay
+                setTimeout(function() {
+                    location.reload();
+                }, 2000); // 2000 milliseconds (2 seconds) delay before refreshing
+            } else {
+                alert('Invalid OTP. Please try again.');
+            }
+        }
+           
+    </script>
+</body>
+</html>
