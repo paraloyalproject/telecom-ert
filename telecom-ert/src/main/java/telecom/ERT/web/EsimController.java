@@ -1,9 +1,7 @@
 package telecom.ERT.web;
 
 import java.util.Optional;
-
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
@@ -61,7 +59,7 @@ public class EsimController {
         } catch (DataAccessException ex) {
             // Handle database-related exceptions
             ex.printStackTrace();
-            return "error_page"; // Redirect to an error page or show an error message
+            return "error_page"; 
         }
     }
 

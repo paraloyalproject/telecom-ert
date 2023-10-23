@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
     <!-- Add your meta tags and title here -->
     <meta charset="UTF-8">
     <title>Get New E-SIM</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Include Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- Custom CSS for styling -->
     <style>
@@ -16,63 +21,69 @@
         }
 
         body {
-            background-color: #4B0082; 
+            background-color: #4B0082;
             color: black;
-            min-height: 70vh; 
+            min-height: 70vh;
             padding-top: 1px;
         }
-     
+
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Your Custom Font', Arial, sans-serif;
-            color:white; /* Set text color to light yellow */
+            color: white; /* Set text color to light yellow */
         }
 
         .h1 {
-            text-align: center; 
+            text-align: center;
             color: white !important;
         }
-       
+
         .page-container {
-            padding: 20px; 
+            padding: 20px;
         }
-       
+
         .navbar-nav li a[href="/logout"] {
             color: black !important;
         }
-        
+
         .form-group-container {
             display: flex;
-        align-items: center;
+            align-items: center;
             margin-bottom: 15px;
         }
-        
+
         .form-label {
             flex: 1;
-
-        font-size: 22px;
+            font-size: 22px;
             font-family: 'Your Custom Font', Roboto;
-            color:white /* Set text color to light yellow */
+            color: white /* Set text color to light yellow */
         }
 
         /* Style for input fields */
         .form-control {
             flex: 1;
-    }
+        }
 
         /* Set text color for form controls */
         .form-control {
             color: black !important;
-    }
+        }
+
+        /* Adjusted container size */
+        .center-container {
+            margin: 20px auto;
+            max-width: 800px; /* Adjust the maximum width as needed */
+        }
     </style>
 </head>
 
 <body>
-    
+
     <br /><br /><br /><br /><br />
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -93,7 +104,7 @@
                         <!-- Name -->
                         <div class="form-group-container">
                             <label for="name" class="form-label">Name:</label>
-                            <input type="text" class="form-control" id="name" name="name" required maxlength="40"> 
+                            <input type="text" class="form-control" id="name" name="name" required maxlength="40">
                         </div>
 
                         <!-- Existing Phone Number -->
@@ -101,7 +112,7 @@
                             <label for="phone" class="form-label">Existing Phone Number:</label>
                             <input type="text" class="form-control" id="phone" name="phone" required>
                         </div>
-                        
+
                         <!-- Email Address -->
                         <div class="form-group-container">
                             <label for="email" class="form-label">Email Address:</label>
@@ -128,7 +139,7 @@
                             <label for="pan" class="form-label">PAN Card Number (e.g., ABCDE1234F):</label>
                             <input type="text" class="form-control" id="pan" name="pan">
                         </div>
-                        
+
                         <!-- Service Type (Prepaid or Postpaid) -->
                         <div class="form-group-container">
                             <label for="serviceType" class="form-label">Select Service Type:</label>
@@ -140,7 +151,7 @@
 
                         <!-- Success message (Initially hidden) -->
                         <div class="alert alert-success" id="successMessage" style="display: none;">
-                            <strong>Success!</strong> 
+                            <strong>Success!</strong>
                             <span id="serviceTypeMessage"></span> SIM registered successfully.
                         </div>
 
@@ -148,64 +159,19 @@
                         <div class="text-center">
                             <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">Submit</button>
                         </div>
-                    </form>                   
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Include Bootstrap CSS and other scripts if needed -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+fyO5z5gz4C5z5F5z5z5z5z5z5z5z5z5z5z5z5z5z5z5z5z5z5z5z5z5z5z" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-    <script>
-        // JavaScript to show/hide Aadhar or PAN input based on selection
-        document.getElementById('cardType').addEventListener('change', function () {
-            var cardType = this.value;
-            var aadharInput = document.getElementById('aadharInput');
-            var panInput = document.getElementById('panInput');
-
-            if (cardType === 'aadhar') {
-                aadharInput.style.display = 'block';
-                panInput.style.display = 'none';
-            } else if (cardType === 'pan') {
-                aadharInput.style.display = 'none';
-                panInput.style.display = 'block';
-            } else {
-                aadharInput.style.display = 'none';
-                panInput.style.display = 'none';
-            }
-        });
-
-        // JavaScript to display success message after form submission
-        document.getElementById('submitBtn').addEventListener('click', function () {
-            var successMessage = document.getElementById('successMessage');
-            var serviceType = document.getElementById('serviceType').value;
-            var serviceTypeMessage = document.getElementById('serviceTypeMessage');
-
-            if (serviceType === 'prepaid') {
-                serviceTypeMessage.innerHTML = 'Prepaid';
-            } else if (serviceType === 'postpaid') {
-                serviceTypeMessage.innerHTML = 'Postpaid';
-            }
-
-            successMessage.style.display = 'none'; 
-            var aadharInput = document.getElementById('aadhar').value;
-            var panInput = document.getElementById('pan').value;           
-            var aadharPattern = /^\d{12}$/;
-
-            // Regular expression pattern for PAN Card (5 capital letters, 4 numbers, 1 capital letter)
-            var panPattern = /^[A-Z]{5}\d{4}[A-Z]{1}$/;
-
-            if (serviceType === 'aadhar' && !aadharPattern.test(aadharInput)) {
-                alert('Please enter a valid Aadhar Card number (12 digits only).');
-                return false;
-            } else if (serviceType === 'pan' && !panPattern.test(panInput)) {
-                alert('Please enter a valid PAN Card number (e.g., ABCDE1234F).');
-                return false;
-            }
-            successMessage.style.display = 'block';
-        });
-    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+fyO5z5gz4C5z5F5z5z5z5z5z5z5z5z5z5z5z5z5z5z5z5z5z5z5z5z5z5z5z"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>

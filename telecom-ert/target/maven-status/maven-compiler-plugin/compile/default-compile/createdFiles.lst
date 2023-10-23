@@ -1,0 +1,4 @@
+telecom\ERT\web\BroadbandChartController.class
+telecom\ERT\service\BroadbandService.class
+telecom\ERT\model\BroadbandData.class
+telecom\ERT\repository\BroadbandRepository.class
