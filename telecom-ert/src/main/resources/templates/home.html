@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org">
@@ -16,12 +14,12 @@
 
         body {
              
-            color: white;
+            color: black;
             min-height: 100vh; 
             padding-top: 1px;
         }
          .banner_section{
-         background: linear-gradient(135deg, #7117EA, #EA6060) ; 
+       
             color: white !important;
             min-height: 100vh; 
      
@@ -60,18 +58,11 @@
             font-family: Arial, sans-serif;
             color: white;
         }
-
-
-
-
         .custom-link {
             font-size: 18px;
             color: black;
             background-color: white;
         }
-
-
-
 
         .button-container {
             padding: 5px;
@@ -148,7 +139,7 @@
             width: 20%;
             height: auto;
             display: block;
-            margin: 0 auto;
+             margin: 10px; 
         }
 
 
@@ -174,6 +165,7 @@
         flex-direction: column;
         align-items: flex-start;
         padding: 20px;
+         min-height: 100vh; 
     }
     .feature-heading {
          background-color: #EA6060 ; 
@@ -193,6 +185,31 @@
         color:#7117EA ;
         font-size: 18px;
     }
+      .right-section {
+      
+         background: linear-gradient(135deg, #7117EA, #EA6060) ; 
+       min-height:100vh;
+        border: 1px solid #ccc;
+        padding: 100px;
+      
+        width: auto;
+    }
+
+    /* Additional CSS to stack sections vertically */
+    .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .gif-container { 
+      display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 0 auto;
+            max-width: 700px;
+    }
+    
 </style>
 
 
@@ -214,7 +231,7 @@
                         <div class="dropdown-content" id="prepaid-dropdown">
                             <a href="/get_esim">New Sim</a><br>
                             <a href="/plans">View plans</a>
-                            <a href="/switchto">Switch to Postpaid</a>
+                            <a href="/customer-form">Switch to Postpaid</a>
                         </div>
                     </li>
 
@@ -252,7 +269,7 @@
                             <a href="/myprofile/contactus">Contact Us</a>
                         </div>
                     </li>
-                    <li><a href="/login" style="color: black; font-size: 22px;">LogIn</a></li>
+                   
                     <li><a href="/logout" style="color: black; font-size: 22px;">Logout</a></li>
                 </ul>
             </div>
@@ -270,12 +287,13 @@
                 <a href="#" style="color: black; font-size: 22px;" onclick="toggleDropdown('postpaid-dropdown')">Plans</a>
                 <div class="dropdown-content" id="postpaid-dropdown">
                     <a href="/get_esim">Popular</a><br>
+                     
                     <a href="/postpaidplans">Data Booster</a><br>
                     <a href="/paybill">Monthly plans</a><br>
 
                     <a href="/get_esim">Offer Packs</a><br>
                     <a href="/postpaidplans">Cricket Special Packs</a><br>
-                    <a href="/paybill">Annual plans</a>
+                  
                 </div>
             </li>
             <br>
@@ -290,31 +308,63 @@
             </li><br>
 
             <li class="dropdown">
-                <a href="/sms" style="color: black; font-size: 22px;">SMS</a>
+                <a href="/sms" style="color: black; font-size: 22px;">SMS</a></br>
 
-            </li>
-
+            </li></br > 
+                <li class="dropdown">
+             <a href="#" style="color: black; font-size: 22px;" onclick="toggleDropdown('postpaid-dropdown')">Family Packs</a>
+                    <div class="dropdown-content" id="postpaid-dropdown">
+                    <a href="#">Prepaid Plans</a><br>
+                    <a href="#">Postpaid plans</a><br>
+                    </div>
+                     </li></br > 
+                <li class="dropdown">
+             <a href="#" style="color: black; font-size: 22px;" onclick="toggleDropdown('postpaid-dropdown')">Porting</a>
+                    <div class="dropdown-content" id="postpaid-dropdown">
+                    <a href="#">Sim Porting </a><br>
+                    <a href="#">Porting Services</a><br>
+                    </div>
+		</li>
         </div>
-    </div>
 
-    div class="banner_section layout_padding">
+   <div class="right-section">
     <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <br /><br /><br /> <br /><br /><br /><br>
-                <br />
-                <h1 class="your_text">Recharge at any time</h1>
-                <h1 class="Shows_text">Explore with 5G..</h1>
+        <div class="column">
+            <div class="gif-container">
+                <h1 class="your_text">Recharge at any time...</h1>
+            </div>
+            <div class="gif-container">
+            
+                <a href="/get_esim" style="color: white">
+                    <img src="images/esim.gif" class="video" alt="GIF 1"> New Sim
+                </a>
+                <a href="/get_broadband" style="color: white">
+                    <img src="images/hotspot.gif" class="video" alt="GIF 2"> Broadband
+                </a>
+  
+                <a href="/myprofile/manage_account" style="color: white">
+                    <img src="images/protected-file.gif" class="video" alt="GIF 3"> Manage Account
+                </a>
+                <a href="/myprofile/ourstores" style="color: white">
+                    <img src="images/worldwide.gif" class="video" alt="GIF 4"> Our Stores
+                </a>
+                <a href="/myprofile/contactus" style="color: white">
+                    <img src="images/tech-support.gif" class="video" alt="GIF 5"> Contact Us
+                </a>
+                    
             </div>
         </div>
     </div>
-    </div>
+</div>
+
+
     <script>
         function toggleDropdown(dropdownId) {
             var dropdownContent = document.getElementById(dropdownId);
             dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
         }
     </script>
+
     <!-- Add these script tags before the closing </body> tag -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+u5tcy6B9zRT3h1a8z+cnw5Gm5c3z5F5O0G3MKR5+EW2FpW0" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

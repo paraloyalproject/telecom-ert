@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification</title>
+</head>
+
+<body>
+    <h2>OTP Verification</h2>
+    <p>OTP has been sent to your phone number: <strong th:text="${phoneNumber}"></strong>. Please enter the received OTP to proceed:</p>
+    <form action="/customer/verify-otp" method="post">
+        <label for="enteredOtp">Enter OTP:</label>
+        <input type="text" id="enteredOtp" name="enteredOtp" required><br><br>
+        <input type="hidden" name="phoneNumber" th:value="${phoneNumber}">
+        <button type="submit">Verify OTP and Switch to Postpaid</button>
+    </form>
+    <br>
+    <!-- ... (previous HTML code remains unchanged) ... -->
+
+<button id="revealOtpBtn">Show OTP</button>
+<div id="otpContainer" style="display: none;">
+    <p>Your OTP: <strong th:text="${otp}"></strong></p>
+</div>
+
+<script>
+    // JavaScript to handle the reveal OTP functionality
+    const revealOtpBtn = document.getElementById('revealOtpBtn');
+    const otpContainer = document.getElementById('otpContainer');
+
+    revealOtpBtn.addEventListener('click', () => {
+        if (otpContainer.style.display === 'none' || otpContainer.style.display === '') {
+            otpContainer.style.display = 'block';
+            revealOtpBtn.textContent = 'Hide OTP';
+        } else {
+            otpContainer.style.display = 'none';
+            revealOtpBtn.textContent = 'Show OTP';
+        }
+    });
+</script>
+</body>
+</html>
+    
