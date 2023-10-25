@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Broadband Data Bar Chart</title>
+    <!-- Include Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Custom CSS for styling -->
+    <style>
+        /* Adjusted container size */
+        .center-container {
+            margin: 20px auto;
+            max-width: 800px; /* Adjust the maximum width as needed */
+        }
+
+        body {
+            background-color: #4B0082 !important;
+            color: white !important;
+            min-height: 70vh;
+            padding-top: 1px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Bar Chart Container -->
+    <div class="center-container">
+        <canvas id="broadbandChart" width="600" height="300"></canvas>
+    </div>
+
+    <!-- JavaScript code to initialize and render the chart -->
+    <script th:inline="javascript">
+        // Fetch data from the Thymeleaf model
+        var broadbandDataList = /*[[${broadbandDataList}]]*/ [];
+
+        // Extract labels and usage data from the list
+        var labels = broadbandDataList.map(function(data) {
+            return data.year + ' ' + data.month;
+        });
+
+        var net4gUsage = broadbandDataList.map(function(data) {
+            return data.net4gUsage;
+        });
+
+        var net5gUsage = broadbandDataList.map(function(data) {
+            return data.net5gUsage;
+        });
+
+        var opticalUsage = broadbandDataList.map(function(data) {
+            return data.opticalUsage;
+        });
+
+        var wifiUsage = broadbandDataList.map(function(data) {
+            return data.wifiUsage;
+        });
+
+        // Function to create a bar chart for Broadband usage
+        function createBroadbandChart(labels, net4gUsage, net5gUsage, opticalUsage, wifiUsage) {
+            var broadbandChartCanvas = document.getElementById('broadbandChart').getContext('2d');
+
+            var broadbandChartData = {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Net4G Usage',
+                        data: net4gUsage,
+                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Net5G Usage',
+                        data: net5gUsage,
+                        backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Optical Usage',
+                        data: opticalUsage,
+                        backgroundColor: 'rgba(255, 205, 86, 0.5)',
+                        borderColor: 'rgba(255, 205, 86, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'WiFi Usage',
+                        data: wifiUsage,
+                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            };
+
+            var broadbandChart = new Chart(broadbandChartCanvas, {
+                type: 'bar',
+                data: broadbandChartData,
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                            // You can customize the scale options here if needed
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Broadband Usage',
+                            color: 'black', // Change text color
+                            font: {
+                                size: 18
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Call the function to create the chart with dynamic data
+        createBroadbandChart(labels, net4gUsage, net5gUsage, opticalUsage, wifiUsage);
+    </script>
+</body>
+
+</html>

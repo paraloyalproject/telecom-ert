@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Add your meta tags and title here -->
+    <!-- ... (existing head content) ... -->
+
+    <!-- Include Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Custom CSS for styling -->
+    <style>
+        /* Adjusted container size */
+        .center-container {
+            margin: 20px auto;
+            max-width: 800px; /* Adjust the maximum width as needed */
+        }
+
+        body {
+            background-color: #4B0082 !important;
+            color: white !important;
+            min-height: 70vh;
+            padding-top: 1px;
+        }
+
+        /* Your existing styles here */
+    </style>
+</head>
+
+<body>
+    <!-- Bar Chart Container -->
+    <div class="center-container">
+        <canvas id="esimChart" width="600" height="300"></canvas>
+    </div>
+
+    <!-- JavaScript code to initialize and render the chart -->
+    <script th:inline="javascript">
+        // Fetch data from the Thymeleaf model
+        var labels = /*[[${chartData.labels}]]*/ [];
+        var totalConnections = /*[[${chartData.totalConnections}]]*/ [];
+        var prepaidUsage = /*[[${chartData.prepaidUsage}]]*/ [];
+        var postpaidUsage = /*[[${chartData.postpaidUsage}]]*/ [];
+        var currentUsage = /*[[${chartData.currentUsage}]]*/ [];
+
+        // Function to create a bar chart for E-SIM connections
+        function createEsimChart(labels, totalConnections, prepaidUsage, postpaidUsage, currentUsage) {
+            console.log('Function called with data:', labels, totalConnections, prepaidUsage, postpaidUsage, currentUsage);
+
+            var esimChartCanvas = document.getElementById('esimChart').getContext('2d');
+
+            var esimChartData = {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Total Connections',
+                        data: totalConnections,
+                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Prepaid Usage',
+                        data: prepaidUsage,
+                        backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Postpaid Usage',
+                        data: postpaidUsage,
+                        backgroundColor: 'rgba(255, 205, 86, 0.5)',
+                        borderColor: 'rgba(255, 205, 86, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Current Usage',
+                        data: currentUsage,
+                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            };
+
+            var esimChart = new Chart(esimChartCanvas, {
+                type: 'bar',
+                data: esimChartData,
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 30
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'New SIM Connections',
+                            color: 'white',
+                            font: {
+                                size: 18
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Call the function to create the chart with dynamic data
+        createEsimChart(labels, totalConnections, prepaidUsage, postpaidUsage, currentUsage);
+    </script>
+
+    <!-- Include Bootstrap CSS and other scripts if needed -->
+    <!-- ... (existing script includes) ... -->
+</body>
+</html>

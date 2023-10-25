@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Data Bar Chart</title>
+    <!-- Include Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Custom CSS for styling -->
+    <style>
+        /* Adjusted container size */
+        .center-container {
+            margin: 20px auto;
+            max-width: 800px; /* Adjust the maximum width as needed */
+        }
+
+        body {
+            background-color: #4B0082 !important;
+            color: white !important;
+            min-height: 70vh;
+            padding-top: 1px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Bar Chart Container -->
+    <div class="center-container">
+        <canvas id="registrationChart" width="600" height="300"></canvas>
+    </div>
+
+    <!-- JavaScript code to initialize and render the chart -->
+    <script th:inline="javascript">
+        // Fetch data from the Thymeleaf model
+        var registrationDataList = /*[[${registrationDataList}]]*/ [];
+
+        // Extract labels and data from the list
+        var labels = registrationDataList.map(function(data) {
+            return data.year + ' ' + data.month;
+        });
+
+        var registrationsData = registrationDataList.map(function(data) {
+            return data.registrations;
+        });
+
+        var currentUsageData = registrationDataList.map(function(data) {
+            return data.currentUsage;
+        });
+
+        // Function to create a bar chart for Registrations and Current Usage
+        function createRegistrationChart(labels, registrationsData, currentUsageData) {
+            var registrationChartCanvas = document.getElementById('registrationChart').getContext('2d');
+
+            var registrationChartData = {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Registrations',
+                        data: registrationsData,
+                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Current Usage',
+                        data: currentUsageData,
+                        backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            };
+
+            var registrationChart = new Chart(registrationChartCanvas, {
+                type: 'bar',
+                data: registrationChartData,
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                            // You can customize the scale options here if needed
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Registrations and Current Usage',
+                            color: 'black', // Change text color
+                            font: {
+                                size: 18
+                            }
+                        },
+                        legend: {
+                            position: 'top'
+                        }
+                    }
+                }
+            });
+        }
+
+        // Call the function to create the chart with dynamic data
+        createRegistrationChart(labels, registrationsData, currentUsageData);
+    </script>
+</body>
+
+</html>
