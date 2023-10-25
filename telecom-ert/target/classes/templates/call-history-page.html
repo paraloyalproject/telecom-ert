@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <title>Call History</title>
     <style>
@@ -17,14 +16,12 @@
         }
     </style>
     <script>
-        // Function to filter calls based on call type
         function filterCalls(callType) {
             var rows = document.querySelectorAll('.call-row');
 
             rows.forEach(function (row) {
-                var type = row.children[1].textContent.trim(); // Assuming callType is the second column
+                var type = row.children[1].textContent.trim();
 
-                // Convert both callType and type to lowercase for case-insensitive comparison
                 if (callType.toLowerCase() === 'all' || type.toLowerCase() === callType.toLowerCase()) {
                     row.style.display = '';
                 } else {
@@ -32,13 +29,8 @@
                 }
             });
 
-            // Store the selected filter in localStorage
+            // Store the filter selection in local storage
             localStorage.setItem('callFilter', callType);
-        }
-
-        // Function to retrieve the stored filter from localStorage
-        function retrieveFilter() {
-            return localStorage.getItem('callFilter') || 'All'; // Default to 'All' if no filter is found
         }
 
         function updateDateTime() {
@@ -48,27 +40,23 @@
                 var callDateElement = row.querySelector('.call-date');
                 var startTimeElement = row.querySelector('.start-time');
                 var endTimeElement = row.querySelector('.end-time');
+                var callDurationElement = row.querySelector('.call-duration');
 
                 // Get the current date and time
                 var now = new Date();
-                var formattedDate = now.toLocaleDateString(); // Format date as needed
-                var formattedTime = now.toLocaleTimeString(); // Format time as needed
+                var formattedDate = now.toLocaleDateString();
+                var formattedTime = formatTime(now);
 
                 callDateElement.textContent = formattedDate;
                 startTimeElement.textContent = formattedTime;
 
-                // Extract call duration in minutes and seconds
-                var callDurationString = row.querySelector('.call-duration').textContent;
+                // Get the call duration from the element content
+                var callDurationString = callDurationElement.textContent;
                 var { minutes, seconds } = parseCallDuration(callDurationString);
 
-                var callDurationMilliseconds = (parseInt(minutes) * 60 + parseInt(seconds)) * 1000; // Convert minutes and seconds to milliseconds
-
-                // Parse the start time from the element content
-                var startTimeString = startTimeElement.textContent;
-                var startTime = new Date(formattedDate + ' ' + startTimeString);
-
-                // Calculate end time by adding call duration to start time
-                var endTime = new Date(startTime.getTime() + callDurationMilliseconds);
+                // Calculate end time based on call duration
+                var callDurationMilliseconds = (minutes * 60 + seconds) * 1000;
+                var endTime = new Date(now.getTime() + callDurationMilliseconds);
 
                 // Format and set the end time in the element
                 endTimeElement.textContent = formatTime(endTime);
@@ -76,76 +64,79 @@
         }
 
         function parseCallDuration(durationString) {
-            // Check if the duration is in the format '2:20'
-            if (durationString.includes(':')) {
-                var [minutes, seconds] = durationString.split(':');
+            var match = durationString.match(/(\d+)min(\d+)sec/);
+            if (match) {
+                var minutes = parseInt(match[1]);
+                var seconds = parseInt(match[2]);
                 return { minutes, seconds };
             } else {
-                // Assume the format is '2min20sec' and extract minutes and seconds
-                var match = durationString.match(/(\d+)min(\d+)sec/);
-                if (match) {
-                    var minutes = match[1];
-                    var seconds = match[2];
-                    return { minutes, seconds };
+                var matchMinutes = durationString.match(/(\d+)min/);
+                if (matchMinutes) {
+                    var minutes = parseInt(matchMinutes[1]);
+                    return { minutes, seconds: 0 };
+                } else {
+                    return { minutes: 0, seconds: 0 };
                 }
             }
-
-            // Default to 0 minutes and 0 seconds if the format is not recognized
-            return { minutes: 0, seconds: 0 };
         }
 
         function formatTime(date) {
-            // Implement your own time formatting logic here
-            return date.toLocaleTimeString();
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            var seconds = date.getSeconds();
+
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+
+            return hours + ':' + minutes + ':' + seconds;
         }
 
-        // Update the current date, time, and end time after the Thymeleaf rendering
-        document.addEventListener('DOMContentLoaded', function () {
-            // Retrieve the stored filter and apply it
-            var storedFilter = retrieveFilter();
-            filterCalls(storedFilter);
-
-            // Update date and time
-            updateDateTime();
-        });
-
-        // Update the current date, time, and end time on page load
         window.onload = function () {
-            // Retrieve the stored filter and apply it
-            var storedFilter = retrieveFilter();
-            filterCalls(storedFilter);
+            updateDateTime();
+            // Retrieve the filter selection from local storage
+            var storedFilter = localStorage.getItem('callFilter');
+            if (storedFilter) {
+                filterCalls(storedFilter);
+            }
         };
+
+        document.addEventListener('DOMContentLoaded', function () {
+            updateDateTime();
+            // Retrieve the filter selection from local storage
+            var storedFilter = localStorage.getItem('callFilter');
+            if (storedFilter) {
+                filterCalls(storedFilter);
+            }
+        });
     </script>
 </head>
-
 <body>
-    <h1>Call History</h1>
-    <div>
-        <button onclick="filterCalls('All')">All</button>
-        <button onclick="filterCalls('Incoming')">Incoming</button>
-        <button onclick="filterCalls('Outgoing')">Outgoing</button>
-    </div>
+<h1>Call History</h1>
+<div>
+    <button onclick="filterCalls('All')">All</button>
+    <button onclick="filterCalls('Incoming')">Incoming</button>
+    <button onclick="filterCalls('Outgoing')">Outgoing</button>
+</div>
 
-    <table>
-        <tr>
-            <th>id</th>
-            <th>Call Type</th>
-            <th>Call Date</th>
-            <th>Call Duration</th>
-            <th>Mobile Number</th>
-            <th>Start Time</th>
-            <th>End Time</th>
-        </tr>
-        <tr th:each="callHistory : ${callHistoryList}" data-call-type="${callHistory.callType}" class="call-row">
-            <td th:text="${callHistory.id}"></td>
-            <td th:text="${callHistory.callType}"></td>
-            <td class="call-date"></td>
-            <td class="call-duration" th:text="${callHistory.callDuration}"></td>
-            <td th:text="${callHistory.mobileNumber}"></td>
-            <td class="start-time"></td>
-            <td class="end-time"></td>
-        </tr>
-    </table>
+<table>
+    <tr>
+        <th>id</th>
+        <th>Call Type</th>
+        <th>Call Date</th>
+        <th>Call Duration</th>
+        <th>Mobile Number</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+    </tr>
+    <tr th:each="callHistory : ${callHistoryList}" data-call-type="${callHistory.callType}" class="call-row">
+        <td th:text="${callHistory.id}"></td>
+        <td th:text="${callHistory.callType}"></td>
+        <td class="call-date"></td>
+        <td class="call-duration" th:text="${callHistory.callDuration}"></td>
+        <td th:text="${callHistory.mobileNumber}"></td>
+        <td class="start-time"></td>
+        <td class="end-time"></td>
+    </tr>
+</table>
 </body>
-
 </html>
