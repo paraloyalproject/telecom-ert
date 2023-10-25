@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Monthly Plan Details</title>
+    <style>
+        body {
+            background-color: #f9f9f9; /* Light background color */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        h1 {
+            text-align: center;
+            color: #333; /* Title color */
+        }
+        table {
+            width: 100%;
+            max-width: 800px;
+            border-collapse: collapse;
+            background-color: #fff; /* Table background color */
+            border: 1px solid #ccc; /* Table border color */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Table box shadow */
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ccc; /* Cell border */
+        }
+        th {
+            background-color: #333; /* Header background color */
+            color: #fff; /* Header text color */
+            text-transform: uppercase;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2; /* Alternating row background color */
+        }
+        tr:nth-child(odd) {
+            background-color: #fff; /* Alternating row background color */
+        }
+        a {
+            display: block;
+            width: 150px;
+            text-align: center;
+            margin: 20px auto;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Monthly Plan Details</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <td th:text="${selectedPlan.id}"></td>
+        </tr>
+        <tr>
+            <th>Calls</th>
+            <td th:text="${selectedPlan.calls}"></td>
+        </tr>
+        <tr>
+            <th>Data</th>
+            <td th:text="${selectedPlan.data}"></td>
+        </tr>
+        <tr>
+            <th>SMS</th>
+            <td th:text="${selectedPlan.sms}"></td>
+        </tr>
+        <tr>
+            <th>Validity</th>
+            <td th:text="${selectedPlan.validity}"></td>
+        </tr>
+        <tr>
+            <th>Additional Benefits</th>
+            <td th:text="${selectedPlan.additionalBenefits}"></td>
+        </tr>
+        <tr>
+            <th>Price</th>
+            <td th:text="${selectedPlan.price}"></td>
+        </tr>
+    </table>
+    <a href="/payment-form">Recharge Now</a>
+</body>
+</html>

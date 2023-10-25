@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Monthly Plans</title>
+    <style>
+        body {
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #333;
+            color: #fff;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(odd) {
+            background-color: #fff;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Monthly Plans</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Calls</th>
+                <th>Data</th>
+                <th>SMS</th>
+                <th>Validity</th>
+                <th>Additional Benefits</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="plan : ${monthlyPlans}">
+                <td th:text="${plan.id}"></td>
+                <td th:text="${plan.calls}"></td>
+                <td th:text="${plan.data}"></td>
+                <td th:text="${plan.sms}"></td>
+                <td th:text="${plan.validity}"></td>
+                <td th:text="${plan.additionalBenefits}"></td>
+                <td th:text="${plan.price}"></td>
+                <td><a th:href="@{'/select-monthly-package/' + ${plan.id}}">Select</a></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

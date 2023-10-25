@@ -19,8 +19,6 @@ public class BroadbandData {
     private int opticalUsage;
     private int wifiUsage;
 
-    // Getters and setters
-
     public Long getId() {
         return id;
     }
