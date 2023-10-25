@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prepaid Family Plans</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #7117EA, #EA6060);
+            color: white !important;
+            min-height: 70vh;
+            padding-top: 1px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        .header-row th {
+            background-color: white !important;
+            color: black;
+        }
+
+        .package-table {
+            background: linear-gradient(135deg, #7117EA, #EA6060);
+            color: white;
+            min-height: 70vh;
+            padding-top: 1px;
+        }
+
+        /* Add any additional CSS styles you need */
+    </style>
+</head>
+<body class="package-table">
+    <h1>Prepaid Family Plans</h1>
+    <table>
+        <thead>
+            <tr class="header-row">
+                <th>ID</th>
+                <th>Package Name</th>
+                <th>Price</th>
+                <th>Number of Lines</th>
+                <th>Data</th>
+                <th>SMS</th>
+                <th>Other Benefits</th>
+                <th>Operator</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="plan : ${plans}">
+                <td th:text="${plan.id}"></td>
+                <td th:text="${plan.packageName}"></td>
+                <td th:text="${plan.price}"></td>
+                <td th:text="${plan.numberOfLines}"></td>
+                <td th:text="${plan.data}"></td>
+                <td th:text="${plan.sms}"></td>
+                <td th:text="${plan.otherBenefits}"></td>
+                <td th:text="${plan.operator}"></td>
+                <td><a th:href="@{'/select-prepaid-family-package/' + ${plan.id}}">Select</a></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

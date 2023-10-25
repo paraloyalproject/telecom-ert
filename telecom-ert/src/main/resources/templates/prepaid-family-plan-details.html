@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prepaid Family Plan Details</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #7117EA, #EA6060);
+            color: white;
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 60%;
+            margin: 20px auto;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #7117EA;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h2 {
+            margin-top: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #memberInputs {
+            text-align: center;
+        }
+
+        input {
+            margin: 5px 0;
+            padding: 5px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #7117EA, #EA6060);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Prepaid Family Plan Details</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <td th:text="${plan.id}"></td>
+        </tr>
+        <tr>
+            <th>Package Name</th>
+            <td th:text="${plan.packageName}"></td>
+        </tr>
+        <tr>
+            <th>Price</th>
+            <td th:text="${plan.price}"></td>
+        </tr>
+        <tr>
+            <th>Number of Lines</th>
+            <td th:text="${plan.numberOfLines}"></td>
+        </tr>
+        <tr>
+            <th>Data</th>
+            <td th:text="${plan.data}"></td>
+        </tr>
+        <tr>
+            <th>SMS</th>
+            <td th:text="${plan.sms}"></td>
+        </tr>
+        <tr>
+            <th>Other Benefits</th>
+            <td th:text="${plan.otherBenefits}"></td>
+        </tr>
+        <tr>
+            <th>Operator</th>
+            <td th:text="${plan.operator}"></td>
+        </tr>
+    </table>
+    
+    <!-- Add Members Form -->
+    <form action="/member-deatils" method="post">
+        <h2>Add Members</h2>
+        <div id="memberInputs">
+            <th:block th:each="lineNumber : ${#numbers.sequence(1, plan.numberOfLines)}">
+                <input type="text" name="member" th:id="'member' + ${lineNumber}" th:placeholder="'Member ' + ${lineNumber}" required />
+            </th:block>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
