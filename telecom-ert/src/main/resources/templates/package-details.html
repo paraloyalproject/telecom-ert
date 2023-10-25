@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Selected Package Details</title>
+</head>
+<body>
+    <h1>Family Package Details</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <td th:text="${package.id}"></td>
+        </tr>
+        <tr>
+            <th>Operator</th>
+            <td th:text="${package.operator}"></td>
+        </tr>
+        <tr>
+            <th>Data</th>
+            <td th:text="${package.data}"></td>
+        </tr>
+        <tr>
+            <th>Addon Members</th>
+            <td th:text="${package.addonmembers}"></td>
+        </tr>
+        <tr>
+            <th>Other Benefits</th>
+            <td th:text="${package.otherBenifits}"></td>
+        </tr>
+        <tr>
+            <th>Price</th>
+            <td th:text="${package.price}"></td>
+        </tr>
+    </table>
+</body>
+</html>

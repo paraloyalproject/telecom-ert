@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prepaid Plans</title>
+    <style>
+        body {
+            background-color: #f5f5f5; /* Set the background color */
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            text-align: center;
+            color: #333; /* Title color */
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff; /* Table background color */
+            border: 1px solid #ccc; /* Table border color */
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #333; /* Header background color */
+            color: #fff; /* Header text color */
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2; /* Alternating row background color */
+        }
+        tr:nth-child(odd) {
+            background-color: #fff; /* Alternating row background color */
+        }
+        a {
+            color: #007bff; /* Link color */
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Prepaid Plans</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>PackValidity</th>
+                <th>TotalData</th>
+                <th>DataAtHighSpeed</th>
+                <th>Calls</th>
+                <th>Sms</th>
+                <th>Subscriptions</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="plan : ${plans}">
+                <td th:text="${plan.id}"></td>
+                <td th:text="${plan.name}"></td>
+                <td th:text="${plan.packvalidity}"></td>
+                <td th:text="${plan.totaldata}"></td>
+                <td th:text="${plan.dataathighspeed}"></td>
+                <td th:text="${plan.calls}"></td>
+                <td th:text="${plan.sms}"></td>
+                <td th:text="${plan.subscriptions}"></td>
+                <td th:text="${plan.price}"></td>
+                <td><a th:href="@{'/select-prepaid-package/' + ${plan.id}}">Select</a></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

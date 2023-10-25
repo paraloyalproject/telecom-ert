@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Added Members List</title>
+    <!-- Add your CSS styling here if needed -->
+   <style>
+    /* Background color and styling from the first code snippet */
+    body {
+        background: linear-gradient(135deg, #7117EA, #EA6060);
+        color: white;
+        min-height: 70vh;
+        padding-top: 1px;
+    }
+
+    .navbar {
+        background-color: white !important;
+        padding: 8px 0;
+        margin-bottom: 120px;
+        color: white !important;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 50%;
+        margin: 10px auto;
+    }
+
+    th {
+        background-color: #f2f2f2;
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+        width: 20%;
+        color: black; /* Add this line to change text color for th elements */
+    }
+
+    td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+        color: white;
+        font-size: 22px;
+        width: 70%;
+    }
+</style>
+    <!-- JavaScript for displaying the pop-up message -->
+    <script>
+        function showSuccessPopup() {
+            alert("Recharge successfully! Bill Will Be Generated And Sent To Your Registered Mobile Number");
+            return false;
+        }
+    </script>
+</head>
+<body>
+    <h1 style="text-align:center;color:white;font-size:32px;">Added Members List</h1>
+    <br><br>
+    <table>
+        <!-- Display the added members in a similar table structure -->
+        <tr th:each="phoneNumber : ${addedMembers}">
+            <th>Member:</th>
+            <td th:text="${phoneNumber}"></td>
+        </tr>
+    </table><br>
+    
+    <!-- Replace the form with a link to simulate a recharge -->
+    <div style="text-align:center;">
+        <a href="payment-form">Recharge Now</a>
+    </div>
+</body>
+</html>
