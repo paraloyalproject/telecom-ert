@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Popular Plans</title>
+    <style>
+        /* Define the background color for the entire columns when hovering */
+        th:hover, td:hover {
+            background-color: #f2f2f2;
+        }
+
+        /* Add a border to the table */
+        table {
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+        }
+
+        /* Style the table rows and cells */
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Popular Plans</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Pack Validity</th>
+                <th>Data</th>
+                <th>Calls</th>
+                <th>SMS</th>
+                <th>AdditionalBenifits</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="plan : ${plans}">
+                <td th:text="${plan.id}"></td>
+                <td th:text="${plan.name}"></td>
+                <td th:text="${plan.packvalidity}"></td>
+                <td th:text="${plan.data}"></td>
+                <td th:text="${plan.calls}"></td>
+                <td th:text="${plan.sms}"></td>
+                <td th:text="${plan.additionalbenifits}"></td>
+                <td th:text="${plan.price}"></td>
+                <td><a th:href="@{'/select-popular-package/' + ${plan.id}}">Select</a></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
